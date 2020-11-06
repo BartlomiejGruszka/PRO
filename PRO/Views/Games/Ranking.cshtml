@@ -1,0 +1,53 @@
+﻿@model PRO.ViewModels.GameFilterViewModel
+@{
+    ViewBag.Title = "Ranking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("FilterRanking", "Games"))
+{
+    <div class="form-group">
+        @Html.LabelFor(l=>l.Platforms)
+    </div>
+}
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" class="top-ranking-table">
+    <tbody>
+        <tr class="table-header"><td class="rank">Ranga</td><td class="title">Tytuł</td><td class="release-date">Data premiery</td><td class="your-score">Twoja ocena</td><td class="score">Ocena</td></tr>
+        @for (int i = 1; i <= 10; i++)
+        {
+            <tr class="ranking-list">
+                <td class="rank ac" valign="top">
+                    <span class="lightLink top-game-rank-text rank1">@i</span>
+                </td>
+                <td class="title al va-t word-break">
+                    <a class="hoverinfo_trigger fl-l ml12 mr8" href="https://mygamelist.net/game/5114/Fullmetal_Alchemist__Brotherhood" id="#area5114" rel="#info5114" style="position: relative;">
+                        <img width="50" height="70" alt="game: Fullmetal Alchemist: Brotherhood" class=" lazyloaded" border="0" src="https://cdn.myanimelist.net/r/50x70/images/anime/1223/96541.webp?s=263cff1b768e29f3cc841792b2dded2e">
+                    </a>
+                    <div class="detail">
+                        <div class="di-ib clearfix">
+                            <a class="hoverinfo_trigger fl-l fs14 fw-b" href="" id="#area5114" rel="#info5114" style="position: relative;">Fullmetal Alchemist: Brotherhood</a>
+                        </div>
+                        <br>
+                        <div class="information di-ib mt4">
+                            TV (64 eps) Apr 2009 - Jul 2010  1,844,434 members
+                        </div>
+                    </div>
+                </td>
+                <td class="status ac">
+                    <a href="" class=" btn-addEdit-large btn-game-watch-status js-game-watch-status notinmylist"><i class="fa fa-plus-square-o mr4"></i>2019-11-11</a>
+                </td>
+                <td class="your-score ac fs14">
+                    <div class="js-top-ranking-your-score-col di-ib al" style="width: 43.4063px;">
+                        <a href="" class=""><i class="icon-score-star mr4 "></i><span class="text  score-label score-na">N/A</span></a>
+                    </div>
+                </td>
+                <td class="score ac fs14">
+                    <div class="js-top-ranking-score-col di-ib al" style="width: 48.7969px;"><i class="icon-score-star mr4 on"></i><span class="text on score-label score-9">9.23</span></div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

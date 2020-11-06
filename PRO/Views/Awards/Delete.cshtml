@@ -1,0 +1,48 @@
+﻿@model PRO.Models.Award
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuń nagrodę</h2>
+
+<h3>Czy na pewno chcesz usunąć tę nagrodę?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AwardDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AwardDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-primary" />
+            <div class="btn btn-secondary"><a class="actionLinkManage" href="/awards/manage">Wróć</a></div>
+        </div>
+    }
+</div>

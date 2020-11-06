@@ -1,0 +1,32 @@
+﻿@model PRO.Models.Genre
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuń gatunek</h2>
+
+<h3>Czy na pewno chcesz usunąć ten gatunek?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-primary" /> 
+            <div class="btn btn-secondary"><a class="actionLinkManage" href="/genres/manage">Wróć</a></div>
+        </div>
+    }
+</div>

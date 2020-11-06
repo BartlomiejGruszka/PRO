@@ -1,0 +1,10 @@
+packages/
+*.mdf
+*.ldf
+PRO/bin/EntityFramework.dll
+PRO/bin/EntityFramework.xml
+PRO/bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll
+PRO/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
+PRO/bin/roslyn/Microsoft.CodeAnalysis.dll
+*.png
+*.jfif

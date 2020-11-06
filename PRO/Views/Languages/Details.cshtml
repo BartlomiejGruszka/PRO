@@ -1,0 +1,27 @@
+﻿@model PRO.Models.Language
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły języka</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="btn btn-primary"><a class="actionLinkManage" href="/languages/edit/@Model.Id">Edytuj</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/languages/manage">Wróć</a></div>
+
+</p>

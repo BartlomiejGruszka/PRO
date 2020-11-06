@@ -1,0 +1,85 @@
+﻿@model  PRO.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="maingrid-container">
+    <div class="">
+        <div class="list-group">
+            <h2>Bieżące informacje</h2>
+            @for (int i = 0; i < 4; i++)
+            {
+
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+            }
+        </div>
+        <div>
+            <br />
+            <h2>Ostatnie premiery</h2>
+            <div class="leftinnergrid-container">
+
+                @{
+                        var games = Model.RecentGames.ToList().Take(5);
+
+                        foreach (var game in games)
+                        {
+                        <div class="card mb-3">
+                            @if (game.Image != null)
+                    {
+                                <img style="min-height: 100px; max-height: 160px; height:16vw; width: 100%; display: block;" src="@Url.Content(game.Image.ImagePath)">
+                            }
+                            <div class="card-body">
+                                <p class="card-ellipsis">@game.Title</p>
+                            </div>
+                        </div>
+                    } }
+
+            </div>
+        </div>
+        <div class="list-group">
+            <h2>Najpopularniejsze</h2>
+            @for (int i = 0; i < 4; i++)
+            {
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                        <small class="text-muted">3 days ago</small>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+            }
+
+        </div>
+        <br />
+    </div>
+
+    <div class="">
+        <div class="side-list-group">
+            <h3 class="sidebar-title">Najwyżej oceniane</h3>
+            @for (int i = 0; i < 3; i++)
+            {
+                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">List group item heading</h5>
+                    </div>
+                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <small class="text-muted">Donec id elit non mi porta.</small>
+                </a>
+            }
+
+        </div>
+        <br />
+        @Html.Partial("_ClosestReleaseGames")
+        <br />
+        @Html.Partial("_NewReviews", Model)
+        <br />
+    </div>
+</div>

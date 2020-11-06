@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      tinymce.init({
+        selector: '#mytextarea'
+      });
+    </script>
+</head>
+<body>
+    <div class="">
+        <div class="top-homebar">
+            <div class="navbar">
+                @Html.ActionLink("Archiwum Gier", "Index", "Home", new { area = "" }, new { @class = "mainbutton"})
+            </div>
+            <div class="">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/articles">Artykuły<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/games">Gry</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/games/ranking">Rankingi</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Szukaj">
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Szukaj</button>
+            </form>
+        </div>
+    </nav>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active">Strona główna</li>
+    </ol>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <div class="footer-ranking" style="margin-top: 0px;">
+            <div class="ranking-container">
+                <div class="ranking-unit">
+                    <h3 class="title">
+                        <a href="#" class="view_more fl-r">More</a>Popularni wydawcy
+                    </h3>
+                    <ol>
+                        @for (var i = 1; i <= 5; i++)
+                        {
+                            <li>
+                                <span class="rank">@i</span>
+                                <a href="#">Fullmetal Alchemist</a>
+                            </li>
+                        }
+                    </ol>
+                </div>
+                <div class="ranking-unit">
+                    <h3 class="title">
+                        <a href="#" class="view_more fl-r">More</a>Popularne gatunki
+                    </h3>
+                    <ol>
+                        @for (var i = 1; i <= 5; i++)
+                        {
+                            <li>
+                                <span class="rank">@i</span>
+                                <a href="#">Re:Zero</a>
+                            </li>
+                        }
+                    </ol>
+                </div>
+                <div class="ranking-unit">
+                    <h3 class="title">
+                        <a href="#" class="view_more fl-r">More</a>
+                        Popularne serie
+                    </h3>
+                    <ol>
+                        @for (var i = 1; i <= 5; i++)
+                        {
+                            <li>
+                                <span class="rank">@i</span>
+                                <a href="#">Lamperouge, Lelouch</a>
+                            </li>
+
+                        }
+
+
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div>
+                <p>&copy; @DateTime.Now.Year - Archiwum Gier</p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

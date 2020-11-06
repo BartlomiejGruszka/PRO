@@ -1,0 +1,30 @@
+﻿@model PRO.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuń użytkownika</h2>
+
+<h3>Czy na pewno chcesz usunąć tego użytkownika?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dd>
+            @Html.DisplayFor(model=>model.ApplicationUser.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-primary" />
+            <div class="btn btn-secondary"><a class="actionLinkManage" href="/users/manage">Wróć</a></div>
+        </div>
+    }
+</div>

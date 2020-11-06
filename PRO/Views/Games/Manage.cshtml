@@ -1,0 +1,150 @@
+﻿@model IEnumerable<PRO.Models.Game>
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Zarządzaj grami</h2>
+
+<p>
+    <div class="btn btn-primary"><a class="actionLinkManage" href="/games/add">Dodaj nową</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/admin">Powrót</a></div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Platform)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeveloperCompany)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublisherCompany)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Series)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @{ var start = ViewBag.Pagination.pageIteratorStart;
+        var end = ViewBag.Pagination.pageIteratorEnd;
+        for (var i = start; i <= end; i++)
+        {
+            var item = Model.ToArray()[i];
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Platform.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReleaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DeveloperCompany.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherCompany.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Series.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Szczegóły", "ManageDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    }
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<div>
+    <ul class="pagination">
+        @{
+            var first = ViewBag.Pagination.firstPage;
+            var current = ViewBag.Pagination.currentPage;
+            var previous = ViewBag.Pagination.previousPage;
+            var items = ViewBag.Pagination.itemsPerPage;
+            var next = ViewBag.Pagination.nextPage;
+            var last = ViewBag.Pagination.lastPage;
+        }
+
+
+
+
+        @{
+            if (@current >= 3)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/games/manage?page=@first&items=@items">«</a>
+                </li>
+            }
+            if (@current >= 2 && @previous != @current)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/games/manage?page=@previous&items=@items">@previous</a>
+                </li>
+            }
+
+            <li class="page-item active">
+                <a class="page-link" href="/games/manage?page=@current&items=@items">@current</a>
+            </li>
+
+            if (@last > @current)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/games/manage?page=@next&items=@items">@next</a>
+                </li>
+            }
+
+            if (@last > @current + 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/games/manage?page=@last&items=@items">&raquo;</a>
+                </li>
+            }
+        }
+    </ul>
+</div>

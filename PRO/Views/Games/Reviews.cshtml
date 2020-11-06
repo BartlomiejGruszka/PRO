@@ -1,0 +1,100 @@
+﻿@model PRO.ViewModels.GameDetailsViewModel
+@{
+    ViewBag.Title = "Reviews";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_GameTitleBar", Model.Game)
+<div id="content">
+
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody>
+            <tr>
+                @Html.Partial("_GameInfoBar", Model.Game)
+                <td valign="top" style="padding-left: 5px;">
+                    <div class="js-scrollfix-bottom-rel">
+                        <div style=" margin:0 auto"></div><a name="lower"></a>
+
+                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                            <tbody>
+                                <tr>
+                                    <td class="pb24">
+
+                                        <div class="underlined_h2">Wszystkie recenzje</div>
+                                        @{
+                                            var start = Model.Pagination.pageIteratorStart;
+                                            var end = Model.Pagination.pageIteratorEnd;
+                                            var reviews = Model.Game.Reviews.ToList();
+                                            for (var i = start; i <= end; i++)
+                                            {
+                                                if (reviews.ElementAtOrDefault(i) != null)
+                                                {
+                                                    var review = reviews[i];
+                                                    @Html.Partial("_SingleReview", review)
+                                                }
+                                                <div class="underlined_h2"></div>
+                                            }
+                                        }
+
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div>
+                        <ul class="pagination">
+                            @{
+                                var first = @Model.Pagination.firstPage;
+                                var current = @Model.Pagination.currentPage;
+                                var previous = @Model.Pagination.previousPage;
+                                var items = @Model.Pagination.itemsPerPage;
+                                var next = @Model.Pagination.nextPage;
+                                var last = @Model.Pagination.lastPage;
+                            }
+
+
+
+
+                            @{
+                                if (@current >= 3)
+                                {
+                                    <li class="page-item">
+                                       <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@first&items=@items">«</a>
+                                    </li>
+                                }
+                                if (@current >= 2 && @previous != @current)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@previous&items=@items">@previous</a>
+                                    </li>
+                                }
+
+                                <li class="page-item active">
+                                    <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@current&items=@items">@current</a>
+                                </li>
+
+                                if (@last > @current)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@next&items=@items">@next</a>
+                                    </li>
+                                }
+
+                                if (@last > @current + 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@last&items=@items">&raquo;</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</div>
+

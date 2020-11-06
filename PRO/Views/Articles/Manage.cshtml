@@ -1,0 +1,137 @@
+﻿@model IEnumerable<PRO.Models.Article>
+
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Zarządzaj artykułami</h2>
+
+<p>
+    <div class="btn btn-primary"><a class="actionLinkManage" href="/articles/add">Dodaj nowy</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/admin">Powrót</a></div>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArticleType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PublishedDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @{
+        var start = ViewBag.Pagination.pageIteratorStart;
+        var end = ViewBag.Pagination.pageIteratorEnd;
+        for (var i = start; i <= end; i++)
+        {
+            var article = Model.ToArray()[i];
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => article.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => article.Game.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => article.Author.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => article.Author.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => article.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => article.ArticleType.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => article.PublishedDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj", "Edit", new { id = article.Id }) |
+                    @Html.ActionLink("Szczegóły", "ManageDetails", new { id = article.Id }) |
+                    @Html.ActionLink("Usuń", "Delete", new { id = article.Id })
+                </td>
+            </tr>
+
+
+        }
+    }
+
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+<div>
+    <ul class="pagination">
+        @{
+            var first = ViewBag.Pagination.firstPage;
+            var current = ViewBag.Pagination.currentPage;
+            var previous = ViewBag.Pagination.previousPage;
+            var items = ViewBag.Pagination.itemsPerPage;
+            var next = ViewBag.Pagination.nextPage;
+            var last = ViewBag.Pagination.lastPage;
+        }
+
+
+
+
+        @{
+            if (@current >= 3)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles/manage?page=@first&items=@items">«</a>
+                </li>
+            }
+            if (@current >= 2 && @previous != @current)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles/manage?page=@previous&items=@items">@previous</a>
+                </li>
+            }
+
+            <li class="page-item active">
+                <a class="page-link" href="/articles/manage?page=@current&items=@items">@current</a>
+            </li>
+
+            if (@last > @current)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles/manage?page=@next&items=@items">@next</a>
+                </li>
+            }
+
+            if (@last > @current + 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles/manage?page=@last&items=@items">&raquo;</a>
+                </li>
+            }
+        }
+    </ul>
+</div>

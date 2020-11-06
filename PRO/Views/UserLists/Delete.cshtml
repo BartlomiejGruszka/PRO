@@ -1,0 +1,62 @@
+﻿@model PRO.Models.UserList
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuń listę użytkownika</h2>
+
+<h3>Czy na pewno chcesz usunąć tę listę użytkownika?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.ApplicationUser.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPublic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPublic)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Usuń" class="btn btn-primary" />
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/userlists/manage">Wróć</a></div>
+</div>
+    }
+</div>

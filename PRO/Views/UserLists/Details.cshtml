@@ -1,0 +1,56 @@
+﻿@model PRO.Models.UserList
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły listy użytkownika</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.ApplicationUser.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsPublic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsPublic)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="btn btn-primary"><a class="actionLinkManage" href="/userlists/edit/@Model.Id">Edytuj</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/userlists/manage">Wróć</a></div>
+</p>

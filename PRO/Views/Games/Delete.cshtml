@@ -1,0 +1,102 @@
+﻿@model PRO.Models.Game
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuń grę</h2>
+
+<h3>Czy na pewno chcesz usunąć tę grę?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Platform)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Platform.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Series)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Series.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @if (Model.Image != null)
+            {<img style="max-width:500px;width: expression(this.width > 500 ? 500: true);" class=" lazyloaded" src="@Url.Content(Model.Image.ImagePath)">
+
+            }
+            else
+            { <p>Brak obrazu</p>}
+
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PublisherCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublisherCompany.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeveloperCompany)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeveloperCompany.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-primary" />
+            <div class="btn btn-secondary"><a class="actionLinkManage" href="/games/manage">Wróć</a></div>
+        </div>
+    }
+</div>

@@ -1,0 +1,112 @@
+﻿@model PRO.Models.Game
+
+<td class="borderClass" width="225" style="border-width: 0 1px 0 0;" valign="top">
+    <div style="width: 225px">
+
+        <div style="text-align: center;">
+            @if (Model.Image != null)
+            {<a>
+                    <img style="max-width:200px;width: expression(this.width > 200 ? 200: true);" class="lazyloaded" src="@Url.Content(Model.Image.ImagePath)">
+                </a>}
+
+        </div>
+
+        <div class="underlined_h2">Dodaj do listy</div>
+
+        <div class="underlined_h2">Informacje</div>
+
+        <div class="spaceit">
+            <span class="dark_text">Data premiery: </span>
+            @{
+
+                if (Model.ReleaseDate == null)
+                { <a href="#">Nieznana</a>}
+                else if (Model.ReleaseDate.Year < 1900)
+                { <a href="#">Nieznana</a>}
+                else
+                {
+                    var date = @Model.ReleaseDate.Day.ToString()
+                     + "." + @Model.ReleaseDate.Month.ToString() + "."
+                     + @Model.ReleaseDate.Year.ToString();
+
+                    <a href="#">@date</a>}
+            }
+        </div>
+        <div class="spaceit"><span class="dark_text">Platforma: </span><a href="#">@Model.Platform.Name</a></div>
+        <div class="spaceit"><span class="dark_text">Gatunek: </span>@Model.Genre.Name</div>
+        <div class="spaceit">
+            <span class="dark_text">Wydawca: </span>@if (Model.PublisherCompany == null)
+            {<a>Brak</a> }
+            else
+            { <a>@Model.PublisherCompany.Name</a>}
+        </div>
+        <div class="spaceit">
+            <span class="dark_text">Producent: </span>@if (Model.DeveloperCompany == null)
+            {<a>Brak</a> }
+            else
+            { <a>@Model.DeveloperCompany.Name</a>}
+        </div>
+        <div class="spaceit"><span class="dark_text">Status: </span> <a>@Model.Status.Name</a> </div>
+        <div class="spaceit">
+            <span class="dark_text">Seria: </span>@if (Model.SeriesId == null)
+            {<a>Brak</a> }
+            else
+            { <a>@Model.Series.Name</a>}
+        </div>
+
+        <div>
+            <span class="dark_text">Języki:</span>
+
+
+            @foreach (var language in Model.Languages)
+            {
+                <a href="#">@language.Name</a>
+            }
+
+        </div>
+        <div class="spaceit">
+            <span class="dark_text">Tagi:</span>
+            @foreach (var tag in Model.Tags)
+            {
+                <a href="#">@tag.Name</a>
+            }
+
+        </div>
+
+        <br>
+
+        <div class="underlined_h2">Statystyki</div>
+        <div>
+            <span class="dark_text">Ocena:</span>
+            <span class="score-label score-7">7.82</span>
+        </div>
+        <div>
+            <span class="dark_text">Ranking:</span>
+            #787
+        </div>
+        <div>
+            <span class="dark_text">Popularność:</span>
+            #839
+        </div>
+        <br>
+
+        <div class="underlined_h2">Nagrody</div>
+
+        @{
+            if (Model.Awards != null)
+            {
+                foreach (var award in Model.Awards)
+                {
+                    <a href="#">@award.Name</a>
+                }
+            }
+            else
+            {
+                <div>brak</div>
+            }
+        }
+        <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
+        </div>
+
+    </div>
+</td>

@@ -1,0 +1,43 @@
+﻿@model PRO.Models.Image
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły obrazu</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            <label>Obraz</label> 
+        </dt>
+        <dd>
+            <div style="text-align: center;">
+                <img style="max-width:500px;width: expression(this.width > 500 ? 500: true);" class=" lazyloaded" src="@Url.Content(Model.ImagePath)">
+            </div>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="btn btn-primary"><a class="actionLinkManage" href="/images/edit/@Model.Id">Edytuj</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/images/rename/@Model.Id">Zmień nazwę</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/images/manage">Wróć</a></div>
+</p>

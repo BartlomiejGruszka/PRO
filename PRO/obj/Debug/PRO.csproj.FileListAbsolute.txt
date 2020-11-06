@@ -1,0 +1,649 @@
+F:\PRO2\PRO\bin\PRO.dll.config
+F:\PRO2\PRO\bin\PRO.dll
+F:\PRO2\PRO\bin\PRO.pdb
+F:\PRO2\PRO\bin\roslyn\csc.exe
+F:\PRO2\PRO\bin\roslyn\csc.exe.config
+F:\PRO2\PRO\bin\roslyn\csc.rsp
+F:\PRO2\PRO\bin\roslyn\csi.exe
+F:\PRO2\PRO\bin\roslyn\csi.exe.config
+F:\PRO2\PRO\bin\roslyn\csi.rsp
+F:\PRO2\PRO\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\PRO2\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\PRO2\PRO\bin\roslyn\Microsoft.Managed.Core.targets
+F:\PRO2\PRO\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\PRO2\PRO\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\PRO2\PRO\bin\roslyn\System.AppContext.dll
+F:\PRO2\PRO\bin\roslyn\System.Collections.Immutable.dll
+F:\PRO2\PRO\bin\roslyn\System.Console.dll
+F:\PRO2\PRO\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+F:\PRO2\PRO\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\PRO2\PRO\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\PRO2\PRO\bin\roslyn\System.Globalization.Calendars.dll
+F:\PRO2\PRO\bin\roslyn\System.IO.Compression.dll
+F:\PRO2\PRO\bin\roslyn\System.IO.Compression.ZipFile.dll
+F:\PRO2\PRO\bin\roslyn\System.IO.FileSystem.dll
+F:\PRO2\PRO\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\PRO2\PRO\bin\roslyn\System.Net.Http.dll
+F:\PRO2\PRO\bin\roslyn\System.Net.Sockets.dll
+F:\PRO2\PRO\bin\roslyn\System.Reflection.Metadata.dll
+F:\PRO2\PRO\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\PRO2\PRO\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\PRO2\PRO\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\PRO2\PRO\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\PRO2\PRO\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\PRO2\PRO\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\PRO2\PRO\bin\roslyn\System.Threading.Tasks.Extensions.dll
+F:\PRO2\PRO\bin\roslyn\System.ValueTuple.dll
+F:\PRO2\PRO\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\PRO2\PRO\bin\roslyn\System.Xml.XmlDocument.dll
+F:\PRO2\PRO\bin\roslyn\System.Xml.XPath.dll
+F:\PRO2\PRO\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\PRO2\PRO\bin\roslyn\vbc.exe
+F:\PRO2\PRO\bin\roslyn\vbc.exe.config
+F:\PRO2\PRO\bin\roslyn\vbc.rsp
+F:\PRO2\PRO\bin\roslyn\VBCSCompiler.exe
+F:\PRO2\PRO\bin\roslyn\VBCSCompiler.exe.config
+F:\PRO2\PRO\bin\Antlr3.Runtime.dll
+F:\PRO2\PRO\bin\EntityFramework.dll
+F:\PRO2\PRO\bin\EntityFramework.SqlServer.dll
+F:\PRO2\PRO\bin\Microsoft.AspNet.Identity.Core.dll
+F:\PRO2\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\PRO2\PRO\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\PRO2\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Cookies.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Facebook.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Google.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.OAuth.dll
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Twitter.dll
+F:\PRO2\PRO\bin\Microsoft.Web.Infrastructure.dll
+F:\PRO2\PRO\bin\Newtonsoft.Json.dll
+F:\PRO2\PRO\bin\Owin.dll
+F:\PRO2\PRO\bin\System.Web.Helpers.dll
+F:\PRO2\PRO\bin\System.Web.Mvc.dll
+F:\PRO2\PRO\bin\System.Web.Optimization.dll
+F:\PRO2\PRO\bin\System.Web.Razor.dll
+F:\PRO2\PRO\bin\System.Web.WebPages.Deployment.dll
+F:\PRO2\PRO\bin\System.Web.WebPages.dll
+F:\PRO2\PRO\bin\System.Web.WebPages.Razor.dll
+F:\PRO2\PRO\bin\WebGrease.dll
+F:\PRO2\PRO\bin\System.Web.Helpers.xml
+F:\PRO2\PRO\bin\System.Web.Mvc.xml
+F:\PRO2\PRO\bin\System.Web.Optimization.xml
+F:\PRO2\PRO\bin\System.Web.Razor.xml
+F:\PRO2\PRO\bin\System.Web.WebPages.xml
+F:\PRO2\PRO\bin\System.Web.WebPages.Deployment.xml
+F:\PRO2\PRO\bin\System.Web.WebPages.Razor.xml
+F:\PRO2\PRO\bin\Newtonsoft.Json.xml
+F:\PRO2\PRO\bin\Antlr3.Runtime.pdb
+F:\PRO2\PRO\bin\EntityFramework.xml
+F:\PRO2\PRO\bin\EntityFramework.SqlServer.xml
+F:\PRO2\PRO\bin\Microsoft.AspNet.Identity.Core.xml
+F:\PRO2\PRO\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\PRO2\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Facebook.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Cookies.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Google.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.Twitter.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\PRO2\PRO\bin\Microsoft.Owin.Security.OAuth.xml
+F:\PRO2\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\PRO2\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.initialModel.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.basicModels.resources
+F:\PRO2\PRO\obj\Debug\PRO.csproj.GenerateResource.cache
+F:\PRO2\PRO\obj\Debug\PRO.csproj.CopyComplete
+F:\PRO2\PRO\obj\Debug\PRO.dll
+F:\PRO2\PRO\obj\Debug\PRO.pdb
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.game_foreign_keys.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.review_relations.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.review_relations1.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.populateGameForeignKeys.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.exampleGame.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\PRO.dll.config
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\PRO.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\PRO.pdb
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\csc.exe
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\csc.exe.config
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\csc.rsp
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\csi.exe
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\csi.exe.config
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\csi.rsp
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.AppContext.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Console.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Globalization.Calendars.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.IO.Compression.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.IO.Compression.ZipFile.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Net.Http.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Net.Sockets.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Threading.Tasks.Extensions.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.ValueTuple.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Xml.XPath.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\vbc.exe
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\vbc.exe.config
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\vbc.rsp
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\VBCSCompiler.exe
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Antlr3.Runtime.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\EntityFramework.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\EntityFramework.SqlServer.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Newtonsoft.Json.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Owin.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Helpers.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Mvc.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Optimization.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Razor.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.WebPages.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.WebPages.Razor.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\WebGrease.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Helpers.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Mvc.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Optimization.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.Razor.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.WebPages.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\System.Web.WebPages.Razor.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Newtonsoft.Json.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Antlr3.Runtime.pdb
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\EntityFramework.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\EntityFramework.SqlServer.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.initialModel.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.basicModels.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.game_foreign_keys.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.review_relations.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.review_relations1.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.populateGameForeignKeys.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.Migrations.exampleGame.resources
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.csproj.GenerateResource.cache
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.csproj.CopyComplete
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.dll
+C:\Users\Bartłomiej Gruszka\Documents\PRO2\PRO\obj\Debug\PRO.pdb
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.foreignKeyChanges.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.foreignKeyChangesFixes.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.clearData.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.clearData1.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation1.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation2.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation3.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.newGameTagRelation.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.imagemodel.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.remaining_foreign_keys.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.user_changes.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.review_moderator_allow_nulls.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.user_modeladjustment.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.test.resources
+F:\PRO2\PRO\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
+F:\PRO2\PRO\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+F:\PRO2\PRO\bin\Microsoft.Bcl.AsyncInterfaces.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Configuration.Binder.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Configuration.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.DependencyInjection.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Identity.Core.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Logging.Abstractions.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Logging.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Options.dll
+F:\PRO2\PRO\bin\Microsoft.Extensions.Primitives.dll
+F:\PRO2\PRO\bin\System.Buffers.dll
+F:\PRO2\PRO\bin\System.ComponentModel.Annotations.dll
+F:\PRO2\PRO\bin\System.Memory.dll
+F:\PRO2\PRO\bin\System.Numerics.Vectors.dll
+F:\PRO2\PRO\bin\System.Runtime.CompilerServices.Unsafe.dll
+F:\PRO2\PRO\bin\System.Threading.Tasks.Extensions.dll
+F:\PRO2\PRO\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+F:\PRO2\PRO\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
+F:\PRO2\PRO\bin\Microsoft.Bcl.AsyncInterfaces.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Configuration.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Configuration.Binder.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.DependencyInjection.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Identity.Core.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Logging.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Logging.Abstractions.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Options.xml
+F:\PRO2\PRO\bin\Microsoft.Extensions.Primitives.xml
+F:\PRO2\PRO\bin\System.Buffers.xml
+F:\PRO2\PRO\bin\System.Memory.xml
+F:\PRO2\PRO\bin\System.Numerics.Vectors.xml
+F:\PRO2\PRO\bin\System.Runtime.CompilerServices.Unsafe.xml
+F:\PRO2\PRO\bin\System.Threading.Tasks.Extensions.xml
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.ArticleTypefix.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.dataannotationsforgenremodel.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.ImageModelChanges.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.dataAnnotationAdjustments.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.isActiveForAuthorsAndModerators.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.UserListsInitial.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.SeedRoles.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.ModeratorNullableDate.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.uniqueKeysTest.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.modelupdates.resources
+F:\PRO2\PRO\obj\Debug\PRO.Migrations.uniqueconstraints.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.dll
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.pdb
+F:\PRO2 — kopia\PRO\bin\PRO.dll.config
+F:\PRO2 — kopia\PRO\bin\PRO.dll
+F:\PRO2 — kopia\PRO\bin\PRO.pdb
+F:\PRO2 — kopia\PRO\bin\roslyn\csc.exe
+F:\PRO2 — kopia\PRO\bin\roslyn\csc.exe.config
+F:\PRO2 — kopia\PRO\bin\roslyn\csc.rsp
+F:\PRO2 — kopia\PRO\bin\roslyn\csi.exe
+F:\PRO2 — kopia\PRO\bin\roslyn\csi.exe.config
+F:\PRO2 — kopia\PRO\bin\roslyn\csi.rsp
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.Managed.Core.targets
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\PRO2 — kopia\PRO\bin\roslyn\Microsoft.Win32.Primitives.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.AppContext.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Collections.Immutable.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Console.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Diagnostics.StackTrace.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Globalization.Calendars.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.IO.Compression.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.IO.Compression.ZipFile.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.IO.FileSystem.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.IO.FileSystem.Primitives.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Net.Http.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Net.Sockets.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Reflection.Metadata.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Security.Cryptography.Encoding.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Security.Cryptography.Primitives.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Text.Encoding.CodePages.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Threading.Tasks.Extensions.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.ValueTuple.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Xml.ReaderWriter.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Xml.XmlDocument.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Xml.XPath.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\System.Xml.XPath.XDocument.dll
+F:\PRO2 — kopia\PRO\bin\roslyn\vbc.exe
+F:\PRO2 — kopia\PRO\bin\roslyn\vbc.exe.config
+F:\PRO2 — kopia\PRO\bin\roslyn\vbc.rsp
+F:\PRO2 — kopia\PRO\bin\roslyn\VBCSCompiler.exe
+F:\PRO2 — kopia\PRO\bin\roslyn\VBCSCompiler.exe.config
+F:\PRO2 — kopia\PRO\bin\Antlr3.Runtime.dll
+F:\PRO2 — kopia\PRO\bin\EntityFramework.dll
+F:\PRO2 — kopia\PRO\bin\EntityFramework.SqlServer.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNet.Identity.Core.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNet.Identity.Owin.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Bcl.AsyncInterfaces.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Configuration.Binder.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Configuration.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.DependencyInjection.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Identity.Core.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Logging.Abstractions.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Logging.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Options.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Primitives.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Host.SystemWeb.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Cookies.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Facebook.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Google.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.OAuth.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Twitter.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.Web.Infrastructure.dll
+F:\PRO2 — kopia\PRO\bin\Newtonsoft.Json.dll
+F:\PRO2 — kopia\PRO\bin\Owin.dll
+F:\PRO2 — kopia\PRO\bin\System.Buffers.dll
+F:\PRO2 — kopia\PRO\bin\System.ComponentModel.Annotations.dll
+F:\PRO2 — kopia\PRO\bin\System.Memory.dll
+F:\PRO2 — kopia\PRO\bin\System.Numerics.Vectors.dll
+F:\PRO2 — kopia\PRO\bin\System.Runtime.CompilerServices.Unsafe.dll
+F:\PRO2 — kopia\PRO\bin\System.Threading.Tasks.Extensions.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.Helpers.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.Mvc.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.Optimization.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.Razor.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.WebPages.Deployment.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.WebPages.dll
+F:\PRO2 — kopia\PRO\bin\System.Web.WebPages.Razor.dll
+F:\PRO2 — kopia\PRO\bin\WebGrease.dll
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Bcl.AsyncInterfaces.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Configuration.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Configuration.Binder.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.DependencyInjection.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Identity.Core.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Logging.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Logging.Abstractions.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Options.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Extensions.Primitives.xml
+F:\PRO2 — kopia\PRO\bin\System.Buffers.xml
+F:\PRO2 — kopia\PRO\bin\System.Memory.xml
+F:\PRO2 — kopia\PRO\bin\System.Numerics.Vectors.xml
+F:\PRO2 — kopia\PRO\bin\System.Runtime.CompilerServices.Unsafe.xml
+F:\PRO2 — kopia\PRO\bin\System.Threading.Tasks.Extensions.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.Helpers.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.Mvc.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.Optimization.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.Razor.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.WebPages.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.WebPages.Deployment.xml
+F:\PRO2 — kopia\PRO\bin\System.Web.WebPages.Razor.xml
+F:\PRO2 — kopia\PRO\bin\Newtonsoft.Json.xml
+F:\PRO2 — kopia\PRO\bin\Antlr3.Runtime.pdb
+F:\PRO2 — kopia\PRO\bin\EntityFramework.xml
+F:\PRO2 — kopia\PRO\bin\EntityFramework.SqlServer.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNet.Identity.Core.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNet.Identity.Owin.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Host.SystemWeb.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Facebook.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Cookies.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Google.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.Twitter.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.Owin.Security.OAuth.xml
+F:\PRO2 — kopia\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.initialModel.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.basicModels.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.game_foreign_keys.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.review_relations.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.review_relations1.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.populateGameForeignKeys.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.exampleGame.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.foreignKeyChanges.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.foreignKeyChangesFixes.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.clearData.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.clearData1.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation1.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation2.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation3.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.newGameTagRelation.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.imagemodel.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.remaining_foreign_keys.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.user_changes.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.review_moderator_allow_nulls.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.user_modeladjustment.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.test.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.ArticleTypefix.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.dataannotationsforgenremodel.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.ImageModelChanges.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.dataAnnotationAdjustments.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.isActiveForAuthorsAndModerators.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.UserListsInitial.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.SeedRoles.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.ModeratorNullableDate.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.uniqueKeysTest.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.modelupdates.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.Migrations.uniqueconstraints.resources
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.csproj.GenerateResource.cache
+F:\PRO2 — kopia\PRO\obj\Debug\PRO.csproj.CopyComplete
+D:\git\PRO\bin\PRO.dll.config
+D:\git\PRO\bin\PRO.dll
+D:\git\PRO\bin\PRO.pdb
+D:\git\PRO\bin\roslyn\csc.exe
+D:\git\PRO\bin\roslyn\csc.exe.config
+D:\git\PRO\bin\roslyn\csc.rsp
+D:\git\PRO\bin\roslyn\csi.exe
+D:\git\PRO\bin\roslyn\csi.exe.config
+D:\git\PRO\bin\roslyn\csi.rsp
+D:\git\PRO\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\git\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\git\PRO\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\git\PRO\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\git\PRO\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\git\PRO\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\git\PRO\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\git\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\git\PRO\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\git\PRO\bin\roslyn\Microsoft.Managed.Core.targets
+D:\git\PRO\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\git\PRO\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\git\PRO\bin\roslyn\System.AppContext.dll
+D:\git\PRO\bin\roslyn\System.Collections.Immutable.dll
+D:\git\PRO\bin\roslyn\System.Console.dll
+D:\git\PRO\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+D:\git\PRO\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\git\PRO\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\git\PRO\bin\roslyn\System.Globalization.Calendars.dll
+D:\git\PRO\bin\roslyn\System.IO.Compression.dll
+D:\git\PRO\bin\roslyn\System.IO.Compression.ZipFile.dll
+D:\git\PRO\bin\roslyn\System.IO.FileSystem.dll
+D:\git\PRO\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\git\PRO\bin\roslyn\System.Net.Http.dll
+D:\git\PRO\bin\roslyn\System.Net.Sockets.dll
+D:\git\PRO\bin\roslyn\System.Reflection.Metadata.dll
+D:\git\PRO\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\git\PRO\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\git\PRO\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\git\PRO\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\git\PRO\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\git\PRO\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\git\PRO\bin\roslyn\System.Threading.Tasks.Extensions.dll
+D:\git\PRO\bin\roslyn\System.ValueTuple.dll
+D:\git\PRO\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\git\PRO\bin\roslyn\System.Xml.XmlDocument.dll
+D:\git\PRO\bin\roslyn\System.Xml.XPath.dll
+D:\git\PRO\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\git\PRO\bin\roslyn\vbc.exe
+D:\git\PRO\bin\roslyn\vbc.exe.config
+D:\git\PRO\bin\roslyn\vbc.rsp
+D:\git\PRO\bin\roslyn\VBCSCompiler.exe
+D:\git\PRO\bin\roslyn\VBCSCompiler.exe.config
+D:\git\PRO\bin\Antlr3.Runtime.dll
+D:\git\PRO\bin\EntityFramework.dll
+D:\git\PRO\bin\EntityFramework.SqlServer.dll
+D:\git\PRO\bin\Microsoft.AspNet.Identity.Core.dll
+D:\git\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\git\PRO\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\git\PRO\bin\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\git\PRO\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\git\PRO\bin\Microsoft.Bcl.AsyncInterfaces.dll
+D:\git\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\git\PRO\bin\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\git\PRO\bin\Microsoft.Extensions.Configuration.Binder.dll
+D:\git\PRO\bin\Microsoft.Extensions.Configuration.dll
+D:\git\PRO\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\git\PRO\bin\Microsoft.Extensions.DependencyInjection.dll
+D:\git\PRO\bin\Microsoft.Extensions.Identity.Core.dll
+D:\git\PRO\bin\Microsoft.Extensions.Logging.Abstractions.dll
+D:\git\PRO\bin\Microsoft.Extensions.Logging.dll
+D:\git\PRO\bin\Microsoft.Extensions.Options.dll
+D:\git\PRO\bin\Microsoft.Extensions.Primitives.dll
+D:\git\PRO\bin\Microsoft.Owin.dll
+D:\git\PRO\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.Cookies.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.Facebook.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.Google.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.OAuth.dll
+D:\git\PRO\bin\Microsoft.Owin.Security.Twitter.dll
+D:\git\PRO\bin\Microsoft.Web.Infrastructure.dll
+D:\git\PRO\bin\Newtonsoft.Json.dll
+D:\git\PRO\bin\Owin.dll
+D:\git\PRO\bin\System.Buffers.dll
+D:\git\PRO\bin\System.ComponentModel.Annotations.dll
+D:\git\PRO\bin\System.Memory.dll
+D:\git\PRO\bin\System.Numerics.Vectors.dll
+D:\git\PRO\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\git\PRO\bin\System.Threading.Tasks.Extensions.dll
+D:\git\PRO\bin\System.Web.Helpers.dll
+D:\git\PRO\bin\System.Web.Mvc.dll
+D:\git\PRO\bin\System.Web.Optimization.dll
+D:\git\PRO\bin\System.Web.Razor.dll
+D:\git\PRO\bin\System.Web.WebPages.Deployment.dll
+D:\git\PRO\bin\System.Web.WebPages.dll
+D:\git\PRO\bin\System.Web.WebPages.Razor.dll
+D:\git\PRO\bin\WebGrease.dll
+D:\git\PRO\bin\Microsoft.AspNetCore.Cryptography.Internal.xml
+D:\git\PRO\bin\Microsoft.AspNetCore.Cryptography.KeyDerivation.xml
+D:\git\PRO\bin\Microsoft.Bcl.AsyncInterfaces.xml
+D:\git\PRO\bin\Microsoft.Extensions.Configuration.xml
+D:\git\PRO\bin\Microsoft.Extensions.Configuration.Abstractions.xml
+D:\git\PRO\bin\Microsoft.Extensions.Configuration.Binder.xml
+D:\git\PRO\bin\Microsoft.Extensions.DependencyInjection.xml
+D:\git\PRO\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
+D:\git\PRO\bin\Microsoft.Extensions.Identity.Core.xml
+D:\git\PRO\bin\Microsoft.Extensions.Logging.xml
+D:\git\PRO\bin\Microsoft.Extensions.Logging.Abstractions.xml
+D:\git\PRO\bin\Microsoft.Extensions.Options.xml
+D:\git\PRO\bin\Microsoft.Extensions.Primitives.xml
+D:\git\PRO\bin\System.Buffers.xml
+D:\git\PRO\bin\System.Memory.xml
+D:\git\PRO\bin\System.Numerics.Vectors.xml
+D:\git\PRO\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\git\PRO\bin\System.Threading.Tasks.Extensions.xml
+D:\git\PRO\bin\System.Web.Helpers.xml
+D:\git\PRO\bin\System.Web.Mvc.xml
+D:\git\PRO\bin\System.Web.Optimization.xml
+D:\git\PRO\bin\System.Web.Razor.xml
+D:\git\PRO\bin\System.Web.WebPages.xml
+D:\git\PRO\bin\System.Web.WebPages.Deployment.xml
+D:\git\PRO\bin\System.Web.WebPages.Razor.xml
+D:\git\PRO\bin\Newtonsoft.Json.xml
+D:\git\PRO\bin\Antlr3.Runtime.pdb
+D:\git\PRO\bin\EntityFramework.xml
+D:\git\PRO\bin\EntityFramework.SqlServer.xml
+D:\git\PRO\bin\Microsoft.AspNet.Identity.Core.xml
+D:\git\PRO\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\git\PRO\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\git\PRO\bin\Microsoft.Owin.xml
+D:\git\PRO\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.Facebook.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.Cookies.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.Google.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.Twitter.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\git\PRO\bin\Microsoft.Owin.Security.OAuth.xml
+D:\git\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\git\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
+D:\git\PRO\obj\Debug\PRO.Migrations.initialModel.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.basicModels.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.game_foreign_keys.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.review_relations.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.review_relations1.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.populateGameForeignKeys.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.exampleGame.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.foreignKeyChanges.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.foreignKeyChangesFixes.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.clearData.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.clearData1.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation1.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation2.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.newGameLanguageRelation3.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.newGameTagRelation.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.imagemodel.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.remaining_foreign_keys.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.user_changes.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.review_moderator_allow_nulls.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.user_modeladjustment.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.test.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.ArticleTypefix.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.dataannotationsforgenremodel.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.ImageModelChanges.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.dataAnnotationAdjustments.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.isActiveForAuthorsAndModerators.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.UserListsInitial.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.SeedRoles.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.ModeratorNullableDate.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.uniqueKeysTest.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.modelupdates.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.uniqueconstraints.resources
+D:\git\PRO\obj\Debug\PRO.csproj.GenerateResource.cache
+D:\git\PRO\obj\Debug\PRO.csproj.CopyComplete
+D:\git\PRO\obj\Debug\PRO.dll
+D:\git\PRO\obj\Debug\PRO.pdb

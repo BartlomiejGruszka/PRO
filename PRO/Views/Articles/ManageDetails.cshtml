@@ -1,0 +1,100 @@
+﻿@model PRO.Models.Article
+
+@{
+    ViewBag.Title = "ManageDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły artykułu</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Game)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ArticleType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArticleType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image.Name)
+        </dt>
+
+        <dd>
+            @if (Model.Image != null)
+            {
+                <div style="text-align: left;">
+                    <a>
+                        <img style="max-width:500px;width: expression(this.width > 500 ? 500: true);" class=" lazyloaded" src="@Url.Content(Model.Image.ImagePath)">
+                    </a>
+
+                </div>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd>
+            @Html.Raw(@Model.Content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SourceLink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SourceLink)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="btn btn-primary"><a class="actionLinkManage" href="/articles/edit/@Model.Id">Edytuj</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/articles/manage">Wróć</a></div>
+</p>

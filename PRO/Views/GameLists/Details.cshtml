@@ -1,0 +1,65 @@
+﻿@model PRO.Models.GameList
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GameList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Użytkownik
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserList.User.ApplicationUser.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserList)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserList.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoursPlayed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoursPlayed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonalScore)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonalScore)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AddedDate)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
