@@ -647,3 +647,5 @@ D:\git\PRO\obj\Debug\PRO.csproj.GenerateResource.cache
 D:\git\PRO\obj\Debug\PRO.csproj.CopyComplete
 D:\git\PRO\obj\Debug\PRO.dll
 D:\git\PRO\obj\Debug\PRO.pdb
+D:\git\PRO\obj\Debug\PRO.Migrations.userlistsuniquekeyfix.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.uniquereviewconstraint.resources

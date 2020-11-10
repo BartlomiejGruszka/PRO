@@ -19,7 +19,7 @@ namespace PRO.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CreatedDate { get; set; }
 
-        [Required, DisplayName("Nazwa"), MaxLength(50), MinLength(3), UniqueUserListName ] //add custom is unique constraint
+        [Required, DisplayName("Nazwa"), MaxLength(50), MinLength(3), UniqueUserListUserIdAndName ] //add custom is unique constraint
         public string Name { get; set; }
 
         [Required, DisplayName("Dostępna publicznie")]

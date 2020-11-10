@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PRO.Helpers
 {
-    public class UniqueUserListName : ValidationAttribute
+    public class UniqueUserListUserIdAndName : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
@@ -20,7 +20,7 @@ namespace PRO.Helpers
                 .SingleOrDefault(s => s.Name == userList.Name && s.UserId ==  userList.UserId);
             if (isUnique != null)
             {
-                return new ValidationResult("Ten użytkownik posiada już listę o takiej nazwie.");
+                return new ValidationResult("Istnieje już lista o takiej nazwie.");
             }
 
             return ValidationResult.Success;

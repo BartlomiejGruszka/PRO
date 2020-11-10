@@ -264,7 +264,8 @@
     <Compile Include="Helpers\UniquePlatformName.cs" />
     <Compile Include="Helpers\UniqueSeriesName.cs" />
     <Compile Include="Helpers\UniqueTagName.cs" />
-    <Compile Include="Helpers\UniqueUserListName.cs" />
+    <Compile Include="Helpers\UniqueReviewUserIdAndGameId.cs" />
+    <Compile Include="Helpers\UniqueUserListUserIdAndName.cs" />
     <Compile Include="Helpers\UniqueStatusName.cs" />
     <Compile Include="Migrations\202007181439554_initialModel.cs" />
     <Compile Include="Migrations\202007181439554_initialModel.Designer.cs">
@@ -397,6 +398,14 @@
     <Compile Include="Migrations\202011051218532_unique constraints.cs" />
     <Compile Include="Migrations\202011051218532_unique constraints.Designer.cs">
       <DependentUpon>202011051218532_unique constraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011100937266_userlists unique key fix.cs" />
+    <Compile Include="Migrations\202011100937266_userlists unique key fix.Designer.cs">
+      <DependentUpon>202011100937266_userlists unique key fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011101644138_unique review constraint.cs" />
+    <Compile Include="Migrations\202011101644138_unique review constraint.Designer.cs">
+      <DependentUpon>202011101644138_unique review constraint.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -721,6 +730,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011051218532_unique constraints.resx">
       <DependentUpon>202011051218532_unique constraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011100937266_userlists unique key fix.resx">
+      <DependentUpon>202011100937266_userlists unique key fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011101644138_unique review constraint.resx">
+      <DependentUpon>202011101644138_unique review constraint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

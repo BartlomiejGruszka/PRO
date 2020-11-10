@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PRO.Helpers;
 
 namespace PRO.Models
 {
@@ -36,13 +37,13 @@ namespace PRO.Models
         [Required, Range(1, 10), DisplayName("Grywalność")]
         public int GameplayScore { get; set; }
 
-        [Required]
+        [Required, UniqueReviewUserIdAndGameId]
         public int UserId { get; set; }
 
         [ForeignKey("UserId"), DisplayName("Użytkownik")]
         public User User { get; set; }
 
-        [Required]
+        [Required, UniqueReviewUserIdAndGameId]
         public int GameId { get; set; }
 
         [ForeignKey("GameId"), DisplayName("Gra")]
