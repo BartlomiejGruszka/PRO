@@ -7,6 +7,7 @@ using System.Web;
 using PRO.Models;
 using PRO.Helpers;
 
+
 namespace PRO.ViewModels
 {
     public class EditUserViewModel
@@ -20,8 +21,6 @@ namespace PRO.ViewModels
         [StringLength(25, ErrorMessage = "{0}musi mieć co najmniej {2} znaków.", MinimumLength = 3),UniqueUserName]
         [Display(Name = "Login")]
         public string UserName { get; set; }
-
-        public string ConfirmPassword { get; set; }
 
         [DisplayName("Data rejestracji")]
         [DataType(DataType.Date)]

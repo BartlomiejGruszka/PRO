@@ -50,14 +50,35 @@ namespace PRO.Controllers
             return View(users);
         }
 
-        [Route("users/details/{id}")]
+        [Route("users/{id}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(i => i.Id == id);
+            User user = _context.AppUsers
+                .Include(a => a.ApplicationUser)
+                .Include(a => a.Image)
+                .SingleOrDefault(i => i.Id == id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        [Route("users/details/{id}")]
+        public ActionResult ManageDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = _context.AppUsers
+                .Include(a => a.ApplicationUser)
+                .Include(a => a.Image)
+                .SingleOrDefault(i => i.Id == id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -157,20 +178,28 @@ namespace PRO.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = _context.AppUsers.Include(s=>s.ApplicationUser).SingleOrDefault(s => s.Id == model.Id);
+                var user = _context.AppUsers.Include(s => s.ApplicationUser).SingleOrDefault(s => s.Id == model.Id);
                 var appuser = user.ApplicationUser;
 
                 appuser.Email = model.Email;
                 appuser.UserName = model.UserName;
 
+                user.RegisterDate = model.RegisterDate;
+                user.Description = model.Description;
+                user.IsActive = model.IsActive;
+                user.IsPublic = model.IsPublic;
+                user.ImageId = model.ImageId;
 
-                _context.Users.Add(appuser);
+
+                _context.Entry(user).State = EntityState.Modified;
+                _context.Entry(appuser).State = EntityState.Modified;
+
                 _context.SaveChanges();
 
                 return RedirectToAction("Manage", "Users");
-                
-            }
 
+            }
+            model.Images = _context.Images.ToList();
             return View(model);
         }
 
@@ -182,7 +211,10 @@ namespace PRO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(i => i.Id == id);
+            User user = _context.AppUsers
+                .Include(a => a.ApplicationUser)
+                .Include(a => a.Image)
+                .SingleOrDefault(i => i.Id == id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -196,7 +228,10 @@ namespace PRO.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = _context.AppUsers.Find(id);
+            User user = _context.AppUsers
+                .Include(a => a.ApplicationUser)
+                .Include(a => a.Image)
+                .SingleOrDefault(i => i.Id == id);
             var userid = user.UserId;
             // _context.AppUsers.Remove(user);
 

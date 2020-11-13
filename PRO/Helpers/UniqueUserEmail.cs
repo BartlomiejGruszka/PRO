@@ -18,8 +18,8 @@ namespace PRO.Helpers
 
             var obj = (EditUserViewModel)validationContext.ObjectInstance;
 
-            var isUnique = _context.AppUsers.Include(s => s.ApplicationUser)
-                .SingleOrDefault(s => s.ApplicationUser.Email == obj.Email);
+            var isUnique = _context.AppUsers.Include(a => a.ApplicationUser)
+                .SingleOrDefault(s => s.Id != obj.Id && s.ApplicationUser.Email == obj.Email);
             if (isUnique != null)
             {
                 return new ValidationResult("Ten adres email jest już wykorzystany.");

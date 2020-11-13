@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
+using System.Data.Entity;
+
 
 namespace PRO.Helpers
 {
@@ -17,8 +18,8 @@ namespace PRO.Helpers
             _context = new ApplicationDbContext();
             var obj = (EditUserViewModel)validationContext.ObjectInstance;
 
-            var isUnique = _context.Users
-                .SingleOrDefault(s => s.UserName == obj.UserName);
+            var isUnique = _context.AppUsers.Include(a=>a.ApplicationUser)
+                .SingleOrDefault(s => s.Id != obj.Id && s.ApplicationUser.UserName == obj.UserName);
             if (isUnique != null)
             {
                 return new ValidationResult("Nazwa użytkownika jest zajęta.");
