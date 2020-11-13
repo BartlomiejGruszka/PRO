@@ -6,6 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity;
+using PRO.ViewModels;
 
 namespace PRO.Controllers
 {
@@ -13,13 +17,26 @@ namespace PRO.Controllers
     public class UsersController : Controller
     {
         private ApplicationDbContext _context;
-
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
 
         public UsersController()
         {
             _context = new ApplicationDbContext();
 
         }
+
+
         // GET: Users
         [Route("users/manage")]
         public ActionResult Manage()
@@ -27,7 +44,7 @@ namespace PRO.Controllers
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
 
-            var users = _context.AppUsers.Include(a => a.ApplicationUser).Include(i=>i.Image).ToList();
+            var users = _context.AppUsers.Include(a => a.ApplicationUser).Include(i => i.Image).ToList();
 
             ViewBag.Pagination = new Pagination(pageString, itemString, users.Count());
             return View(users);
@@ -51,20 +68,55 @@ namespace PRO.Controllers
         [Route("users/add")]
         public ActionResult Add()
         {
-            //modify view to load register partial view
-
-            return View();
+            NewUserViewModel viewModel = new NewUserViewModel
+            {
+                Images = _context.Images.ToList()
+            };
+            return View(viewModel);
         }
 
-        [HttpPost]
         [Route("users/add")]
+        [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "UserId,FirstName,LastName,CreatedDate")] Author author)
+        public async Task<ActionResult> Add(NewUserViewModel model)
         {
-            //not sure if its needed at all with built-in register
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    //create normal user object
+                    var userModel = new User
+                    {
+                        UserId = user.Id,
+                        RegisterDate = model.RegisterDate,
+                        IsActive = model.IsActive,
+                        IsPublic = model.IsPublic,
+                        ImageId = model.ImageId,
+                        Description = model.Description
+                    };
 
+                    //temp also in Account Controller
+                    /*var roleStore = new RoleStore<IdentityRole>(_context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole(""));
+                    await UserManager.AddToRoleAsync(user.Id, "");*/
+                    //end temp
+
+                    _context.AppUsers.Add(userModel);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Manage", "Users");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            model.Images = _context.Images.ToList();
+            return View(model);
+        }
 
         [Route("users/edit/{id}")]
         public ActionResult Edit(int? id)
@@ -78,7 +130,21 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
-            return View(user);
+            EditUserViewModel viewModel = new EditUserViewModel
+            {
+                UserName = user.ApplicationUser.UserName,
+                Id = (int)id,
+                Email = user.ApplicationUser.Email,
+                RegisterDate = user.RegisterDate,
+                Description = user.Description,
+                IsActive = user.IsActive,
+                IsPublic = user.IsPublic,
+                ImageId = user.ImageId,
+                Images = _context.Images.ToList()
+            };
+
+
+            return View(viewModel);
         }
 
         // POST: Authors/Edit/5
@@ -87,15 +153,25 @@ namespace PRO.Controllers
         [HttpPost]
         [Route("users/edit/{id}")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( User user)
+        public ActionResult Edit(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Entry(user).State = EntityState.Modified;
+                var user = _context.AppUsers.Include(s=>s.ApplicationUser).SingleOrDefault(s => s.Id == model.Id);
+                var appuser = user.ApplicationUser;
+
+                appuser.Email = model.Email;
+                appuser.UserName = model.UserName;
+
+
+                _context.Users.Add(appuser);
                 _context.SaveChanges();
-                return RedirectToAction("Manage");
+
+                return RedirectToAction("Manage", "Users");
+                
             }
-            return View(user);
+
+            return View(model);
         }
 
         // GET: Authors/Delete/5
@@ -122,11 +198,11 @@ namespace PRO.Controllers
         {
             User user = _context.AppUsers.Find(id);
             var userid = user.UserId;
-           // _context.AppUsers.Remove(user);
+            // _context.AppUsers.Remove(user);
 
             //remove applicationUser too right here
             _context.SaveChanges();
-            return RedirectToAction("DeleteUser","Manage",new {userId = userid});
+            return RedirectToAction("DeleteUser", "Manage", new { userId = userid });
         }
 
 
@@ -145,6 +221,14 @@ namespace PRO.Controllers
                 _context.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void AddErrors(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError("", error);
+            }
         }
     }
 }
