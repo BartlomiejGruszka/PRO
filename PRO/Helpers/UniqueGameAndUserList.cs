@@ -9,10 +9,10 @@ namespace PRO.Helpers
 {
     public class UniqueGameAndUserList : ValidationAttribute
     {
+        private ApplicationDbContext _context;
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var _context = (ApplicationDbContext)validationContext
-                         .GetService(typeof(ApplicationDbContext));
+            _context = new ApplicationDbContext();
 
             var gameList = (GameList)validationContext.ObjectInstance;
 
