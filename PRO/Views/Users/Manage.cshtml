@@ -72,7 +72,8 @@
             <td>
                 @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Szczegóły", "ManageDetails", new { id = item.Id }) |
-                @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                @Html.ActionLink("Usuń", "Delete", new { id = item.Id }) |
+                @Html.ActionLink("Zmień hasło", "ChangePassword", new { id = item.Id })
             </td>
         </tr>
     } }

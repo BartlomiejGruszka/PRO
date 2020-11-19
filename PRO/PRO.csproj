@@ -618,6 +618,7 @@
     <Content Include="Views\GameLists\Edit.cshtml" />
     <Content Include="Views\GameLists\Manage.cshtml" />
     <Content Include="Views\Users\ManageDetails.cshtml" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

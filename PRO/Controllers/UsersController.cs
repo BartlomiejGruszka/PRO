@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using PRO.ViewModels;
+using static PRO.Controllers.ManageController;
 
 namespace PRO.Controllers
 {
@@ -18,6 +19,7 @@ namespace PRO.Controllers
     {
         private ApplicationDbContext _context;
         private ApplicationUserManager _userManager;
+        private ApplicationSignInManager _signInManager;
         public ApplicationUserManager UserManager
         {
             get
@@ -29,7 +31,17 @@ namespace PRO.Controllers
                 _userManager = value;
             }
         }
-
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
         public UsersController()
         {
             _context = new ApplicationDbContext();
@@ -239,6 +251,42 @@ namespace PRO.Controllers
             _context.SaveChanges();
             return RedirectToAction("DeleteUser", "Manage", new { userId = userid });
         }
+
+        // GET: /Manage/ChangePassword
+        [Route("users/changePassword/{id}")]
+        public ActionResult ChangePassword(int id)
+        {
+            ChangePasswordViewModel viewModel = new ChangePasswordViewModel
+            {
+                id = id
+            };
+            return View(viewModel);
+        }
+
+        //
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [Route("users/changePassword/{id}")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            var userdata = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(a => a.Id == model.id);
+            if(userdata == null) 
+            { return RedirectToAction("Manage"); }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var result = await UserManager.ChangePasswordAsync(userdata.UserId, model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {  
+                return RedirectToAction("Manage");
+            }
+            AddErrors(result);
+            return View(model);
+        }
+
 
 
 
