@@ -226,7 +226,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ControlPanelController.cs" />
     <Compile Include="Controllers\ArticlesController.cs" />
     <Compile Include="Controllers\ArticleTypesController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
@@ -560,7 +560,7 @@
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Delete.cshtml" />
     <Content Include="Views\Reviews\Manage.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\ControlPanel\Admin.cshtml" />
     <Content Include="Views\Awards\Add.cshtml" />
     <Content Include="Views\Awards\Delete.cshtml" />
     <Content Include="Views\Awards\Details.cshtml" />
@@ -619,6 +619,8 @@
     <Content Include="Views\GameLists\Manage.cshtml" />
     <Content Include="Views\Users\ManageDetails.cshtml" />
     <Content Include="Views\Users\ChangePassword.cshtml" />
+    <Content Include="Views\ControlPanel\Moderator.cshtml" />
+    <Content Include="Views\ControlPanel\Author.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

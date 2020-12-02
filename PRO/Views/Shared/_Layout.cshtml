@@ -9,16 +9,16 @@
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
     <script>
-      tinymce.init({
-        selector: '#mytextarea'
-      });
+        tinymce.init({
+            selector: '#mytextarea'
+        });
     </script>
 </head>
 <body>
     <div class="">
         <div class="top-homebar">
             <div class="navbar">
-                @Html.ActionLink("Archiwum Gier", "Index", "Home", new { area = "" }, new { @class = "mainbutton"})
+                @Html.ActionLink("Archiwum Gier", "Index", "Home", new { area = "" }, new { @class = "mainbutton" })
             </div>
             <div class="">
                 @Html.Partial("_LoginPartial")
@@ -42,6 +42,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/games/ranking">Rankingi</a>
                 </li>
+                @{
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/panel/admin">Panel admina</a>
+                        </li>
+                    }
+                    if (User.IsInRole("Moderator"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/panel/moderator">Panel moderatora</a>
+                        </li>
+                    }
+                    if (User.IsInRole("Author"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/panel/author">Panel autora</a>
+                        </li>
+                    }
+
+                }
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Szukaj">
