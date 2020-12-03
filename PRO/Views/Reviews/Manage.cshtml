@@ -9,7 +9,7 @@
 
 <p>
     <div class="btn btn-primary"><a class="actionLinkManage" href="/reviews/add">Dodaj nową</a></div>
-    <div class="btn btn-secondary"><a class="actionLinkManage" href="/admin">Powrót</a></div>
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/panel">Powrót</a></div>
 </p>
 <table class="table">
     <tr>
@@ -78,8 +78,11 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Szczegóły", "ManageDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Szczegóły", "ManageDetails", new { id = item.Id })
+                    @if(@User.IsInRole("Admin")){<text>|</text>
                     @Html.ActionLink("Usuń", "Delete", new { id = item.Id })
+                    }
+
                 </td>
             </tr>
         }

@@ -621,6 +621,7 @@
     <Content Include="Views\Users\ChangePassword.cshtml" />
     <Content Include="Views\ControlPanel\Moderator.cshtml" />
     <Content Include="Views\ControlPanel\Author.cshtml" />
+    <Content Include="Views\Users\ChangePassword - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

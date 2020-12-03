@@ -8,8 +8,11 @@
 <h2>Zarządzaj użytkownikami</h2>
 
 <p>
-    <div class="btn btn-primary"><a class="actionLinkManage" href="/users/add">Dodaj nowego</a></div>
-    <div class="btn btn-secondary"><a class="actionLinkManage" href="/admin">Powrót</a></div>
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="btn btn-primary"><a class="actionLinkManage" href="/users/add">Dodaj nowego</a></div>
+    }
+    <div class="btn btn-secondary"><a class="actionLinkManage" href="/panel">Powrót</a></div>
 </p>
 <table class="table">
     <tr>
@@ -50,33 +53,42 @@
                         }
                         else
                         { <p>Brak obrazu</p>}
+                    }
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RegisterDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsPublic)
+                </td>
+                <td>
+                    @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Szczegóły", "ManageDetails", new { id = item.Id })
+                    @if (User.IsInRole("Admin"))
+                    {<text>|</text>
+                    @Html.ActionLink("Usuń", "Delete", new { id = item.Id });
+                    <text>|</text>
+                    @Html.ActionLink("Zmień hasło", "ChangePassword", new { id = item.Id });
                 }
 
-            </td>
+                </td>
+            </tr>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RegisterDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsPublic)
-            </td>
-            <td>
-                @Html.ActionLink("Edytuj", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Szczegóły", "ManageDetails", new { id = item.Id }) |
-                @Html.ActionLink("Usuń", "Delete", new { id = item.Id }) |
-                @Html.ActionLink("Zmień hasło", "ChangePassword", new { id = item.Id })
-            </td>
-        </tr>
-    } }
+            /**/
+            /**/
+        }
+    }
     <tr>
         <td></td>
         <td></td>

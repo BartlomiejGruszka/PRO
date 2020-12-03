@@ -39,6 +39,7 @@ namespace PRO.Controllers
         }
 
         [Route("reviews/manage")]
+        [Authorize(Roles ="Admin,Moderator")]
         public ActionResult Manage()
         {
             var pageString = Request.QueryString["page"];
@@ -57,6 +58,7 @@ namespace PRO.Controllers
 
         // GET: reviews/Details/5
         [Route("reviews/details/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult ManageDetails(int? id)
         {
             if (id == null)
@@ -71,7 +73,7 @@ namespace PRO.Controllers
             return View(review);
         }
 
-
+        [Authorize]
         [Route("reviews/new/{id}")]
         public ActionResult New(int id)
         {
@@ -83,7 +85,29 @@ namespace PRO.Controllers
             return View(review);
         }
 
+        [Authorize]
+        [HttpPost]
+        [Route("reviews/new")]
+        [ValidateAntiForgeryToken]
+        public ActionResult New(Review review)
+        {
+            review.ReviewDate = DateTime.Now;
+            review.EditDate = null;
+            review.ModeratorId = null;
+            review.UserId = getCurrentUserId();
+            if (ModelState.IsValid)
+            {
+                _context.Reviews.Add(review);
+                _context.SaveChanges();
+                return RedirectToAction("?");
+            }
+            return View(review);
+        }
+
+
+
         [Route("reviews/add")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Add()
         {
             ViewBag.GameId = new SelectList(_context.Games, "Id", "Title");
@@ -92,8 +116,9 @@ namespace PRO.Controllers
 
         [HttpPost]
         [Route("reviews/add")]
+        [Authorize(Roles = "Admin,Moderator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Review review)
+        public ActionResult Add(Review review)
         {
             review.ReviewDate = DateTime.Now;
             review.EditDate = null;
@@ -109,6 +134,7 @@ namespace PRO.Controllers
         }
 
         [Route("reviews/edit/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -125,6 +151,7 @@ namespace PRO.Controllers
 
         [HttpPost]
         [Route("reviews/edit/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Review review)
         {
@@ -146,6 +173,7 @@ namespace PRO.Controllers
         }
 
         [Route("reviews/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -163,6 +191,7 @@ namespace PRO.Controllers
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [Route("reviews/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

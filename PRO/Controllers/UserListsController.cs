@@ -18,6 +18,7 @@ namespace PRO.Controllers
 
         // GET: UserLists
         [Route("userlists/manage")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Manage()
         {
             var pageString = Request.QueryString["page"];
@@ -32,6 +33,7 @@ namespace PRO.Controllers
 
         // GET: UserLists/Details/5
         [Route("userlists/details/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -48,6 +50,7 @@ namespace PRO.Controllers
 
         // GET: UserLists/Create
         [Route("userlists/add")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add()
         {
             var users = db.AppUsers.Include(s => s.ApplicationUser).ToList();
@@ -62,6 +65,7 @@ namespace PRO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Route("userlists/add")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Add([Bind(Include = "Id,CreatedDate,Name,IsPublic,UserId,ListTypeId")] UserList userList)
         {
@@ -81,6 +85,7 @@ namespace PRO.Controllers
 
         // GET: UserLists/Edit/5
         [Route("userlists/edit/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -103,6 +108,7 @@ namespace PRO.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin,Moderator")]
         [Route("userlists/edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CreatedDate,Name,IsPublic,UserId,ListTypeId")] UserList userList)
@@ -122,6 +128,7 @@ namespace PRO.Controllers
 
         // GET: UserLists/Delete/5
         [Route("userlists/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -138,6 +145,7 @@ namespace PRO.Controllers
 
         // POST: UserLists/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [Route("userlists/delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

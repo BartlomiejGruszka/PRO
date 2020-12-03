@@ -14,7 +14,6 @@ using static PRO.Controllers.ManageController;
 
 namespace PRO.Controllers
 {
-    [Authorize]
     public class UsersController : Controller
     {
         private ApplicationDbContext _context;
@@ -51,6 +50,7 @@ namespace PRO.Controllers
 
         // GET: Users
         [Route("users/manage")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Manage()
         {
             var pageString = Request.QueryString["page"];
@@ -63,6 +63,7 @@ namespace PRO.Controllers
         }
 
         [Route("users/{id}")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -81,6 +82,7 @@ namespace PRO.Controllers
         }
 
         [Route("users/details/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult ManageDetails(int? id)
         {
             if (id == null)
@@ -99,6 +101,7 @@ namespace PRO.Controllers
         }
 
         [Route("users/add")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add()
         {
             NewUserViewModel viewModel = new NewUserViewModel
@@ -109,8 +112,8 @@ namespace PRO.Controllers
         }
 
         [Route("users/add")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Add(NewUserViewModel model)
         {
@@ -152,6 +155,7 @@ namespace PRO.Controllers
         }
 
         [Route("users/edit/{id}")]
+        [Authorize(Roles = "Admin,Moderator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -184,6 +188,7 @@ namespace PRO.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin,Moderator")]
         [Route("users/edit/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(EditUserViewModel model)
@@ -217,6 +222,7 @@ namespace PRO.Controllers
 
         // GET: Authors/Delete/5
         [Route("users/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -237,6 +243,7 @@ namespace PRO.Controllers
         // POST: Authors/Delete/5
         [HttpPost, ActionName("Delete")]
         [Route("users/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -253,6 +260,7 @@ namespace PRO.Controllers
         }
 
         // GET: /Manage/ChangePassword
+        [Authorize(Roles = "Admin")]
         [Route("users/changePassword/{id}")]
         public ActionResult ChangePassword(int id)
         {
@@ -266,31 +274,57 @@ namespace PRO.Controllers
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("users/changePassword/{id}")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<ActionResult> ChangePassword(AdminChangePasswordViewModel model)
         {
             var userdata = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(a => a.Id == model.id);
-            if(userdata == null) 
+            if (userdata == null)
             { return RedirectToAction("Manage"); }
 
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            var result = await UserManager.ChangePasswordAsync(userdata.UserId, model.OldPassword, model.NewPassword);
-            if (result.Succeeded)
-            {  
+            string resetToken = await UserManager.GeneratePasswordResetTokenAsync(userdata.UserId);
+            IdentityResult passwordChangeResult = await UserManager.ResetPasswordAsync(userdata.UserId, resetToken, model.NewPassword);
+            if (passwordChangeResult.Succeeded)
+            {
                 return RedirectToAction("Manage");
+
             }
-            AddErrors(result);
+            AddErrors(passwordChangeResult);
             return View(model);
         }
 
+        // change password function requiring old password
+        /*        [HttpPost]
+                [Authorize(Roles = "Admin")]
+                [Route("users/changePassword/{id}")]
+                [ValidateAntiForgeryToken]
+                public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+                {
+                    var userdata = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(a => a.Id == model.id);
+                    if (userdata == null)
+                    { return RedirectToAction("Manage"); }
 
+                    if (!ModelState.IsValid)
+                    {
+                        return View(model);
+                    }
+                    var result = await UserManager.ChangePasswordAsync(userdata.UserId, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Manage");
+                    }
+                    AddErrors(result);
+                    return View(model);
+                }*/
 
 
         [Route("users/{id}/lists")]
+        [AllowAnonymous]
         public ActionResult UserGameList(int id)
         {
 

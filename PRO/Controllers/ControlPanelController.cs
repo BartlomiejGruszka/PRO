@@ -32,5 +32,23 @@ namespace PRO.Controllers
         {
             return View();
         }
+        [Route("panel/")]
+        public ActionResult Manage()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Admin");
+            }
+            if (User.IsInRole("Moderator"))
+            {
+                return RedirectToAction("Moderator");
+            }
+            if (User.IsInRole("Author"))
+            {
+                return RedirectToAction("Author");
+            }
+            return RedirectToAction("Index","Home");
+        }
+
     }
 }
