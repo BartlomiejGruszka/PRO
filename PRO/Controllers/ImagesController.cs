@@ -29,6 +29,7 @@ namespace PRO.Controllers
             return View();
         }
         [Route("images/manage")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Manage()
         {
             var pageString = Request.QueryString["page"];
@@ -39,6 +40,7 @@ namespace PRO.Controllers
         }
 
         [Route("images/details/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -52,9 +54,10 @@ namespace PRO.Controllers
             }
             return View(image);
         }
+
         [HttpGet]
         [Route("images/add")]
-
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Add()
         {
             return View();
@@ -62,6 +65,7 @@ namespace PRO.Controllers
 
         [HttpPost]
         [Route("images/add")]
+        [Authorize(Roles = "Admin,Author")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(Image image)
         {
@@ -85,6 +89,7 @@ namespace PRO.Controllers
 
         // GET: Companies/Edit/5
         [Route("images/edit/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult EditFile(int? id)
         {
             if (id == null)
@@ -99,6 +104,7 @@ namespace PRO.Controllers
             return View(image);
         }
         [Route("images/rename/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -118,6 +124,7 @@ namespace PRO.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [Route("images/edit/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         [ValidateAntiForgeryToken]
         public ActionResult EditFile(Image image)
         {
@@ -139,6 +146,7 @@ namespace PRO.Controllers
         }
         [HttpPost]
         [Route("images/rename/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Image image)
         {
@@ -163,6 +171,7 @@ namespace PRO.Controllers
 
         // GET: Companies/Delete/5
         [Route("images/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -180,6 +189,7 @@ namespace PRO.Controllers
         // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [Route("images/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -10,7 +10,7 @@ using PRO.Models;
 
 namespace PRO.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Author")]
     public class TagsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace PRO.Models
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Author")]
     public class SeriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -101,6 +101,7 @@ namespace PRO.Models
 
         // GET: Series/Delete/5
         [Route("series/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -118,6 +119,7 @@ namespace PRO.Models
         // POST: Series/Delete/5
         [HttpPost, ActionName("Delete")]
         [Route("series/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -11,7 +11,7 @@ using System.Net;
 
 namespace PRO.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Author")]
     public class GamesController : Controller
     {
         private ApplicationDbContext _context;
@@ -193,6 +193,7 @@ namespace PRO.Controllers
 
         // GET: Companies/Delete/5
         [Route("games/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -208,6 +209,7 @@ namespace PRO.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [Route("games/delete/{id}")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

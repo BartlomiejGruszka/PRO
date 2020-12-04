@@ -12,7 +12,7 @@ using System.Net;
 
 namespace PRO.Controllers
 {
-    [Authorize]
+
     public class ArticlesController : Controller
     {
         private ApplicationDbContext _context;
@@ -30,14 +30,26 @@ namespace PRO.Controllers
         }
 
         [Route("articles/manage")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Manage()
         {
+            List<Article> articlesList = null;
+
+            if (!User.IsInRole("Admin"))
+            {
+                articlesList = _context.GetArticlesList().Where(s => s.Author.UserId == getCurrentUserId()).ToList();
+            }
+            else
+            {
+                articlesList = _context.GetArticlesList();
+            }
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
-            var articlesList = _context.GetArticlesList();
+
             ViewBag.Pagination = new Pagination(pageString, itemString, articlesList.Count());
             return View(articlesList);
         }
+
         [AllowAnonymous]
         [Route("articles/{id}")]
         public ActionResult Details(int? id)
@@ -55,6 +67,7 @@ namespace PRO.Controllers
         }
 
         [Route("articles/details/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult ManageDetails(int? id)
         {
             if (id == null)
@@ -70,15 +83,17 @@ namespace PRO.Controllers
         }
 
         [Route("articles/add")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Add()
         {
-     
+
             return View(_context.GetFullArticleForm(null));
         }
 
 
         [HttpPost]
         [Route("articles/add")]
+        [Authorize(Roles = "Admin,Author")]
         [ValidateAntiForgeryToken]
         public ActionResult Add(Article article)
         {
@@ -86,7 +101,8 @@ namespace PRO.Controllers
             {
                 var userid = getCurrentUserId();
                 if (userid == null)
-                { return RedirectToAction("Login","Account");
+                {
+                    return RedirectToAction("Login", "Account");
                 }
                 article.UserId = (int)userid;
                 article.PublishedDate = DateTime.Now;
@@ -100,6 +116,7 @@ namespace PRO.Controllers
         }
 
         [Route("articles/edit/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -111,16 +128,18 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
-
+            if (articleViewModel.Article.UserId != getCurrentUserId() && !User.IsInRole("Admin")) { RedirectToAction("Manage"); }
 
             return View(articleViewModel);
         }
 
         [HttpPost]
         [Route("articles/edit/{id}")]
+        [Authorize(Roles = "Admin,Author")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(ArticleViewModel articleViewModel)
         {
+            if (articleViewModel.Article.UserId != getCurrentUserId() && !User.IsInRole("Admin")) { RedirectToAction("Manage"); }
             if (ModelState.IsValid)
             {
                 _context.Entry(articleViewModel.Article).State = EntityState.Modified;
@@ -132,6 +151,7 @@ namespace PRO.Controllers
         }
 
         [Route("articles/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -149,6 +169,7 @@ namespace PRO.Controllers
         // POST: Tags/Delete/5
         [HttpPost, ActionName("Delete")]
         [Route("articles/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

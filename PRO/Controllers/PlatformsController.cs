@@ -10,7 +10,7 @@ using PRO.Models;
 
 namespace PRO.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Author")]
     public class PlatformsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -115,6 +115,7 @@ namespace PRO.Controllers
 
         // GET: Platforms/Delete/5
         [Route("platforms/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -132,6 +133,7 @@ namespace PRO.Controllers
         // POST: Platforms/Delete/5
         [HttpPost, ActionName("Delete")]
         [Route("platforms/delete/{id}")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
