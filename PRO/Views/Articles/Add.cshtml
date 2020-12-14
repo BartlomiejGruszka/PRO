@@ -11,70 +11,77 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
-        <hr />
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Article.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Article.Title, "", new { @class = "text-danger" })
-            </div>
+    <hr />
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Article.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Article.Title, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Article.Content, new { @id = "mytextarea", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Article.Content, "", new { @class = "text-danger" })
-            </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.Preview, htmlAttributes: new { @class = "control-label col-md-2 formtextarea" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Article.Preview, new { @id = "formtextarea", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Article.Preview, "", new { @class = "text-danger" })
         </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Article.Content, new { @id = "mytextarea", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Article.Content, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.SourceLink, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Article.SourceLink, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Article.SourceLink, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.SourceLink, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Article.SourceLink, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Article.SourceLink, "", new { @class = "text-danger" })
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Article.IsActive)
-                    @Html.ValidationMessageFor(model => model.Article.IsActive, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Article.ImageId, new SelectList(Model.Images, "Id", "Name"), "Wybierz obraz", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Article.ImageId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.GameId, "Gra", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Article.GameId, new SelectList(Model.Games, "Id", "Title"), "Wybierz grę", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Article.GameId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Article.ArticleTypeId, "Rodzaj artykułu", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Article.ArticleTypeId, new SelectList(Model.ArticleTypes, "Id", "Name"), "Wybierz rodzaj artykułu", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Article.ArticleTypeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Dodaj" class="btn btn-primary" />
-                <div class="btn btn-secondary"><a class="actionLinkManage" href="/articles/manage">Wróć</a></div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Article.IsActive)
+                @Html.ValidationMessageFor(model => model.Article.IsActive, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Article.ImageId, new SelectList(Model.Images, "Id", "Name"), "Wybierz obraz", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Article.ImageId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.GameId, "Gra", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Article.GameId, new SelectList(Model.Games, "Id", "Title"), "Wybierz grę", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Article.GameId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Article.ArticleTypeId, "Rodzaj artykułu", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.Article.ArticleTypeId, new SelectList(Model.ArticleTypes, "Id", "Name"), "Wybierz rodzaj artykułu", htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Article.ArticleTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Dodaj" class="btn btn-primary" />
+            <div class="btn btn-secondary"><a class="actionLinkManage" href="/articles/manage">Wróć</a></div>
+        </div>
+    </div>
+</div>
 }
 
 

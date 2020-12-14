@@ -23,7 +23,7 @@
                                 @if (game.Image != null)
                                 {
                                     <a class="hoverinfo_trigger fl-l ml12 mr8" href="/games/@game.Id" id="#area5114" rel="#info5114" style="position: relative;">
-                                        <img width="50" height="70" class=" lazyloaded" border="0" src="@Url.Content(game.Image.ImagePath)">
+                                        <img max-width="150" height="70" class=" lazyloaded" border="0" src="@Url.Content(game.Image.ImagePath)">
                                     </a>
                                 }
 
@@ -33,7 +33,7 @@
                                         <a class="hoverinfo_trigger fl-l fs14 fw-b" href="/games/@game.Id" id="#area5114" rel="#info5114" style="position: relative;">@game.Title</a>
                                     </div>
                                     <div class="information di-ib mt4">
-                                        @game.Description.Truncate(100)
+                                        @Html.Raw(@game.Description.Truncate(100))
                                     </div>
                                 </div>
                             </td>

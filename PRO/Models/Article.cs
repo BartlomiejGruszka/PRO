@@ -16,6 +16,9 @@ namespace PRO.Models
         [Required, MaxLength(100), DisplayName("Tytuł"),MinLength(10)]
         public string Title { get; set; }
 
+        [Required, MaxLength(400), DisplayName("Skrót"), MinLength(100)]
+        public string Preview { get; set; }
+
         [Required, MaxLength(10000), DisplayName("Treść"), AllowHtml,MinLength(100)]
         public string Content { get; set; }
 

@@ -26,6 +26,13 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(model => model.Article.Preview, htmlAttributes: new { @class = "control-label col-md-2 formtextarea" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Article.Preview, new { @id = "formtextarea", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Article.Preview, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(model => model.Article.Content, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.Article.Content, new { @id = "mytextarea", @class = "form-control" })

@@ -3,8 +3,21 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using PRO.Helpers
 
-<ul class="nav nav-tabs">
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+<script>
+    $(document).ready(function () {
+        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if (activeTab) {
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+</script>
+<ul class="nav nav-tabs" id="myTab">
     <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#all">Wszystkie</a>
     </li>
@@ -28,28 +41,34 @@
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active show" id="all">
         <div class="list-group">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div class="news-list mt16 mr8">
-                    <div class="news-unit">
-                        <a href="#" class="image-link">
-                            <img src="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee" alt="'Fumetsu no Anata e' Unveils Voice Cast, Character Visuals" class="image lazyloaded" srcset="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee 1x, https://cdn.myanimelist.net/r/200x312/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=901bf0203295d9c59579ec91103a26d4 2x">
-                        </a><div class="news-unit-right">
-                            <p class="title">
-                                <a href="#">tytul</a>
-                            </p>
-                            <div class="text">
-                                The official website of the television anime adaptation of Yoshitoki Ooima's Fumetsu no Anata e (To Your Eternity) manga revealed six cast members and character visuals on Monday. The anime series will air in 20 episodes on Mondays at 10:50 p.m. on NHK-E beginning this October. Fushi: Reiji Kawashima (Itai no wa Iya nano de Bougyoryoku ni Kyokufuri Shitai to Omoimasu.) March: Rie Hikisaka (Kirakira☆Precure A La Mode) Parona: Aya Uchida (Release the Spyce) Pyoran: Rikako Aikawa (Saiki Kusuo no Ψ-...
-                            </div>
-                            <div class="information">
-                                <p class="info di-ib">
-                                    Jul 12, 9:38 PM by <a href="#">Author</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
+            @{ var start = ViewBag.Pagination.pageIteratorStart;
+                var end = ViewBag.Pagination.pageIteratorEnd;
+                for (var i = start; i <= end; i++)
+                {
+                    var item = Model.ToArray()[i];
+                    <div class="news-list mt16 mr8">
+                        <div class="news-unit">
+                            <a href="/articles/@item.Id" class="image-link">
+                                <img style="max-width:100px;width: expression(this.width > 100 ? 100: true);" class=" lazyloaded" src="@Url.Content(item.Image.ImagePath)">
+                            </a><div class="news-unit-right">
+                                <p class="title">
+                                    <a href="/articles/@item.Id">@item.Title</a>
                                 </p>
+                                <div class="text">
+                                    @item.Preview
+                                </div>
+                                <div class="information">
+                                    <p class="info di-ib">
+                                        @item.PublishedDate <text>by</text> <a href="#">@item.Author.FirstName</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                }
             }
+
         </div>
     </div>
 
@@ -66,7 +85,7 @@
                                 <a href="#">tytul</a>
                             </p>
                             <div class="text">
-                                The official website of the television anime adaptation of Yoshitoki Ooima's Fumetsu no Anata e (To Your Eternity) manga revealed six cast members and character visuals on Monday. The anime series will air in 20 episodes on Mondays at 10:50 p.m. on NHK-E beginning this October. Fushi: Reiji Kawashima (Itai no wa Iya nano de Bougyoryoku ni Kyokufuri Shitai to Omoimasu.) March: Rie Hikisaka (Kirakira☆Precure A La Mode) Parona: Aya Uchida (Release the Spyce) Pyoran: Rikako Aikawa (Saiki Kusuo no Ψ-...
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, purus eu ornare fringilla, risus odio aliquet tellus, in aliquam est arcu quis sapien. Vivamus rhoncus quam sit amet congue tellus.
                             </div>
                             <div class="information">
                                 <p class="info di-ib">
@@ -92,7 +111,7 @@
                                 <a href="#">tytul</a>
                             </p>
                             <div class="text">
-                                The official website of the television anime adaptation of Yoshitoki Ooima's Fumetsu no Anata e (To Your Eternity) manga revealed six cast members and character visuals on Monday. The anime series will air in 20 episodes on Mondays at 10:50 p.m. on NHK-E beginning this October. Fushi: Reiji Kawashima (Itai no wa Iya nano de Bougyoryoku ni Kyokufuri Shitai to Omoimasu.) March: Rie Hikisaka (Kirakira☆Precure A La Mode) Parona: Aya Uchida (Release the Spyce) Pyoran: Rikako Aikawa (Saiki Kusuo no Ψ-...
+                                ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
                             </div>
                             <div class="information">
                                 <p class="info di-ib">
@@ -189,26 +208,49 @@
 
 <div>
     <ul class="pagination">
-        <li class="page-item disabled">
-            <a class="page-link" href="#">&laquo;</a>
-        </li>
-        <li class="page-item active">
-            <a class="page-link" href="#">1</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">3</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">4</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">5</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="#">&raquo;</a>
-        </li>
+        @{
+            var first = ViewBag.Pagination.firstPage;
+            var current = ViewBag.Pagination.currentPage;
+            var previous = ViewBag.Pagination.previousPage;
+            var items = ViewBag.Pagination.itemsPerPage;
+            var next = ViewBag.Pagination.nextPage;
+            var last = ViewBag.Pagination.lastPage;
+        }
+
+
+
+
+        @{
+            if (@current >= 3)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles?page=@first&items=@items">«</a>
+                </li>
+            }
+            if (@current >= 2 && @previous != @current)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles?page=@previous&items=@items">@previous</a>
+                </li>
+            }
+
+            <li class="page-item active">
+                <a class="page-link" href="/articles?page=@current&items=@items">@current</a>
+            </li>
+
+            if (@last > @current)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles?page=@next&items=@items">@next</a>
+                </li>
+            }
+
+            if (@last > @current + 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="/articles?page=@last&items=@items">&raquo;</a>
+                </li>
+            }
+        }
     </ul>
 </div>

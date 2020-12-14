@@ -25,7 +25,12 @@ namespace PRO.Controllers
         [Route("articles/")]
         public ActionResult Index()
         {
+            var pageString = Request.QueryString["page"];
+            var itemString = Request.QueryString["items"];
+
             var articlesList = _context.GetArticlesList();
+            ViewBag.Pagination = new Pagination(pageString, itemString, articlesList.Count());
+
             return View(articlesList);
         }
 
@@ -65,6 +70,7 @@ namespace PRO.Controllers
             }
             return View(article);
         }
+
 
         [Route("articles/details/{id}")]
         [Authorize(Roles = "Admin,Author")]

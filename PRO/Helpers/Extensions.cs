@@ -127,6 +127,7 @@ namespace PRO.Helpers
              .Include(i => i.Author)
              .Include(i => i.ArticleType)
              .Include(i => i.Game)
+             .Include(i=>i.Game.Platform)
              .ToList();
             return articles;
         }

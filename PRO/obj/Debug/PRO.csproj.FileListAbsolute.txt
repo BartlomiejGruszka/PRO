@@ -650,3 +650,4 @@ D:\git\PRO\obj\Debug\PRO.pdb
 D:\git\PRO\obj\Debug\PRO.Migrations.userlistsuniquekeyfix.resources
 D:\git\PRO\obj\Debug\PRO.Migrations.uniquereviewconstraint.resources
 D:\git\PRO\bin\pl\Microsoft.AspNet.Identity.Core.resources.dll
+D:\git\PRO\obj\Debug\PRO.Migrations.ArticlePrieview.resources

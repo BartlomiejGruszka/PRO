@@ -75,7 +75,13 @@
                 </div>
             }
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Preview)
+        </dt>
 
+        <dd>
+            @Html.Raw(@Model.Preview)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Content)
         </dt>

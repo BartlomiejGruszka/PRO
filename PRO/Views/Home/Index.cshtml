@@ -7,17 +7,23 @@
     <div class="">
         <div class="list-group">
             <h2>Bieżące informacje</h2>
-            @for (int i = 0; i < 4; i++)
-            {
+            @{
+                var articles = Model.RecentArticles.ToList().Take(5);
+                foreach (var article in articles)
+                {
 
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
-                </a>
+                    <a href="/articles/@article.Id" class="list-group-item list-group-item-action flex-column align-items-start " id="home-article-cards">
+                        <div> <img style="max-width: 100px;max-height: 100%;align-self: flex-start;flex-direction: row;" class=" lazyloaded" src="@Url.Content(article.Image.ImagePath)"></div>
+                        <div>
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@article.Title</h5>
+                                <small class="text-muted">@article.PublishedDate</small>
+                            </div>
+                            <p class="mb-1">@article.Preview</p>
+                            <small class="text-muted">Donec id elit non mi porta.</small>
+                        </div>
+                    </a>
+                }
             }
         </div>
         <div>
@@ -26,19 +32,24 @@
             <div class="leftinnergrid-container">
 
                 @{
-                        var games = Model.RecentGames.ToList().Take(5);
+                    var games = Model.RecentGames.ToList().Take(5);
 
-                        foreach (var game in games)
-                        {
-                        <div class="card mb-3">
-                            @if (game.Image != null)
+                    foreach (var game in games)
                     {
-                                <img style="min-height: 100px; max-height: 160px; height:16vw; width: 100%; display: block;" src="@Url.Content(game.Image.ImagePath)">
-                            }
-                            <div class="card-body">
-                                <p class="card-ellipsis">@game.Title</p>
-                            </div>
+                        <div class="card mb-3">
+                            <a href="/games/@game.Id" style="text-decoration:none; color:black; display:block;width: 100%; ">
+                                @if (game.Image != null)
+                                {
+                                    <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
+                                }
+                                <div class="card-body">
+
+                                    <p class="card-ellipsis">@game.Title</p>
+
+                                </div>
+                            </a>
                         </div>
+
                     } }
 
             </div>

@@ -409,6 +409,10 @@
     <Compile Include="Migrations\202011101644138_unique review constraint.Designer.cs">
       <DependentUpon>202011101644138_unique review constraint.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012141941524_ArticlePrieview.cs" />
+    <Compile Include="Migrations\202012141941524_ArticlePrieview.Designer.cs">
+      <DependentUpon>202012141941524_ArticlePrieview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -622,7 +626,6 @@
     <Content Include="Views\ControlPanel\Moderator.cshtml" />
     <Content Include="Views\ControlPanel\Author.cshtml" />
     <Content Include="Views\Users\ChangePassword - Copy.cshtml" />
-    <Content Include="Views\Articles\AuthorEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -746,6 +749,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011101644138_unique review constraint.resx">
       <DependentUpon>202011101644138_unique review constraint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012141941524_ArticlePrieview.resx">
+      <DependentUpon>202012141941524_ArticlePrieview.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,7 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@reviews[i].Game.Title</h5>
                             </div>
-                            <p class="mb-1">@reviews[i].Content.Truncate(120)...</p>
+                            <p class="mb-1">@Html.Raw(@reviews[i].Content.Truncate(120))...</p>
                             <small class="">@reviews[i].User.ApplicationUser.UserName</small>
                         </a> }
 
