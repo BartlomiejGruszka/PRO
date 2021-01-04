@@ -9,7 +9,7 @@
                 for (var i = 0; i < 3; i++)
                 {
                     if (reviews.ElementAtOrDefault(i)!=null)
-                    { <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                    { <a href="/games/@reviews[i].GameId/reviews/@reviews[i].Id" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@reviews[i].Game.Title</h5>
                             </div>

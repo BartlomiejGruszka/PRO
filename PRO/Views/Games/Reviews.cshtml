@@ -19,7 +19,10 @@
                                 <tr>
                                     <td class="pb24">
 
-                                        <div class="underlined_h2">Wszystkie recenzje</div>
+                                        <div class="underlined_h2">
+                                            <text class="">Wszystkie recenzje</text>
+                                            <a style="float:right; text-decoration:none; font-weight:normal;" href="/games/@Model.Game.Id">Powrót</a>
+                                        </div>
                                         @{
                                             var start = Model.Pagination.pageIteratorStart;
                                             var end = Model.Pagination.pageIteratorEnd;

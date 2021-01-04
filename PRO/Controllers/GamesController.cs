@@ -249,6 +249,29 @@ namespace PRO.Controllers
             return View(viewModel);
         }
 
+        [AllowAnonymous]
+        [Route("games/{id}/reviews/{review}")]
+        public ActionResult SingleReview(int id, int review)
+        {
+            var game = _context.GetGameById(id);
+            if (game == null) return HttpNotFound();
+            var reviews = _context.GetReviewById(review);
+            var pageString = Request.QueryString["page"];
+            var itemString = Request.QueryString["items"];
+
+            var pagination = new Pagination(pageString, itemString, 1);
+
+            List<Review> list = new List<Review>();
+            list.Add(reviews);
+            var viewModel = new GameDetailsViewModel
+            {
+                Game = game,
+                Reviews = list,
+                Pagination = pagination
+            };
+            return View(viewModel);
+        }
+
 
     }
 }
