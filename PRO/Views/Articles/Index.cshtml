@@ -5,36 +5,24 @@
 }
 @using PRO.Helpers
 
-<script src="~/Scripts/jquery-3.4.1.js"></script>
-<script>
-    $(document).ready(function () {
-        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-            localStorage.setItem('activeTab', $(e.target).attr('href'));
-        });
-        var activeTab = localStorage.getItem('activeTab');
-        if (activeTab) {
-            $('#myTab a[href="' + activeTab + '"]').tab('show');
-        }
-    });
-</script>
 <ul class="nav nav-tabs" id="myTab">
     <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#all">Wszystkie</a>
+        <a class="nav-link @(ViewBag.platform == "all" ? "active" : "")" href="/articles?platform=all">Wszystkie</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#pc">PC</a>
+        <a class="nav-link @(ViewBag.platform == "PC" ? "active" : "")" href="/articles?platform=PC">PC</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#playstation">Playstation</a>
+        <a class="nav-link @(ViewBag.platform.Contains("Playstation") ? "active" : "")" href="/articles?platform=Playstation">Playstation</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#xbox">Xbox</a>
+        <a class="nav-link @(ViewBag.platform.Contains("Xbox") ? "active" : "")" href="/articles?platform=Xbox">Xbox</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#nintendo">Nintendo</a>
+        <a class="nav-link @(ViewBag.platform == "Switch" ? "active" : "")" href="/articles?platform=Switch">Switch</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#others">Inne</a>
+        <a class="nav-link @((ViewBag.platform != "all" && ViewBag.platform != "PC" && !ViewBag.platform.Contains("Playstation") && !ViewBag.platform.Contains("Xbox") && ViewBag.platform != "Switch") || ViewBag.platform == "other" ? "active" : "")" href="/articles?platform=other">Inne</a>
     </li>
 </ul>
 
@@ -59,7 +47,7 @@
                                 </div>
                                 <div class="information">
                                     <p class="info di-ib">
-                                        @item.PublishedDate <text>by</text> <a href="#">@item.Author.FirstName</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
+                                        @item.PublishedDate <text>by</text> <a href="#">@item.Author.FirstName</a> <a href="/articles/@item.Game.Platform.Name" class="nav-item">@item.Game.Platform.Name</a>
                                     </p>
                                 </div>
                             </div>
@@ -72,140 +60,7 @@
         </div>
     </div>
 
-    <div class="tab-pane fade" id="pc">
-        <div class="list-group">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div class="news-list mt16 mr8">
-                    <div class="news-unit">
-                        <a href="#" class="image-link">
-                            <img src="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee" alt="'Fumetsu no Anata e' Unveils Voice Cast, Character Visuals" class="image lazyloaded" srcset="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee 1x, https://cdn.myanimelist.net/r/200x312/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=901bf0203295d9c59579ec91103a26d4 2x">
-                        </a><div class="news-unit-right">
-                            <p class="title">
-                                <a href="#">tytul</a>
-                            </p>
-                            <div class="text">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, purus eu ornare fringilla, risus odio aliquet tellus, in aliquam est arcu quis sapien. Vivamus rhoncus quam sit amet congue tellus.
-                            </div>
-                            <div class="information">
-                                <p class="info di-ib">
-                                    Jul 12, 9:38 PM by <a href="#">Author</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="tab-pane fade" id="playstation">
-        <div class="list-group">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div class="news-list mt16 mr8">
-                    <div class="news-unit">
-                        <a href="#" class="image-link">
-                            <img src="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee" alt="'Fumetsu no Anata e' Unveils Voice Cast, Character Visuals" class="image lazyloaded" srcset="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee 1x, https://cdn.myanimelist.net/r/200x312/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=901bf0203295d9c59579ec91103a26d4 2x">
-                        </a><div class="news-unit-right">
-                            <p class="title">
-                                <a href="#">tytul</a>
-                            </p>
-                            <div class="text">
-                                ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc'
-                            </div>
-                            <div class="information">
-                                <p class="info di-ib">
-                                    Jul 12, 9:38 PM by <a href="#">Author</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="tab-pane fade" id="xbox">
-        <div class="list-group">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div class="news-list mt16 mr8">
-                    <div class="news-unit">
-                        <a href="#" class="image-link">
-                            <img src="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee" alt="'Fumetsu no Anata e' Unveils Voice Cast, Character Visuals" class="image lazyloaded" srcset="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee 1x, https://cdn.myanimelist.net/r/200x312/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=901bf0203295d9c59579ec91103a26d4 2x">
-                        </a><div class="news-unit-right">
-                            <p class="title">
-                                <a href="#">tytul</a>
-                            </p>
-                            <div class="text">
-                                The official website of the television anime adaptation of Yoshitoki Ooima's Fumetsu no Anata e (To Your Eternity) manga revealed six cast members and character visuals on Monday. The anime series will air in 20 episodes on Mondays at 10:50 p.m. on NHK-E beginning this October. Fushi: Reiji Kawashima (Itai no wa Iya nano de Bougyoryoku ni Kyokufuri Shitai to Omoimasu.) March: Rie Hikisaka (Kirakira☆Precure A La Mode) Parona: Aya Uchida (Release the Spyce) Pyoran: Rikako Aikawa (Saiki Kusuo no Ψ-...
-                            </div>
-                            <div class="information">
-                                <p class="info di-ib">
-                                    Jul 12, 9:38 PM by <a href="#">Author</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="tab-pane fade" id="nintendo">
-        <div class="list-group">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div class="news-list mt16 mr8">
-                    <div class="news-unit">
-                        <a href="#" class="image-link">
-                            <img src="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee" alt="'Fumetsu no Anata e' Unveils Voice Cast, Character Visuals" class="image lazyloaded" srcset="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee 1x, https://cdn.myanimelist.net/r/200x312/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=901bf0203295d9c59579ec91103a26d4 2x">
-                        </a><div class="news-unit-right">
-                            <p class="title">
-                                <a href="#">tytul</a>
-                            </p>
-                            <div class="text">
-                                The official website of the television anime adaptation of Yoshitoki Ooima's Fumetsu no Anata e (To Your Eternity) manga revealed six cast members and character visuals on Monday. The anime series will air in 20 episodes on Mondays at 10:50 p.m. on NHK-E beginning this October. Fushi: Reiji Kawashima (Itai no wa Iya nano de Bougyoryoku ni Kyokufuri Shitai to Omoimasu.) March: Rie Hikisaka (Kirakira☆Precure A La Mode) Parona: Aya Uchida (Release the Spyce) Pyoran: Rikako Aikawa (Saiki Kusuo no Ψ-...
-                            </div>
-                            <div class="information">
-                                <p class="info di-ib">
-                                    Jul 12, 9:38 PM by <a href="#">Author</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-    <div class="tab-pane fade" id="others">
-        <div class="list-group">
-            @for (int i = 0; i < 4; i++)
-            {
-                <div class="news-list mt16 mr8">
-                    <div class="news-unit">
-                        <a href="#" class="image-link">
-                            <img src="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee" alt="'Fumetsu no Anata e' Unveils Voice Cast, Character Visuals" class="image lazyloaded" srcset="https://cdn.myanimelist.net/r/100x156/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=42c7c3a46694ae7683f579d0c946e3ee 1x, https://cdn.myanimelist.net/r/200x312/s/common/uploaded_files/1594614983-ff43c0c5a613ba13096db83db9cc650a.jpeg?s=901bf0203295d9c59579ec91103a26d4 2x">
-                        </a><div class="news-unit-right">
-                            <p class="title">
-                                <a href="#">tytul</a>
-                            </p>
-                            <div class="text">
-                                The official website of the television anime adaptation of Yoshitoki Ooima's Fumetsu no Anata e (To Your Eternity) manga revealed six cast members and character visuals on Monday. The anime series will air in 20 episodes on Mondays at 10:50 p.m. on NHK-E beginning this October. Fushi: Reiji Kawashima (Itai no wa Iya nano de Bougyoryoku ni Kyokufuri Shitai to Omoimasu.) March: Rie Hikisaka (Kirakira☆Precure A La Mode) Parona: Aya Uchida (Release the Spyce) Pyoran: Rikako Aikawa (Saiki Kusuo no Ψ-...
-                            </div>
-                            <div class="information">
-                                <p class="info di-ib">
-                                    Jul 12, 9:38 PM by <a href="#">Author</a> <a href="#pc" data-toggle="tab" class="nav-item">PC</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-
-
 </div>
-
 <div>
     <ul class="pagination">
         @{
@@ -224,33 +79,36 @@
             if (@current >= 3)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/articles?page=@first&items=@items">«</a>
+                    <a class="page-link" href="/articles/@ViewBag.platform?page=@first&items=@items">«</a>
                 </li>
             }
             if (@current >= 2 && @previous != @current)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/articles?page=@previous&items=@items">@previous</a>
+                    <a class="page-link" href="/articles/@ViewBag.platform?page=@previous&items=@items">@previous</a>
                 </li>
             }
 
             <li class="page-item active">
-                <a class="page-link" href="/articles?page=@current&items=@items">@current</a>
+                <a class="page-link" href="/articles/@ViewBag.platform?page=@current&items=@items">@current</a>
             </li>
 
             if (@last > @current)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/articles?page=@next&items=@items">@next</a>
+                    <a class="page-link" href="/articles/@ViewBag.platform?page=@next&items=@items">@next</a>
                 </li>
             }
 
             if (@last > @current + 1)
             {
                 <li class="page-item">
-                    <a class="page-link" href="/articles?page=@last&items=@items">&raquo;</a>
+                    <a class="page-link" href="/articles/@ViewBag.platform?page=@last&items=@items">&raquo;</a>
                 </li>
             }
         }
     </ul>
 </div>
+    
+
+

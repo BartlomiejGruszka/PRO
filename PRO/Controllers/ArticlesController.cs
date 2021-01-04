@@ -27,10 +27,33 @@ namespace PRO.Controllers
         {
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
+            var platformString = Request.QueryString["platform"];
 
-            var articlesList = _context.GetArticlesList();
+            List<Article> articlesList = new List<Article>();
+            List<Article> otherArticles = new List<Article>();
+            if (platformString == null || platformString == "all")
+            {
+                articlesList = _context.GetArticlesList();
+            }
+            else if (platformString == "other")
+            {
+                otherArticles = _context.GetArticlesList();
+                articlesList = otherArticles
+                .Where(i =>
+                          !i.Game.Platform.Name.Contains("PC")
+                        & !i.Game.Platform.Name.Contains("Playstation")
+                        & !i.Game.Platform.Name.Contains("Xbox")
+                        & !i.Game.Platform.Name.Contains("Switch"))
+                .ToList();
+
+            }
+            else
+            {
+                articlesList = _context.GetArticlesListByPlatform(platformString);
+            }
+
             ViewBag.Pagination = new Pagination(pageString, itemString, articlesList.Count());
-
+            ViewBag.Platform = platformString;
             return View(articlesList);
         }
 

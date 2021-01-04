@@ -131,6 +131,18 @@ namespace PRO.Helpers
              .ToList();
             return articles;
         }
+        public static List<Article> GetArticlesListByPlatform(this ApplicationDbContext context, string platform)
+        {
+            var articles = context.Articles
+             .Include(i => i.Image)
+             .Include(i => i.Author)
+             .Include(i => i.ArticleType)
+             .Include(i => i.Game)
+             .Include(i => i.Game.Platform)
+             .Where(i=> i.Game.Platform.Name.Contains(platform))
+             .ToList();
+            return articles;
+        }
 
         public static Article GetArticleById(this ApplicationDbContext context, int id)
         {
