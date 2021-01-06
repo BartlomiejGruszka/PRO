@@ -49,41 +49,43 @@
                                     <td class="pb24">
 
                                         @if (Model.Game.Series != null)
-                                        {if(Model.Game.Series.Games.Count()>1)
+                                        {
+                                            if (Model.Game.Series.Games.Count() > 1)
                                             {
-                                        <div class="underlined_h2">Gry z serii @Model.Game.Series.Name</div>
-                                        <table class="" style="border-spacing:0px;">
-                                            <tbody>
-                                                <tr>
-                                                    <td width="100%" style=" display: flex; flex-direction: column;" class="">
-                                                        @{
-                                                            foreach (var game in Model.Game.Series.Games)
-                                                            {
-                                                                if (game.Id != Model.Game.Id)
-                                                                {
-                                                                    <a href="/games/@game.Id">@game.Title</a>
-                                                                }
+                                                <div class="underlined_h2">Gry z serii @Model.Game.Series.Name</div>
+                                                <table class="" style="border-spacing:0px;">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td width="100%" style=" display: flex; flex-direction: column;" class="">
+                                                                @{
+                                                                    foreach (var game in Model.Game.Series.Games)
+                                                                    {
+                                                                        if (game.Id != Model.Game.Id)
+                                                                        {
+                                                                            <a href="/games/@game.Id">@game.Title</a>
+                                                                        }
 
-                                                            }
-                                                        }
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <br />
+                                                                    }
                                                                 }
-                                                            }
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <br />
+                                            }
+                                        }
                                         <div>
                                             <span class="floatRightHeader">
                                                 @{
                                                     if (Model.Game.Reviews != null)
                                                     {
-                                                        <a href="/games/@Model.Game.Id/reviews?page=1&items=2">Więcej recenzji</a>}
+                                                        <a href="/games/@Model.Game.Id/reviews?page=1&items=5">Więcej recenzji</a>}
                                                 }
                                             </span>
                                             <div class="underlined_h2">Recenzje</div>
                                         </div>
-                                        @if (Model.Reviews.Count() == 0) {<p>Obecnie nie ma recenzji dla tej gry</p> }
+                                        @if (Model.Reviews.Count() == 0)
+                                        {<p>Obecnie nie ma recenzji dla tej gry</p>}
                                         @for (int i = 1; i <= 3; i++)
                                         {
                                             if (Model.Reviews.Count() >= i)
@@ -95,28 +97,33 @@
 
                                         <br>
                                         <div class="underlined_h2">Powiązane artykuły</div>
+                                        @{
+                                            foreach (var article in Model.RelevantArticles)
+                                            {
+                                                <div class="clearfix">
+                                                    <div class="picSurround fl-l mr8 ml3 mt4" style="padding-top:10px;">
+                                                        @if (article.Image != null)
+                                                        {
+                                                            <img style="max-width: 100px; max-height: 100px;" class=" lazyloaded" src="@Url.Content(article.Image.ImagePath)">
+                                                        }
+                                                    </div>
+                                                    <p class="spaceit">
+                                                        <a href="/articles/@article.Id">
+                                                            <strong>@article.Title</strong>
+                                                        </a>
+                                                    </p>
+                                                    <div class="clearfix" style="overflow:hidden;">
+                                                        <p>
+                                                            @article.Preview<a href="/articles/@article.Id">więcej</a>
+                                                        </p>
+                                                    </div>
+                                                    <p class="lightLink spaceit">@article.PublishedDate przez <a href="/user/@article.Author.UserId">@article.Author.FirstName @article.Author.LastName</a></p>
+                                                </div>
+                                                <div class="borderClass"></div>
+                                                <br>
+                                            }
+                                        }
 
-                                        <div class="clearfix">
-                                            <div class="picSurround fl-l mr8 ml3 mt4">
-                                                <a href="/news/60083361" class="image-link">
-                                                    <img src="https://cdn.myanimelist.net/r/50x78/s/common/uploaded_files/1593135259-1a799d443cb53cbd94fea3bd369498f6.jpeg?s=c8a8209889ddbafa256e3ae1afa04735" width="50" height="78" class=" lazyloaded">
-                                                </a>
-                                            </div>
-                                            <p class="spaceit">
-                                                <a href="/news/60083361">
-                                                    <strong>Summer 2020 Simulcast List [Update 7/10]</strong>
-                                                </a>
-                                            </p>
-                                            <div class="clearfix" style="overflow:hidden;">
-                                                <p>
-                                                    In this thread, you'll find a comprehensive list of anime acquired for simulcast release during the Summer 2020 season. Anime series licensed for home video rel...
-                                                    <a href="/news/60083361">read more</a>
-                                                </p>
-                                            </div>
-                                            <p class="lightLink spaceit">Jun 25, 6:35 PM by <a href="/profile/Snow">Snow</a></p>
-                                        </div>
-                                        <div class="borderClass"></div>
-                                        <br>
                                         <div class="underlined_h2">Rekomendowane</div>
                                     </td>
                                 </tr>

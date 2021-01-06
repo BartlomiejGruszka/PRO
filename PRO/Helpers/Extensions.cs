@@ -148,6 +148,7 @@ namespace PRO.Helpers
         {
             Article article = context.Articles
                 .Include(a => a.Game)
+                .Include(a=>a.Game.Tags)
                 .Include(a => a.Author)
                 .Include(a => a.ArticleType)
                 .Include(a => a.Image)
@@ -218,6 +219,18 @@ namespace PRO.Helpers
                 .SingleOrDefault(g=>g.Id == id);
 
             return gameList;
+        }
+
+        public static List<Review> GetRecentReviews(this ApplicationDbContext context)
+        {
+             var recentReviews= context.Reviews
+                .Where(w => DbFunctions.TruncateTime(w.ReviewDate) < System.DateTime.Now)
+                .OrderByDescending(o => o.ReviewDate)
+                .Include(o => o.Game)
+                .Include(o => o.User.ApplicationUser)
+                .Take(5).ToList();
+
+            return recentReviews;
         }
     }
 }

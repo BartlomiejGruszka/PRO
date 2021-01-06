@@ -91,7 +91,12 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
-            return View(article);
+            ArticleDetailsViewModel articleDetails = new ArticleDetailsViewModel
+            {
+                Article = article,
+                RecentReviews = _context.GetRecentReviews()
+            };
+            return View(articleDetails);
         }
 
 

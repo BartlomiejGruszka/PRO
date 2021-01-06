@@ -65,12 +65,13 @@ namespace PRO.Controllers
             if (game == null) return HttpNotFound();
             var reviews = _context.GetGameReviewsList(game.Id).Take(3);
             var pagination = new Pagination(null, null, reviews.Count());
-
+            var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a=>a.PublishedDate).Take(3);
 
             var viewModel = new GameDetailsViewModel
             {
                 Game = game,
                 Reviews = _context.GetGameReviewsList(game.Id),
+                RelevantArticles = articles,
                 Pagination = pagination
             };
             return View(viewModel);

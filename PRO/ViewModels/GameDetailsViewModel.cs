@@ -10,6 +10,7 @@ namespace PRO.ViewModels
     {
         public Game Game { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<Article> RelevantArticles { get; set; }
 
         public Pagination Pagination { get; set; }
     }

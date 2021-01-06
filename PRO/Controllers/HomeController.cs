@@ -28,12 +28,7 @@ namespace PRO.Controllers
                 .Include(i=>i.Image)
                 .Where(w=>DbFunctions.TruncateTime(w.ReleaseDate) < System.DateTime.Now).OrderByDescending(o => o.ReleaseDate).ToList().Take(5);
 
-            var recentReviews = _context.Reviews
-                .Where(w => DbFunctions.TruncateTime(w.ReviewDate) < System.DateTime.Now)
-                .OrderByDescending(o => o.ReviewDate)
-                .Include(o=>o.Game)
-                .Include(o=>o.User.ApplicationUser)
-                .ToList().Take(5);
+            var recentReviews = _context.GetRecentReviews();
 
             var recentArticles = _context.Articles
              .Include(i => i.Image)

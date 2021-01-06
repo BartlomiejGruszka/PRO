@@ -1,9 +1,9 @@
-﻿@model PRO.ViewModels.HomeViewModel
+﻿@model IEnumerable<PRO.Models.Review>
 @using PRO.Helpers
 
     <div class="side-list-group">
         <h3 class="sidebar-title">Najnowsze recenzje</h3>
-        @{ var reviews = Model.RecentReviews.ToList();
+        @{ var reviews = Model.ToList();
             if (reviews.Any())
             {
                 for (var i = 0; i < 3; i++)
