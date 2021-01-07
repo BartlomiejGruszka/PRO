@@ -87,6 +87,7 @@ namespace PRO.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var article = _context.GetArticleById((int)id);
+            var games = _context.GetGamesList().Where(a => a.ReleaseDate > DateTime.Now).OrderBy(a => a.ReleaseDate).Take(3).ToList();
             if (article == null)
             {
                 return HttpNotFound();
@@ -94,6 +95,7 @@ namespace PRO.Controllers
             ArticleDetailsViewModel articleDetails = new ArticleDetailsViewModel
             {
                 Article = article,
+                RecentGames = games,
                 RecentReviews = _context.GetRecentReviews()
             };
             return View(articleDetails);

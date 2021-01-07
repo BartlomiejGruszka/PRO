@@ -11933,3 +11933,7 @@ input, select, textarea {
     width:400px;
     height:100px;
 }
+.recentlyReleasedGames {
+    overflow:hidden;
+    text-overflow:ellipsis;
+}

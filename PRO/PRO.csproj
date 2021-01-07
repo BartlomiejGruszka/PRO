@@ -628,6 +628,7 @@
     <Content Include="Views\ControlPanel\Author.cshtml" />
     <Content Include="Views\Users\ChangePassword - Copy.cshtml" />
     <Content Include="Views\Games\SingleReview.cshtml" />
+    <Content Include="Views\Shared\_BestRatedGames.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

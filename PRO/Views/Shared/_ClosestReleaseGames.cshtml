@@ -1,15 +1,32 @@
-﻿
-<div class="side-list-group">
-    <h3 class="sidebar-title">Nadchodzące premiery</h3>
-    @for (int i = 0; i < 3; i++)
-    {
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">List group item heading</h5>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small class="text-muted">Donec id elit non mi porta.</small>
-        </a>
-    }
+﻿@model IEnumerable<PRO.Models.Game>
+@using PRO.Helpers
+    <div class="side-list-group">
+        <h3 class="sidebar-title">Nadchodzące premiery</h3>
+        @{
+                    var bestGames = Model.ToList(); //replace it later with proper collection based on games with highest score
 
-</div>
+                    foreach (var game in bestGames)
+                    {
+                <a href="/games/@game.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div style="display:flex; flex-direction:row; overflow:hidden; text-overflow:clip;">
+                        @if (game.Image != null)
+                        {<img style="max-width: 50px;max-height: 50%;align-self: flex-start;flex-direction: row;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
+                        }
+
+                        <div style="padding-left:15px;">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@game.Title</h5>
+                            </div>
+                            <p class="mb-1">@Html.Raw(@game.Description.Truncate(100))</p>
+
+                        </div>
+                    </div>
+
+
+                </a>
+
+
+            }
+        }
+
+    </div>

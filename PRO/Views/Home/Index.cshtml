@@ -1,4 +1,5 @@
 ﻿@model  PRO.ViewModels.HomeViewModel
+@using PRO.Helpers
 @{
     ViewBag.Title = "Home Page";
 }
@@ -13,14 +14,17 @@
                 {
 
                     <a href="/articles/@article.Id" class="list-group-item list-group-item-action flex-column align-items-start " id="home-article-cards">
-                        <div> <img style="max-width: 100px;max-height: 100%;align-self: flex-start;flex-direction: row;" class=" lazyloaded" src="@Url.Content(article.Image.ImagePath)"></div>
+                        <div>
+                            @if (article.Image != null)
+                            {<img style="max-width: 100px;max-height: 100%;align-self: flex-start;flex-direction: row;" class=" lazyloaded" src="@Url.Content(article.Image.ImagePath)">
+                            }
+                        </div>
                         <div>
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@article.Title</h5>
-                                <small class="text-muted">@article.PublishedDate</small>
                             </div>
                             <p class="mb-1">@article.Preview</p>
-                            <small class="text-muted">Donec id elit non mi porta.</small>
+                            <small class="text-muted">@article.PublishedDate przez @article.Author.FirstName @article.Author.LastName</small>
                         </div>
                     </a>
                 }
@@ -36,18 +40,23 @@
 
                     foreach (var game in games)
                     {
-                        <div class="card mb-3">
+                        <div class="card mb-3 recentlyReleasedGames">
                             <a href="/games/@game.Id" style="text-decoration:none; color:black; display:block;width: 100%; ">
-                                @if (game.Image != null)
-                                {
-                                    <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
-                                }
-                                <div class="card-body">
+                                <div class="">
+                                    <div>
+                                        @if (game.Image != null)
+                                        {
+                                            <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
+                                        }
+                                    </div>
+                                    <div class="card-body">
 
-                                    <p class="card-ellipsis">@game.Title</p>
+                                        <p class="card-ellipsis">@game.Title</p>
 
+                                    </div>
                                 </div>
                             </a>
+
                         </div>
 
                     } }
@@ -56,39 +65,36 @@
         </div>
         <div class="list-group">
             <h2>Najpopularniejsze</h2>
-            @for (int i = 0; i < 4; i++)
-            {
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                        <small class="text-muted">3 days ago</small>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
-                </a>
-            }
+            @{
+                var popularGames = Model.RecentGames.ToList().Take(4); //replace it later with proper collection based on games that most players have in their lists
 
+                foreach (var game in popularGames)
+                {
+                    <a href="/games/@game.Id" class="list-group-item list-group-item-action flex-column align-items-start " id="home-article-cards">
+                        <div>
+                            @if (game.Image != null)
+                            {
+                                <img style="max-width: 100px;max-height: 100%;align-self: flex-start;flex-direction: row;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
+                            }
+                        </div>
+                        <div>
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">@game.Title</h5>
+                            </div>
+                            <p class="mb-1">@Html.Raw(@game.Description.Truncate(300))</p>
+
+                        </div>
+                    </a>
+                }
+            }
         </div>
         <br />
     </div>
 
-    <div class="">
-        <div class="side-list-group">
-            <h3 class="sidebar-title">Najwyżej oceniane</h3>
-            @for (int i = 0; i < 3; i++)
-            {
-                <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">List group item heading</h5>
-                    </div>
-                    <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small class="text-muted">Donec id elit non mi porta.</small>
-                </a>
-            }
-
-        </div>
+    <div>
+        @Html.Partial("_BestRatedGames", Model.RecentGames)
         <br />
-        @Html.Partial("_ClosestReleaseGames")
+        @Html.Partial("_ClosestReleaseGames", Model.RecentGames)
         <br />
         @Html.Partial("_NewReviews", Model.RecentReviews)
         <br />
