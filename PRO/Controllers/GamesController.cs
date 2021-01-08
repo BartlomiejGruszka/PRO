@@ -35,12 +35,14 @@ namespace PRO.Controllers
             var itemString = Request.QueryString["items"];
 
 
-            var games = _context.GetGamesList();
+            var games = _context.GetGamesList().ToList();
             var pagination = new Pagination(pageString, itemString, games.Count());
+
             var viewModel = new GameFilterViewModel
             {
                 Games = games,
-                Pagination = pagination
+                Pagination = pagination,
+                GameScores = _context.GetListOfAllGamesScores(games)
             };
 
             return View(viewModel);

@@ -3,50 +3,58 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    bool userLoggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 }
 
 <div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top-ranking-table">
         <tbody>
-            <tr class="table-header"><td class="title">Tytuł</td><td class="score">Średnia ocena</td><td class="your-score">Twoja ocena</td><td class="status">Status</td></tr>
+            <tr class="table-header"><td class="title">Tytuł</td><td class="score">Średnia ocena</td>@if(userLoggedIn){<td class="your-score">Twoja ocena</td>}<td class="status">Status</td></tr>
             @{
                 var start = Model.Pagination.pageIteratorStart;
                 var end = Model.Pagination.pageIteratorEnd;
                 var games = Model.Games.ToList();
+                var scores = Model.GameScores;
                 for (var i = start; i <= end; i++)
                 {
                     if (games.ElementAtOrDefault(i) != null)
                     {
                         var game = games[i];
+                        var score = scores.Where(g => g.Item1 == game.Id).Single();
                         <tr class="ranking-list">
                             <td class="title al va-t word-break">
-                                @if (game.Image != null)
-                                {
-                                    <a class="hoverinfo_trigger fl-l ml12 mr8" href="/games/@game.Id" id="#area5114" rel="#info5114" style="position: relative;">
-                                        <img max-width="150" height="70" class=" lazyloaded" border="0" src="@Url.Content(game.Image.ImagePath)">
-                                    </a>
-                                }
-
-
-                                <div class="detail">
-                                    <div class="di-flex clearfix">
-                                        <a class="hoverinfo_trigger fl-l fs14 fw-b" href="/games/@game.Id" id="#area5114" rel="#info5114" style="position: relative;">@game.Title</a>
+                                <div class="gameListImageGrid">
+                                    <div>
+                                        @if (game.Image != null)
+                                        {
+                                            <a class="" href="/games/@game.Id">
+                                                <img style="max-width:100%; max-height:100%; display:block" class=" lazyloaded" border="0" src="@Url.Content(game.Image.ImagePath)">
+                                            </a>
+                                        }
                                     </div>
-                                    <div class="information di-ib mt4">
-                                        @Html.Raw(@game.Description.Truncate(100))
+
+                                    <div class="detail">
+                                        <div class="di-flex clearfix">
+                                            <a class="" href="/games/@game.Id">@game.Title</a>
+                                        </div>
+                                        <div class="information di-ib mt4" style="overflow:hidden; text-overflow:clip;">
+                                            @Html.Raw(@game.Description.Truncate(100))
+                                        </div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="score ac fs14">
-                                <div class="js-top-ranking-score-col di-ib al" style="width: 48.7969px;"><i class="icon-score-star mr4 on"></i><span class="text on score-label score-9">9.23</span></div>
+                                <div class="js-top-ranking-score-col di-ib al" style="width: 48.7969px;"><i class="icon-score-star mr4 on"></i><span class="text on score-label score-9">@(Double.IsNaN(score.Item2) ? 0.0 : @score.Item2)</span></div>
                             </td>
-
-                            <td class="your-score ac fs14">
-                                <div class="js-top-ranking-your-score-col di-ib al" style="width: 43.4063px;">
-                                    <a href="" class=""><i class="icon-score-star mr4 "></i><span class="text  score-label score-na">N/A</span></a>
-                                </div>
-                            </td>
+                            @{if (userLoggedIn)
+                                {
+                                    <td class="your-score ac fs14">
+                                        <div class="js-top-ranking-your-score-col di-ib al" style="width: 43.4063px;">
+                                            <a href="" class=""><i class="icon-score-star mr4 "></i><span class="text  score-label score-na">N/A</span></a>
+                                        </div>
+                                    </td>
+                                }}
 
                             <td class="status ac">
                                 <a href="" class=" btn-addEdit-large btn-game-watch-status js-game-watch-status notinmylist"><i class="fa fa-plus-square-o mr4"></i>@game.Status.Name</a>

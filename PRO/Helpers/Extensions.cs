@@ -25,6 +25,7 @@ namespace PRO.Helpers
          .Include(a => a.Languages)
          .Include(a => a.Image)
          .Include(a => a.Awards)
+         .Include(a => a.Reviews)
          .SingleOrDefault(g => g.Id == id);
 
             if (game == null) return null;
@@ -47,7 +48,9 @@ namespace PRO.Helpers
                  .Include(a => a.Series)
                  .Include(a => a.PublisherCompany)
                  .Include(a => a.DeveloperCompany)
-                 .Include(a => a.Image);
+                 .Include(a => a.Image)
+                 .Include(a => a.Reviews);
+                 
             return games;
         }
 
@@ -127,7 +130,7 @@ namespace PRO.Helpers
              .Include(i => i.Author)
              .Include(i => i.ArticleType)
              .Include(i => i.Game)
-             .Include(i=>i.Game.Platform)
+             .Include(i => i.Game.Platform)
              .ToList();
             return articles;
         }
@@ -139,7 +142,7 @@ namespace PRO.Helpers
              .Include(i => i.ArticleType)
              .Include(i => i.Game)
              .Include(i => i.Game.Platform)
-             .Where(i=> i.Game.Platform.Name.Contains(platform))
+             .Where(i => i.Game.Platform.Name.Contains(platform))
              .ToList();
             return articles;
         }
@@ -148,7 +151,7 @@ namespace PRO.Helpers
         {
             Article article = context.Articles
                 .Include(a => a.Game)
-                .Include(a=>a.Game.Tags)
+                .Include(a => a.Game.Tags)
                 .Include(a => a.Author)
                 .Include(a => a.ArticleType)
                 .Include(a => a.Image)
@@ -169,7 +172,7 @@ namespace PRO.Helpers
             var reviews = context.Reviews
                 .Include(r => r.User.ApplicationUser)
                 .Include(r => r.Moderator.User.ApplicationUser)
-                .Include(r=>r.Game)
+                .Include(r => r.Game)
                 .ToList();
             return reviews;
         }
@@ -179,16 +182,16 @@ namespace PRO.Helpers
                 .Include(r => r.User.ApplicationUser)
                 .Include(r => r.Moderator.User.ApplicationUser)
                 .Include(r => r.Game)
-                .SingleOrDefault(r=>r.Id == id);
+                .SingleOrDefault(r => r.Id == id);
             return review;
         }
 
         public static List<UserList> GetUsersListList(this ApplicationDbContext context)
-        {           
-               var userlists = context.UserLists
-               .Include(m => m.User)
-               .Include(a => a.User.ApplicationUser)
-               .Include(a => a.ListType).ToList();
+        {
+            var userlists = context.UserLists
+            .Include(m => m.User)
+            .Include(a => a.User.ApplicationUser)
+            .Include(a => a.ListType).ToList();
             return userlists;
         }
         public static UserList GetFullUsersListForm(this ApplicationDbContext context, int id)
@@ -216,21 +219,49 @@ namespace PRO.Helpers
                 .Include(g => g.Game)
                 .Include(g => g.UserList)
                 .Include(g => g.UserList.User.ApplicationUser)
-                .SingleOrDefault(g=>g.Id == id);
+                .SingleOrDefault(g => g.Id == id);
 
             return gameList;
         }
 
         public static List<Review> GetRecentReviews(this ApplicationDbContext context)
         {
-             var recentReviews= context.Reviews
-                .Where(w => DbFunctions.TruncateTime(w.ReviewDate) < System.DateTime.Now)
-                .OrderByDescending(o => o.ReviewDate)
-                .Include(o => o.Game)
-                .Include(o => o.User.ApplicationUser)
-                .Take(5).ToList();
+            var recentReviews = context.Reviews
+               .Where(w => DbFunctions.TruncateTime(w.ReviewDate) < System.DateTime.Now)
+               .OrderByDescending(o => o.ReviewDate)
+               .Include(o => o.Game)
+               .Include(o => o.User.ApplicationUser)
+               .Take(5).ToList();
 
             return recentReviews;
+        }
+
+        public static double GetScoreByGameId(this ApplicationDbContext context, int id)
+        {
+            var game = context.GetGameById(id);
+            double score = 0d;
+            foreach (var review in game.Reviews)
+            {
+                var temp = (review.StoryScore + review.MusicScore + review.GraphicsScore + review.GameplayScore) / 4;
+                score += temp;
+            }
+            score = score / game.Reviews.Count();
+
+            return score;
+        }
+
+        public static List<Tuple<int,double>> GetListOfAllGamesScores(this ApplicationDbContext context, List<Game> games)
+        {
+            
+            var list = new List<Tuple<int, double>>();
+            foreach (var game in games)
+            {
+                var score = context.GetScoreByGameId(game.Id);
+                list.Add(Tuple.Create(game.Id, score));
+            };
+
+
+            return list ;
         }
     }
 }

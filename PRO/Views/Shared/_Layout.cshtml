@@ -45,19 +45,19 @@
                 @{
                     if (User.IsInRole("Admin"))
                     {
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Admin" ? "active":"")">
                             <a class="nav-link" href="/panel/admin">Panel admina</a>
                         </li>
                     }
                     if (User.IsInRole("Moderator"))
                     {
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Moderator" ? "active":"")">
                             <a class="nav-link" href="/panel/moderator">Panel moderatora</a>
                         </li>
                     }
                     if (User.IsInRole("Author"))
                     {
-                        <li class="nav-item">
+                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Author" ? "active":"")">
                             <a class="nav-link" href="/panel/author">Panel autora</a>
                         </li>
                     }

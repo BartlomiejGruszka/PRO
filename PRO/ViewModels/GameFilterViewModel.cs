@@ -15,6 +15,7 @@ namespace PRO.ViewModels
         public IEnumerable<Company> Companies{ get; set; }
         public IEnumerable<Genre> Genres{ get; set; }
         public IEnumerable<Game> Games { get; set; }
+        public IEnumerable<Tuple<int,double>> GameScores { get; set; }
 
         public Pagination Pagination { get; set; }
 
