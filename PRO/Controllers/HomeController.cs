@@ -25,8 +25,8 @@ namespace PRO.Controllers
         public ActionResult Index()
         {
             var recentReleases = _context.Games
-                .Include(i=>i.Image)
-                .Where(w=>DbFunctions.TruncateTime(w.ReleaseDate) < System.DateTime.Now).OrderByDescending(o => o.ReleaseDate).ToList().Take(5);
+                .Include(i => i.Image)
+                .Where(w => DbFunctions.TruncateTime(w.ReleaseDate) < System.DateTime.Now).OrderByDescending(o => o.ReleaseDate).ToList().Take(5);
 
             var recentReviews = _context.GetRecentReviews();
 
@@ -43,9 +43,30 @@ namespace PRO.Controllers
                 RecentGames = recentReleases,
                 RecentReviews = recentReviews,
                 RecentArticles = recentArticles
-        };
+            };
 
             return View(homeViewModel);
+        }
+        [Route("search/{type?}")]
+        public ActionResult Search(string type)
+        {
+            var query = Request.QueryString["searchString"];
+            if (string.IsNullOrEmpty(query)) { return RedirectToAction("Index"); }
+
+            if (type == "games")
+            {
+                return RedirectToAction("Search","Games",new { query = query} );
+            }
+            else if (type == "articles")
+            {
+                return RedirectToAction("Search", "Articles", new { query = query });
+            }
+            else if (type == "users")
+            {
+                //redirect to filtered list view of users
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult About()
@@ -61,5 +82,6 @@ namespace PRO.Controllers
 
             return View();
         }
+
     }
 }

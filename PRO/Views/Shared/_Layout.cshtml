@@ -63,11 +63,28 @@
                     }
 
                 }
+
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Szukaj">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Szukaj</button>
-            </form>
+
+            <div class="form-inline my-2 my-lg-0">
+
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { style = "display:flex;" }))
+                {
+                <select class="form-control" id="type" name="type" style="margin-right:5px;">
+                    <option hidden disabled selected> Wybierz</option>
+                    <option value="games">Gry</option>
+                    <option value="articles">Artykuły</option>
+                    <option value="users">Użytkownicy</option>
+                </select>
+
+                    <input class="form-control mr-sm-2" type="text" placeholder="Szukaj" name="SearchString">
+                    <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Szukaj">
+                }
+
+
+
+
+            </div>
         </div>
     </nav>
     <ol class="breadcrumb">

@@ -275,6 +275,34 @@ namespace PRO.Controllers
             return View(viewModel);
         }
 
+        [AllowAnonymous]
+        [Route("games/search/{query?}")]
+        public ActionResult Search(string query)
+        {
+            var pageString = Request.QueryString["page"];
+            var itemString = Request.QueryString["items"];
 
+
+            var games = _context.GetGamesList().ToList();
+            var filteredgames = games
+                .Where(g =>
+                g.Title.CaseInsensitiveContains(query) ||
+                g.Description.CaseInsensitiveContains(query) ||
+                g.DeveloperCompany.Name.CaseInsensitiveContains(query) ||
+                g.PublisherCompany.Name.CaseInsensitiveContains(query) ||
+                g.Status.Name.CaseInsensitiveContains(query)
+                ).ToList();
+    
+            var pagination = new Pagination(pageString, itemString, filteredgames.Count());
+
+            var viewModel = new GameFilterViewModel
+            {
+                Games = filteredgames,
+                Pagination = pagination,
+                GameScores = _context.GetListOfAllGamesScores(filteredgames)
+            };
+
+            return View("Index",viewModel);
+        }
     }
 }
