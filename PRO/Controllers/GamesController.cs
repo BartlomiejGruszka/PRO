@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using PRO.Helpers;
 using System.Net;
+using Microsoft.AspNet.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace PRO.Controllers
 {
@@ -59,29 +61,53 @@ namespace PRO.Controllers
             return View(games);
         }
         [AllowAnonymous]
+        [HttpGet]
         [Route("games/{id}")]
         public ActionResult Details(int id)
         {
+            var viewModel = setupDetailsPage(id, null);
+           
+            return View(viewModel);
+        }
+        [Authorize]
+        [HttpPost]
+        [Route("games/{id}")]
+        public ActionResult Details(int id,[Bind(Include = "Id,AddedDate,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
+        {
 
+            if (gameList.UserListId <= 0)
+            {
+                ModelState.AddModelError("UserListId", "Wybierz listę użytkownika");
+            }
+            gameList.AddedDate = DateTime.Now;
+            TempData["gameList"] = gameList;
+            if (ModelState.IsValid)
+            {
+                _context.GameLists.Add(gameList);
+                _context.SaveChanges();
+                
+            }
+            var viewModel = setupDetailsPage(id, gameList);
+            if (viewModel == null) return HttpNotFound();
+            return View(viewModel);
+        }
+        private GameDetailsViewModel setupDetailsPage(int id, GameList gamelist)
+        {
             var game = _context.GetGameById(id);
-            if (game == null) return HttpNotFound();
+            if (game == null) return null;
             var reviews = _context.GetGameReviewsList(game.Id).Take(3);
             var pagination = new Pagination(null, null, reviews.Count());
-            var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a=>a.PublishedDate).Take(3);
+            var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a => a.PublishedDate).Take(3);
 
-            var users = _context.AppUsers.Include(i => i.ApplicationUser).ToList();
-            var usersList = users.Select(s => new { Id = s.Id, UserName = s.ApplicationUser.UserName }).ToList();
+            var userid = getCurrentUserId();
+            var userLists = _context.UserLists.Where(u => u.UserId == userid).ToList();
 
-            ViewBag.userList = usersList;
-
-            var GameList = new GameList
-            {
-            };
 
             var GameGameList = new GameAndGameListFormViewModel
             {
                 Game = game,
-                GameList = GameList
+                GameList = gamelist,
+                userLists = userLists
             };
 
             var viewModel = new GameDetailsViewModel
@@ -91,8 +117,10 @@ namespace PRO.Controllers
                 RelevantArticles = articles,
                 Pagination = pagination
             };
-            return View(viewModel);
+            return viewModel;
         }
+
+
         [Route("games/details/{id}")]
         public ActionResult ManageDetails(int? id)
         {
@@ -326,6 +354,14 @@ namespace PRO.Controllers
             };
 
             return View("Index",viewModel);
+        }
+        public int? getCurrentUserId()
+        {
+            string currentUserId = User.Identity.GetUserId();
+            var user = _context.AppUsers.SingleOrDefault(s => s.UserId.Equals(currentUserId));
+            if (user == null) return null;
+            var id = user.Id;
+            return id;
         }
     }
 }

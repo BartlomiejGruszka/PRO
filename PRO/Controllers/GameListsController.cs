@@ -12,6 +12,7 @@ using PRO.Helpers;
 
 namespace PRO.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class GameListsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -180,9 +181,6 @@ namespace PRO.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-
 
     }
 }
