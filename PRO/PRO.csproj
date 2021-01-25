@@ -445,6 +445,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ArticleViewModel.cs" />
     <Compile Include="ViewModels\ArticleDetailsViewModel.cs" />
+    <Compile Include="ViewModels\GameAndGameListFormViewModel.cs" />
     <Compile Include="ViewModels\NewUserViewModel.cs" />
     <Compile Include="ViewModels\GameDetailsViewModel.cs" />
     <Compile Include="ViewModels\GameFilterViewModel.cs" />
@@ -630,6 +631,7 @@
     <Content Include="Views\Users\ChangePassword - Copy.cshtml" />
     <Content Include="Views\Games\SingleReview.cshtml" />
     <Content Include="Views\Shared\_BestRatedGames.cshtml" />
+    <Content Include="Views\Articles\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

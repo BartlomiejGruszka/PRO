@@ -5,13 +5,13 @@
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_GameTitleBar", Model.Game)
+@Html.Partial("_GameTitleBar", Model.GameGameList.Game)
 <div id="content">
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tbody>
             <tr>
-                @Html.Partial("_GameInfoBar", Model.Game)
+                @Html.Partial("_GameInfoBar", Model.GameGameList)
                 <td valign="top" style="padding-left: 5px;">
                     <div class="js-scrollfix-bottom-rel">
                         <div style=" margin:0 auto"></div><a name="lower"></a>
@@ -41,26 +41,26 @@
                                     <td class="pb24">
                                         <div class="underlined_h2">Opis</div>
                                         <p>
-                                            @Html.Raw(Model.Game.Description)
+                                            @Html.Raw(Model.GameGameList.Game.Description)
                                         </p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="pb24">
 
-                                        @if (Model.Game.Series != null)
+                                        @if (Model.GameGameList.Game.Series != null)
                                         {
-                                            if (Model.Game.Series.Games.Count() > 1)
+                                            if (Model.GameGameList.Game.Series.Games.Count() > 1)
                                             {
-                                                <div class="underlined_h2">Gry z serii @Model.Game.Series.Name</div>
+                                                <div class="underlined_h2">Gry z serii @Model.GameGameList.Game.Series.Name</div>
                                                 <table class="" style="border-spacing:0px;">
                                                     <tbody>
                                                         <tr>
                                                             <td width="100%" style=" display: flex; flex-direction: column;" class="">
                                                                 @{
-                                                                    foreach (var game in Model.Game.Series.Games)
+                                                                    foreach (var game in Model.GameGameList.Game.Series.Games)
                                                                     {
-                                                                        if (game.Id != Model.Game.Id)
+                                                                        if (game.Id != Model.GameGameList.Game.Id)
                                                                         {
                                                                             <a href="/games/@game.Id">@game.Title</a>
                                                                         }
@@ -77,9 +77,9 @@
                                         <div>
                                             <span class="floatRightHeader">
                                                 @{
-                                                    if (Model.Game.Reviews != null)
+                                                    if (Model.GameGameList.Game.Reviews != null)
                                                     {
-                                                        <a href="/games/@Model.Game.Id/reviews?page=1&items=5">Więcej recenzji</a>}
+                                                        <a href="/games/@Model.GameGameList.Game.Id/reviews?page=1&items=5">Więcej recenzji</a>}
                                                 }
                                             </span>
                                             <div class="underlined_h2">Recenzje</div>

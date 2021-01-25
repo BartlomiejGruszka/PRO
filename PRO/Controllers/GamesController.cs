@@ -69,9 +69,24 @@ namespace PRO.Controllers
             var pagination = new Pagination(null, null, reviews.Count());
             var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a=>a.PublishedDate).Take(3);
 
-            var viewModel = new GameDetailsViewModel
+            var users = _context.AppUsers.Include(i => i.ApplicationUser).ToList();
+            var usersList = users.Select(s => new { Id = s.Id, UserName = s.ApplicationUser.UserName }).ToList();
+
+            ViewBag.userList = usersList;
+
+            var GameList = new GameList
+            {
+            };
+
+            var GameGameList = new GameAndGameListFormViewModel
             {
                 Game = game,
+                GameList = GameList
+            };
+
+            var viewModel = new GameDetailsViewModel
+            {
+                GameGameList = GameGameList,
                 Reviews = _context.GetGameReviewsList(game.Id),
                 RelevantArticles = articles,
                 Pagination = pagination
@@ -241,11 +256,14 @@ namespace PRO.Controllers
 
             var pagination = new Pagination(pageString, itemString, reviews.Count());
 
-
+            var GameGameList = new GameAndGameListFormViewModel
+            {
+                Game = game
+            };
 
             var viewModel = new GameDetailsViewModel
             {
-                Game = game,
+                GameGameList = GameGameList,
                 Reviews = _context.GetGameReviewsList(game.Id),
                 Pagination = pagination
             };
@@ -266,9 +284,14 @@ namespace PRO.Controllers
 
             List<Review> list = new List<Review>();
             list.Add(reviews);
+            var GameGameList = new GameAndGameListFormViewModel
+            {
+                Game = game
+            };
+
             var viewModel = new GameDetailsViewModel
             {
-                Game = game,
+                GameGameList = GameGameList,
                 Reviews = list,
                 Pagination = pagination
             };

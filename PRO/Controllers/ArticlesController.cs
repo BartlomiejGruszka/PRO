@@ -33,11 +33,11 @@ namespace PRO.Controllers
             List<Article> otherArticles = new List<Article>();
             if (platformString == null || platformString == "all")
             {
-                articlesList = _context.GetArticlesList();
+                articlesList = _context.GetArticlesList().Where(a=>a.IsActive == true).ToList();
             }
             else if (platformString == "other")
             {
-                otherArticles = _context.GetArticlesList();
+                otherArticles = _context.GetArticlesList().Where(a => a.IsActive == true).ToList(); ;
                 articlesList = otherArticles
                 .Where(i =>
                           !i.Game.Platform.Name.Contains("PC")
@@ -223,6 +223,28 @@ namespace PRO.Controllers
             return id;
         }
 
+        [AllowAnonymous]
+        [Route("articles/search/{query?}")]
+        public ActionResult Search(string query)
+        {
+            var pageString = Request.QueryString["page"];
+            var itemString = Request.QueryString["items"];
+
+
+            List<Article> articlesList = new List<Article>();
+            List<Article> searchList = new List<Article>();
+            articlesList = _context.GetArticlesList().Where(a => a.IsActive == true).ToList(); ;
+            searchList = articlesList.Where(a =>
+            a.Title.CaseInsensitiveContains(query) ||
+            a.Preview.CaseInsensitiveContains(query) ||
+            a.Content.CaseInsensitiveContains(query)
+            ).ToList();
+            
+            ViewBag.Pagination = new Pagination(pageString, itemString, searchList.Count());
+            ViewBag.Query = query;
+            ViewBag.platform = "none";
+            return View(searchList);
+        }
 
     }
 }

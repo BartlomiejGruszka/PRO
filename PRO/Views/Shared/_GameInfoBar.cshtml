@@ -1,64 +1,107 @@
-﻿@model PRO.Models.Game
+﻿@model PRO.ViewModels.GameAndGameListFormViewModel
 
 <td class="borderClass" width="225" style="border-width: 0 1px 0 0;" valign="top">
     <div style="width: 225px">
 
         <div style="text-align: center;">
-            @if (Model.Image != null)
+            @if (Model.Game.Image != null)
             {<a>
-                    <img style="max-width:200px;width: expression(this.width > 200 ? 200: true);" class="lazyloaded" src="@Url.Content(Model.Image.ImagePath)">
+                    <img style="max-width:200px;width: expression(this.width > 200 ? 200: true);" class="lazyloaded" src="@Url.Content(Model.Game.Image.ImagePath)">
                 </a>}
 
         </div>
 
         <div class="underlined_h2">Dodaj do listy</div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.GameList.GameId, new { Value = Model.Game.Id })
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GameList.HoursPlayed, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GameList.HoursPlayed, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GameList.HoursPlayed, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GameList.PersonalScore, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GameList.PersonalScore, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GameList.PersonalScore, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GameList.UserListId, "Lista użytkownika", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <select id="UserListId" name="UserListId" class="form-control" onchange="SetListId()">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.GameList.UserListId, "UserListId", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("UserListId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.GameList.UserListId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Dodaj" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
         <div class="underlined_h2">Informacje</div>
 
         <div class="spaceit">
             <span class="dark_text">Data premiery: </span>
             @{
 
-                if (Model.ReleaseDate == null)
+                if (Model.Game.ReleaseDate == null)
                 { <a href="#">Nieznana</a>}
-                else if (Model.ReleaseDate.Year < 1900)
+                else if (Model.Game.ReleaseDate.Year < 1900)
                 { <a href="#">Nieznana</a>}
                 else
                 {
-                    var date = @Model.ReleaseDate.Day.ToString()
-                     + "." + @Model.ReleaseDate.Month.ToString() + "."
-                     + @Model.ReleaseDate.Year.ToString();
+                    var date = @Model.Game.ReleaseDate.Day.ToString()
+                     + "." + @Model.Game.ReleaseDate.Month.ToString() + "."
+                     + @Model.Game.ReleaseDate.Year.ToString();
 
                     <a href="#">@date</a>}
             }
         </div>
-        <div class="spaceit"><span class="dark_text">Platforma: </span><a href="#">@Model.Platform.Name</a></div>
-        <div class="spaceit"><span class="dark_text">Gatunek: </span>@Model.Genre.Name</div>
+        <div class="spaceit"><span class="dark_text">Platforma: </span><a href="#">@Model.Game.Platform.Name</a></div>
+        <div class="spaceit"><span class="dark_text">Gatunek: </span>@Model.Game.Genre.Name</div>
         <div class="spaceit">
-            <span class="dark_text">Wydawca: </span>@if (Model.PublisherCompany == null)
+            <span class="dark_text">Wydawca: </span>@if (Model.Game.PublisherCompany == null)
             {<a>Brak</a> }
             else
-            { <a>@Model.PublisherCompany.Name</a>}
+            { <a>@Model.Game.PublisherCompany.Name</a>}
         </div>
         <div class="spaceit">
-            <span class="dark_text">Producent: </span>@if (Model.DeveloperCompany == null)
+            <span class="dark_text">Producent: </span>@if (Model.Game.DeveloperCompany == null)
             {<a>Brak</a> }
             else
-            { <a>@Model.DeveloperCompany.Name</a>}
+            { <a>@Model.Game.DeveloperCompany.Name</a>}
         </div>
-        <div class="spaceit"><span class="dark_text">Status: </span> <a>@Model.Status.Name</a> </div>
+        <div class="spaceit"><span class="dark_text">Status: </span> <a>@Model.Game.Status.Name</a> </div>
         <div class="spaceit">
-            <span class="dark_text">Seria: </span>@if (Model.SeriesId == null)
+            <span class="dark_text">Seria: </span>@if (Model.Game.SeriesId == null)
             {<a>Brak</a> }
             else
-            { <a>@Model.Series.Name</a>}
+            { <a>@Model.Game.Series.Name</a>}
         </div>
 
         <div>
             <span class="dark_text">Języki:</span>
 
 
-            @foreach (var language in Model.Languages)
+            @foreach (var language in Model.Game.Languages)
             {
                 <a href="#">@language.Name</a>
             }
@@ -66,7 +109,7 @@
         </div>
         <div class="spaceit">
             <span class="dark_text">Tagi:</span>
-            @foreach (var tag in Model.Tags)
+            @foreach (var tag in Model.Game.Tags)
             {
                 <a href="#">@tag.Name</a>
             }
@@ -93,9 +136,9 @@
         <div class="underlined_h2">Nagrody</div>
 
         @{
-            if (Model.Awards != null)
+            if (Model.Game.Awards != null)
             {
-                foreach (var award in Model.Awards)
+                foreach (var award in Model.Game.Awards)
                 {
                     <a href="#">@award.Name</a>
                 }

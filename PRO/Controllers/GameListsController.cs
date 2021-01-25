@@ -75,6 +75,11 @@ namespace PRO.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add([Bind(Include = "Id,AddedDate,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
         {
+            if (gameList.UserListId <=0)
+            {
+                ModelState.AddModelError("UserListId", "Wybierz listę użytkownika");
+            }
+
             if (ModelState.IsValid)
             {
                 db.GameLists.Add(gameList);

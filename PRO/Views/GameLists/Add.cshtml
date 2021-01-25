@@ -45,7 +45,6 @@
             @Html.LabelFor(model => model.UserList.UserId, "Użytkownik", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownListFor(m => m.UserList.UserId, new SelectList(ViewBag.userList, "Id", "UserName"), "Wybierz użytkownika", new { @class = "form-control", @id = "ddlstate", @onchange = "javascript:GetUserLists(this.value);" })
-                @Html.ValidationMessageFor(model => model.UserListId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -54,6 +53,7 @@
             <div class="col-md-10">
                 <select id="UserListId" name="UserListId" class="form-control" onchange="SetListId()">
                 </select>
+                @Html.ValidationMessageFor(model => model.UserListId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -68,6 +68,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Dodaj" class="btn btn-primary" />
+                <div class="btn btn-secondary"><a class="actionLinkManage" href="/gamelists/manage">Wróć</a></div>
             </div>
         </div>
     </div>
