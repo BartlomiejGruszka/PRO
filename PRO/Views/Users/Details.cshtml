@@ -1,6 +1,6 @@
-﻿@model PRO.Models.User
+﻿@model PRO.ViewModels.UserProfileViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Profil użytkownika";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div>
@@ -9,6 +9,7 @@
             <span>
                 test
             </span>
+            <a class="header-right mt2 mr0" href="#" style="font-size: 12px;">Edytuj profil</a>
         </span>
     </h1>
 </div>
@@ -99,7 +100,7 @@
                                         <div class="underlined_h2">Recenzje użytkownika</div>
                                         @for (int i = 0; i < 3; i++)
                                         {
-                                            @Html.Partial("_SingleReview")
+                                           
                                             <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
                                             </div>
                                         }

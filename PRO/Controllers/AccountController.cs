@@ -82,7 +82,7 @@ namespace PRO.Controllers
             var user = await UserManager.FindByNameOrEmailAsync(model.Email, model.Password);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                ModelState.AddModelError(string.Empty, "Login lub hasło są nieprawidłowe.");
                 return View(model);
             }
 
@@ -99,7 +99,7 @@ namespace PRO.Controllers
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", "Login lub hasło są nieprawidłowe.");
                     return View(model);
             }
         }
