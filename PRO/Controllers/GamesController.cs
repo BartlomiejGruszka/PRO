@@ -49,6 +49,7 @@ namespace PRO.Controllers
 
             return View(viewModel);
         }
+        [HttpGet]
         [Route("games/manage")]
         public ActionResult Manage()
         {
@@ -135,7 +136,7 @@ namespace PRO.Controllers
             }
             return View(games);
         }
-
+        [HttpGet]
         [Route("games/add")]
         public ActionResult Add()
         {
@@ -175,7 +176,7 @@ namespace PRO.Controllers
             return View(newViewModel);
         }
 
-
+        [HttpGet]
         [Route("games/edit/{id}")]
         public ActionResult Edit(int? id)
         {
@@ -238,6 +239,7 @@ namespace PRO.Controllers
         }
 
         // GET: Companies/Delete/5
+        [HttpGet]
         [Route("games/delete/{id}")]
         [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
@@ -265,13 +267,14 @@ namespace PRO.Controllers
             _context.SaveChanges();
             return RedirectToAction("Manage");
         }
-
+        [HttpGet]
         [AllowAnonymous]
         [Route("games/ranking")]
         public ActionResult Ranking()
         {
             return View();
         }
+        [HttpGet]
         [AllowAnonymous]
         [Route("games/{id}/reviews")]
         public ActionResult Reviews(int id)
@@ -298,6 +301,7 @@ namespace PRO.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         [AllowAnonymous]
         [Route("games/{id}/reviews/{review}")]
         public ActionResult SingleReview(int id, int review)
@@ -326,6 +330,7 @@ namespace PRO.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
         [AllowAnonymous]
         [Route("games/search/{query?}")]
         public ActionResult Search(string query)

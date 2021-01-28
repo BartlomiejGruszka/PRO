@@ -64,6 +64,13 @@ namespace PRO.Controllers
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
 
+            var model =  await setupUserPageAsync();
+
+            return View(model);
+        }
+
+         public async Task<IndexViewModel> setupUserPageAsync()
+        {
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
@@ -73,9 +80,8 @@ namespace PRO.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
-            return View(model);
+            return model;
         }
-
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

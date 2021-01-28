@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using PRO.ViewModels;
+using System.Threading.Tasks;
 
 namespace PRO.Helpers
 {
@@ -50,7 +51,7 @@ namespace PRO.Helpers
                  .Include(a => a.DeveloperCompany)
                  .Include(a => a.Image)
                  .Include(a => a.Reviews);
-                 
+
             return games;
         }
 
@@ -250,9 +251,9 @@ namespace PRO.Helpers
             return score;
         }
 
-        public static List<Tuple<int,double>> GetListOfAllGamesScores(this ApplicationDbContext context, List<Game> games)
+        public static List<Tuple<int, double>> GetListOfAllGamesScores(this ApplicationDbContext context, List<Game> games)
         {
-            
+
             var list = new List<Tuple<int, double>>();
             foreach (var game in games)
             {
@@ -261,7 +262,7 @@ namespace PRO.Helpers
             };
 
 
-            return list ;
+            return list;
         }
 
         public static bool CaseInsensitiveContains(this string text, string value,
@@ -269,5 +270,7 @@ namespace PRO.Helpers
         {
             return text.IndexOf(value, stringComparison) >= 0;
         }
+
+
     }
 }

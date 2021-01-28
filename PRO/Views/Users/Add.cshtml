@@ -6,7 +6,7 @@
 
 <h2>Dodaj użytkownika</h2>
 
-<div class="login-form-row">
+<div class="">
     @using (Html.BeginForm("Add", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()

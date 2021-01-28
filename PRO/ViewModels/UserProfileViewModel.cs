@@ -16,5 +16,8 @@ namespace PRO.ViewModels
 
         public IndexViewModel Index { get; set; }
 
+        public List<ListType> ListTypes { get; set; }
+        public int? LoggedUserId { get; set; }
+
     }
 }

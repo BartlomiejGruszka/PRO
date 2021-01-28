@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using PRO.ViewModels;
+using PRO.Helpers;
 using static PRO.Controllers.ManageController;
 
 namespace PRO.Controllers
 {
+
     public class UsersController : Controller
     {
         private ApplicationDbContext _context;
@@ -63,22 +65,57 @@ namespace PRO.Controllers
         }
 
         [Route("users/{id}")]
-        [Authorize]
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             User user = _context.AppUsers
                 .Include(a => a.ApplicationUser)
                 .Include(a => a.Image)
                 .SingleOrDefault(i => i.Id == id);
+
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+
+            List<UserList> userLists = _context.UserLists
+                .Where(u => u.UserId == id)
+                .Include(l => l.ListType)
+                .ToList();
+            List<GameList> gameLists = _context.GameLists
+                .Include(i => i.UserList)
+                .Where(u => u.UserList.UserId == id)
+                .ToList();
+            List<Review> reviews = _context.
+                GetReviewsList()
+                .Where(r => r.UserId == id)
+                .ToList();
+            List<ListType> listTypes = _context.ListTypes.ToList();
+
+            int? loggeduserid = getCurrentUserId();
+            if(loggeduserid == null) { loggeduserid = -1; }
+            //
+            // ManageController ctr = new ManageController();
+            // var index = await ctr.setupUserPageAsync();
+            //
+
+            UserProfileViewModel model = new UserProfileViewModel
+            {
+                User = user,
+                UserLists = userLists,
+                GameLists = gameLists,
+                Reviews = reviews,
+                //Index = index
+                LoggedUserId = loggeduserid,
+                ListTypes = listTypes
+            };
+
+            return View(model);
         }
 
         [Route("users/details/{id}")]
@@ -330,7 +367,14 @@ namespace PRO.Controllers
 
             return View();
         }
-
+        public int? getCurrentUserId()
+        {
+            string currentUserId = User.Identity.GetUserId();
+            var user = _context.AppUsers.SingleOrDefault(s => s.UserId.Equals(currentUserId));
+            if (user == null) return null;
+            var id = user.Id;
+            return id;
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
