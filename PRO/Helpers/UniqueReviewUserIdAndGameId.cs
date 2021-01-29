@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var review = (Review)validationContext.ObjectInstance;
 
             var isUnique = _context.Reviews
-                .SingleOrDefault(s => s.GameId == review.GameId && s.UserId == review.UserId);
+                .SingleOrDefault(s => s.GameId == review.GameId && s.UserId == review.UserId && s.Id!=review.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już recenzja dla tej gry.");

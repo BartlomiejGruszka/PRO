@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var userList = (UserList)validationContext.ObjectInstance;
 
             var isUnique = _context.UserLists
-                .SingleOrDefault(s => s.Name == userList.Name && s.UserId ==  userList.UserId);
+                .SingleOrDefault(s => s.Name == userList.Name && s.UserId ==  userList.UserId  && s.Id!=userList.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już lista o takiej nazwie.");

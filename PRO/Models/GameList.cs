@@ -19,6 +19,11 @@ namespace PRO.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime AddedDate { get; set; }
 
+        [DisplayName("Data edycji")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime? EditedDate { get; set; }
+
         [Required, DisplayName("Rozegrane godziny")]
         public int? HoursPlayed { get; set; }
 

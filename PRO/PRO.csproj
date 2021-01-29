@@ -413,6 +413,10 @@
     <Compile Include="Migrations\202012141941524_ArticlePrieview.Designer.cs">
       <DependentUpon>202012141941524_ArticlePrieview.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101291536176_editDateForGameList.cs" />
+    <Compile Include="Migrations\202101291536176_editDateForGameList.Designer.cs">
+      <DependentUpon>202101291536176_editDateForGameList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -759,6 +763,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012141941524_ArticlePrieview.resx">
       <DependentUpon>202012141941524_ArticlePrieview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101291536176_editDateForGameList.resx">
+      <DependentUpon>202101291536176_editDateForGameList.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

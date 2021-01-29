@@ -19,7 +19,7 @@ namespace PRO.Helpers
             var gameList = (GameList)validationContext.ObjectInstance;
 
             var isUnique = _context.GameLists
-                .SingleOrDefault(s => s.GameId == gameList.GameId && s.UserListId == gameList.UserListId);
+                .SingleOrDefault(s => s.GameId == gameList.GameId && s.UserListId == gameList.UserListId && s.Id!=gameList.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Gra jest już na liście.");

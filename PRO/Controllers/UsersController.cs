@@ -89,6 +89,7 @@ namespace PRO.Controllers
                 .ToList();
             List<GameList> gameLists = _context.GameLists
                 .Include(i => i.UserList)
+                .Include(i=>i.Game)
                 .Where(u => u.UserList.UserId == id)
                 .ToList();
             List<Review> reviews = _context.
@@ -96,6 +97,8 @@ namespace PRO.Controllers
                 .Where(r => r.UserId == id)
                 .ToList();
             List<ListType> listTypes = _context.ListTypes.ToList();
+
+
 
             int? loggeduserid = getCurrentUserId();
             if(loggeduserid == null) { loggeduserid = -1; }

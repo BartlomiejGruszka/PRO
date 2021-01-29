@@ -74,12 +74,13 @@ namespace PRO.Controllers
         [HttpPost]
         [Route("gamelists/add")]
         [ValidateAntiForgeryToken]
-        public ActionResult Add([Bind(Include = "Id,AddedDate,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
+        public ActionResult Add([Bind(Include = "Id,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
         {
             if (gameList.UserListId <=0)
             {
                 ModelState.AddModelError("UserListId", "Wybierz listę użytkownika");
             }
+            gameList.AddedDate = DateTime.Now;
 
             if (ModelState.IsValid)
             {
@@ -105,18 +106,19 @@ namespace PRO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var users = db.AppUsers.Include(i => i.ApplicationUser).ToList();
-            var usersList = users.Select(s => new { Id = s.Id, UserName = s.ApplicationUser.UserName }).ToList();
 
-            ViewBag.userList = usersList;
             ViewBag.Games = db.GetGamesList().ToList();
 
             var gameList = db.GetFullGameListById(id);
-
             if (gameList == null)
             {
                 return HttpNotFound();
             }
+            var userLists = db.UserLists.Where(u => u.UserId == gameList.UserList.UserId).ToList();
+
+            ViewBag.userLists = userLists;
+
+           
 
             return View(gameList);
         }
@@ -129,16 +131,19 @@ namespace PRO.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,AddedDate,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
         {
+            gameList.EditedDate = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 db.Entry(gameList).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Manage");
             }
-            var users = db.AppUsers.Include(i => i.ApplicationUser).ToList();
-            var usersList = users.Select(s => new { Id = s.Id, UserName = s.ApplicationUser.UserName }).ToList();
+            var gameListUser = db.GetFullGameListById(gameList.Id);
+            gameList.UserList = gameListUser.UserList;
+            var userLists = db.UserLists.Where(u=>u.UserId == gameListUser.UserList.UserId).ToList();
 
-            ViewBag.userList = usersList;
+            ViewBag.userLists = userLists;
             ViewBag.Games = db.GetGamesList().ToList();
 
             return View(gameList);
