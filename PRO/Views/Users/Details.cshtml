@@ -36,8 +36,11 @@
                             <div class="underlined_h2"></div>
                             <a style="margin: 20px; display:block;" href="#" class="btn btn-secondary">Listy użytkownika</a>
                             @if (User.Identity.IsAuthenticated && Model.LoggedUserId == Model.User.Id)
-                            {<a style="margin: 20px; display:block;" href="#" class="btn btn-primary">Edytuj profil</a>}
-                            
+                            {
+                                <a style="margin: 20px; display:block;" href="/users/@Model.User.Id/profile" class="btn btn-primary">Edytuj profil</a>
+                                <a style="margin: 20px; display:block;" href="/users/@Model.User.Id/password" class="btn btn-primary">Zmień hasło</a>
+                            }
+
                             <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
                             </div>
 

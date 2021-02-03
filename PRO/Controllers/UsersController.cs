@@ -82,6 +82,10 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
+            if (user.IsActive == false)
+            {
+                return HttpNotFound();
+            }
 
             List<UserList> userLists = _context.UserLists
                 .Where(u => u.UserId == id)
@@ -89,7 +93,7 @@ namespace PRO.Controllers
                 .ToList();
             List<GameList> gameLists = _context.GameLists
                 .Include(i => i.UserList)
-                .Include(i=>i.Game)
+                .Include(i => i.Game)
                 .Where(u => u.UserList.UserId == id)
                 .ToList();
             List<Review> reviews = _context.
@@ -101,7 +105,7 @@ namespace PRO.Controllers
 
 
             int? loggeduserid = getCurrentUserId();
-            if(loggeduserid == null) { loggeduserid = -1; }
+            if (loggeduserid == null) { loggeduserid = -1; }
             //
             // ManageController ctr = new ManageController();
             // var index = await ctr.setupUserPageAsync();
@@ -338,29 +342,75 @@ namespace PRO.Controllers
             return View(model);
         }
 
-        // change password function requiring old password
-        /*        [HttpPost]
-                [Authorize(Roles = "Admin")]
-                [Route("users/changePassword/{id}")]
-                [ValidateAntiForgeryToken]
-                public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
-                {
-                    var userdata = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(a => a.Id == model.id);
-                    if (userdata == null)
-                    { return RedirectToAction("Manage"); }
+        // GET: /Manage/ChangePassword
+        [HttpGet]
+        [Authorize]
+        [Route("users/{id}/password")]
+        public ActionResult UserChangePassword(int id)
+        {
+            int? loggeduserid = getCurrentUserId();
+            if (loggeduserid == null) return HttpNotFound();
+            if (loggeduserid != id) return HttpNotFound();
+            User user = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(i => i.Id == id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            ChangePasswordViewModel changePassword = new ChangePasswordViewModel
+            {
+                id = id
+            };
+            UserProfileViewModel model = new UserProfileViewModel
+            {
+                User = user,
+                LoggedUserId = loggeduserid,
+                ChangePassword = changePassword
+            };
 
-                    if (!ModelState.IsValid)
-                    {
-                        return View(model);
-                    }
-                    var result = await UserManager.ChangePasswordAsync(userdata.UserId, model.OldPassword, model.NewPassword);
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Manage");
-                    }
-                    AddErrors(result);
-                    return View(model);
-                }*/
+            return View(model);
+        }
+
+
+        // change password function requiring old password
+        [HttpPost]
+        [Authorize]
+        [Route("users/{id}/password")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UserChangePassword(ChangePasswordViewModel model, int id)
+        {
+            int? loggeduserid = getCurrentUserId();
+            if (loggeduserid == null) return HttpNotFound();
+            if (loggeduserid != id) return HttpNotFound();
+
+            var userdata = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(a => a.Id == model.id);
+            if (userdata == null)
+            { return RedirectToAction("Details"); }
+
+            ChangePasswordViewModel changePassword = new ChangePasswordViewModel
+            {
+                id = id
+            };
+            UserProfileViewModel userProfile = new UserProfileViewModel
+            {
+                User = userdata,
+                LoggedUserId = loggeduserid,
+                ChangePassword = changePassword
+            };
+
+            if (!ModelState.IsValid)
+            {
+                return View(userProfile);
+            }
+            var result = await UserManager.ChangePasswordAsync(userdata.UserId, model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Details");
+            }
+            AddErrors(result);
+
+
+            return View(userProfile);
+        }
 
 
         [Route("users/{id}/lists")]
@@ -370,6 +420,85 @@ namespace PRO.Controllers
 
             return View();
         }
+        [HttpGet]
+        [Authorize]
+        [Route("users/{id}/profile")]
+        public ActionResult EditProfile(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            int? loggeduserid = getCurrentUserId();
+            if (loggeduserid == null) return HttpNotFound();
+            if (loggeduserid != id) return HttpNotFound();
+
+            User user = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(i => i.Id == id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            EditUserViewModel editViewModel = new EditUserViewModel
+            {
+                UserName = user.ApplicationUser.UserName,
+                Id = (int)id,
+                Email = user.ApplicationUser.Email,
+                RegisterDate = user.RegisterDate,
+                Description = user.Description,
+                IsActive = user.IsActive,
+                IsPublic = user.IsPublic,
+                ImageId = user.ImageId,
+                Images = _context.Images.ToList()
+            };
+
+            UserProfileViewModel model = new UserProfileViewModel
+            {
+                User = user,
+                LoggedUserId = loggeduserid,
+                EditUser = editViewModel
+            };
+
+
+            return View(model);
+        }
+
+        // POST: Authors/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [Authorize]
+        [Route("users/{id}/profile")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile(EditUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _context.AppUsers.Include(s => s.ApplicationUser).SingleOrDefault(s => s.Id == model.Id);
+                var appuser = user.ApplicationUser;
+
+                appuser.Email = model.Email;
+                appuser.UserName = model.UserName;
+
+                user.RegisterDate = model.RegisterDate;
+                user.Description = model.Description;
+                user.IsActive = model.IsActive;
+                user.IsPublic = model.IsPublic;
+                user.ImageId = model.ImageId;
+
+
+                _context.Entry(user).State = EntityState.Modified;
+
+                _context.SaveChanges();
+
+                return RedirectToAction("Details", "Users", new { id = model.Id });
+
+            }
+            model.Images = _context.Images.ToList();
+            return View(model);
+        }
+
+
+
         public int? getCurrentUserId()
         {
             string currentUserId = User.Identity.GetUserId();

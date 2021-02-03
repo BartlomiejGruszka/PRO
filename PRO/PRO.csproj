@@ -633,10 +633,13 @@
     <Content Include="Views\Users\ChangePassword.cshtml" />
     <Content Include="Views\ControlPanel\Moderator.cshtml" />
     <Content Include="Views\ControlPanel\Author.cshtml" />
-    <Content Include="Views\Users\ChangePassword - Copy.cshtml" />
+    <Content Include="Views\Users\_UserChangePassword.cshtml" />
     <Content Include="Views\Games\SingleReview.cshtml" />
     <Content Include="Views\Shared\_BestRatedGames.cshtml" />
     <Content Include="Views\Articles\Search.cshtml" />
+    <Content Include="Views\Users\EditProfile.cshtml" />
+    <Content Include="Views\Shared\_UserProfileEdit.cshtml" />
+    <Content Include="Views\Users\UserChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -92,6 +92,10 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
+            if(article.IsActive == false)
+            {
+                return HttpNotFound();
+            }
             ArticleDetailsViewModel articleDetails = new ArticleDetailsViewModel
             {
                 Article = article,

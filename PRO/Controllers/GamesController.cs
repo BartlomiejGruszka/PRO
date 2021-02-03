@@ -37,7 +37,7 @@ namespace PRO.Controllers
             var itemString = Request.QueryString["items"];
 
 
-            var games = _context.GetGamesList().ToList();
+            var games = _context.GetGamesList().Where(g => g.IsActive == true).ToList();
             var pagination = new Pagination(pageString, itemString, games.Count());
 
             var viewModel = new GameFilterViewModel
@@ -67,13 +67,13 @@ namespace PRO.Controllers
         public ActionResult Details(int id)
         {
             var viewModel = setupDetailsPage(id, null);
-           
+
             return View(viewModel);
         }
         [Authorize]
         [HttpPost]
         [Route("games/{id}")]
-        public ActionResult Details(int id,[Bind(Include = "Id,AddedDate,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
+        public ActionResult Details(int id, [Bind(Include = "Id,AddedDate,HoursPlayed,PersonalScore,UserListId,GameId")] GameList gameList)
         {
 
             if (gameList.UserListId <= 0)
@@ -86,7 +86,7 @@ namespace PRO.Controllers
             {
                 _context.GameLists.Add(gameList);
                 _context.SaveChanges();
-                
+
             }
             var viewModel = setupDetailsPage(id, gameList);
             if (viewModel == null) return HttpNotFound();
@@ -96,6 +96,7 @@ namespace PRO.Controllers
         {
             var game = _context.GetGameById(id);
             if (game == null) return null;
+            if (game.IsActive == false) return null;
             var reviews = _context.GetGameReviewsList(game.Id).Take(3);
             var pagination = new Pagination(null, null, reviews.Count());
             var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a => a.PublishedDate).Take(3);
@@ -281,6 +282,7 @@ namespace PRO.Controllers
         {
             var game = _context.GetGameById(id);
             if (game == null) return HttpNotFound();
+            if (game.IsActive == false) { return HttpNotFound(); }
             var reviews = _context.GetGameReviewsList(game.Id);
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
@@ -348,7 +350,7 @@ namespace PRO.Controllers
                 g.PublisherCompany.Name.CaseInsensitiveContains(query) ||
                 g.Status.Name.CaseInsensitiveContains(query)
                 ).ToList();
-    
+
             var pagination = new Pagination(pageString, itemString, filteredgames.Count());
 
             var viewModel = new GameFilterViewModel
@@ -358,7 +360,7 @@ namespace PRO.Controllers
                 GameScores = _context.GetListOfAllGamesScores(filteredgames)
             };
 
-            return View("Index",viewModel);
+            return View("Index", viewModel);
         }
         public int? getCurrentUserId()
         {

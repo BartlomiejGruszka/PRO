@@ -18,6 +18,9 @@ namespace PRO.ViewModels
 
         public List<ListType> ListTypes { get; set; }
         public int? LoggedUserId { get; set; }
+        public  EditUserViewModel EditUser { get; set; }
+
+        public ChangePasswordViewModel ChangePassword { get; set; }
 
     }
 }
