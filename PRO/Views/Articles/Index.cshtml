@@ -37,9 +37,12 @@
                     var item = Model.ToArray()[i];
                     <div class="news-list mt16 mr8">
                         <div class="news-unit">
-                            <a href="/articles/@item.Id" class="image-link">
-                                <img style="max-width:100px;width: expression(this.width > 100 ? 100: true);" class=" lazyloaded" src="@Url.Content(item.Image.ImagePath)">
-                            </a><div class="news-unit-right">
+                            @if (item.Image != null)
+                            {<a href="/articles/@item.Id" class="image-link">
+
+                                    <img style="max-width:100px;width: expression(this.width > 100 ? 100: true);" class=" lazyloaded" src="@Url.Content(item.Image.ImagePath)">
+
+                                </a>}<div class="news-unit-right">
                                 <p class="title">
                                     <a href="/articles/@item.Id">@item.Title</a>
                                 </p>
@@ -110,6 +113,6 @@
         }
     </ul>
 </div>
-    
+
 
 

@@ -194,7 +194,23 @@ namespace PRO.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Image image = _context.Images.Find(id);
-            
+
+            var games = _context.Games.Where(i => i.ImageId == id).ToList();
+            foreach (var element in games)
+            {
+                element.ImageId = null;
+            };
+            var articles = _context.Articles.Where(i => i.ImageId == id).ToList();
+            foreach (var element in articles)
+            {
+                element.ImageId = null;
+            };
+            var users = _context.AppUsers.Where(i => i.ImageId == id).ToList();
+            foreach (var element in users)
+            {
+                element.ImageId = null;
+            };
+
             _context.Images.Remove(image);
             _context.SaveChanges();
             var path = HttpContext.Server.MapPath(image.ImagePath);
