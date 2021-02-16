@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var articletype = (ArticleType)validationContext.ObjectInstance;
 
             var isUnique = _context.ArticleTypes
-                .SingleOrDefault(s => s.Name == articletype.Name);
+                .SingleOrDefault(s => s.Name == articletype.Name && s.Id != articletype.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już rodzaj artykułu o takiej nazwie.");

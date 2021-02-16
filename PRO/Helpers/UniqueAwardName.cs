@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var award = (Award)validationContext.ObjectInstance;
 
             var isUnique = _context.Awards
-                .SingleOrDefault(s => s.Name == award.Name);
+                .SingleOrDefault(s => s.Name == award.Name && s.Id != award.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już nagroda o takiej nazwie.");

@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var obj = (Genre)validationContext.ObjectInstance;
 
             var isUnique = _context.Genres
-                .SingleOrDefault(s => s.Name == obj.Name);
+                .SingleOrDefault(s => s.Name == obj.Name && s.Id != obj.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już gatunek o takiej nazwie.");

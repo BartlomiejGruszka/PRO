@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var obj = (Company)validationContext.ObjectInstance;
 
             var isUnique = _context.Companies
-                .SingleOrDefault(s => s.Name == obj.Name);
+                .SingleOrDefault(s => s.Name == obj.Name && s.Id != obj.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już firma o takiej nazwie.");

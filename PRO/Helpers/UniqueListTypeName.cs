@@ -17,7 +17,7 @@ namespace PRO.Helpers
             var obj = (ListType)validationContext.ObjectInstance;
 
             var isUnique = _context.ListTypes
-                .SingleOrDefault(s => s.Name == obj.Name);
+                .SingleOrDefault(s => s.Name == obj.Name && s.Id != obj.Id);
             if (isUnique != null)
             {
                 return new ValidationResult("Istnieje już rodzaj listy o takiej nazwie.");

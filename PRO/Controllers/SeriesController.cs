@@ -124,6 +124,13 @@ namespace PRO.Models
         public ActionResult DeleteConfirmed(int id)
         {
             Series series = db.Series.Find(id);
+
+            var games = db.Games.Where(i => i.SeriesId == id).ToList();
+            foreach (var element in games)
+            {
+                element.SeriesId = null;
+            };
+
             db.Series.Remove(series);
             db.SaveChanges();
             return RedirectToAction("Manage");
