@@ -124,12 +124,16 @@ namespace PRO.Controllers
             review.EditDate = null;
             review.ModeratorId = null;
             review.UserId = getCurrentUserId();
+            var test = _context.Reviews.SingleOrDefault(i => i.UserId == review.UserId && i.GameId == review.GameId);
+
+            if (test != null) { ModelState.AddModelError(string.Empty, "Można napisać tylko jedną recenzję dla danej gry"); }
             if (ModelState.IsValid)
             {
                 _context.Reviews.Add(review);
                 _context.SaveChanges();
                 return RedirectToAction("Manage");
             }
+            ViewBag.GameId = new SelectList(_context.Games, "Id", "Title");
             return View(review);
         }
 

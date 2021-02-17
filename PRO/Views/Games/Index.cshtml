@@ -9,7 +9,15 @@
 <div>
     <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top-ranking-table">
         <tbody>
-            <tr class="table-header"><td class="title">Tytuł</td><td class="score">Średnia ocena</td>@if(userLoggedIn){<td class="your-score">Twoja ocena</td>}<td class="status">Status</td></tr>
+            <tr class="table-header">
+                <td class="title">Tytuł</td>
+                <td class="score">Średnia ocena</td>
+                @{ if (userLoggedIn)
+                    {
+                        <td class="your-score">Twoja ocena</td>
+                    } }
+                <td class="status">Status</td>
+            </tr>
             @{
                 var start = Model.Pagination.pageIteratorStart;
                 var end = Model.Pagination.pageIteratorEnd;
@@ -37,27 +45,32 @@
                                         <div class="di-flex clearfix">
                                             <a class="" href="/games/@game.Id">@game.Title</a>
                                         </div>
-                                        <div class="information di-ib mt4" style="overflow:hidden; text-overflow:clip;">
-                                            @Html.Raw(@game.Description.Truncate(100))
+                                        <div class="information di-ib mt4" style="overflow:hidden; text-overflow:clip; max-width:500px; min-width:200px;">
+                                           @Html.Raw(@game.Description.Truncate(140))
                                         </div>
                                     </div>
                                 </div>
                             </td>
 
                             <td class="score ac fs14">
-                                <div class="js-top-ranking-score-col di-ib al" style="width: 48.7969px;"><i class="icon-score-star mr4 on"></i><span class="text on score-label score-9">@(Double.IsNaN(score.Item2) ? 0.0 : @score.Item2)</span></div>
+                                <div class="js-top-ranking-score-col di-ib al" style="width: 48.7969px;">
+                                    <i class="icon-score-star mr4 on"></i>
+                                    <span class="text on score-label score-9">
+                                        @(Double.IsNaN(score.Item2) ? 0.0 : @score.Item2)
+                                    </span>
+                                </div>
                             </td>
                             @{if (userLoggedIn)
                                 {
                                     <td class="your-score ac fs14">
                                         <div class="js-top-ranking-your-score-col di-ib al" style="width: 43.4063px;">
-                                            <a href="" class=""><i class="icon-score-star mr4 "></i><span class="text  score-label score-na">N/A</span></a>
+                                            <i class="icon-score-star mr4 "></i><span class="text  score-label score-na">N/A</span>
                                         </div>
                                     </td>
                                 }}
 
                             <td class="status ac">
-                                <a href="" class=" btn-addEdit-large btn-game-watch-status js-game-watch-status notinmylist"><i class="fa fa-plus-square-o mr4"></i>@game.Status.Name</a>
+                                <i class="fa fa-plus-square-o mr4"></i>@game.Status.Name
                             </td>
                         </tr>
                     }

@@ -13,11 +13,11 @@
                         {<img style="max-width: 50px;max-height: 50%;align-self: flex-start;flex-direction: row;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
                         }
 
-                        <div style="padding-left:15px;">
+                        <div style="padding-left: 15px;font-weight: 400;">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@game.Title</h5>
                             </div>
-                            <p class="mb-1">@Html.Raw(@game.Description.Truncate(100))</p>
+                            <p class="mb-1">@Html.Raw(@game.Description.Truncate(100)) ...</p>
 
                         </div>
                     </div>

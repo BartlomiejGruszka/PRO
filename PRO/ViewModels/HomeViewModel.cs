@@ -11,6 +11,7 @@ namespace PRO.ViewModels
         public IEnumerable<Article> RecentArticles { get; set; }
         public IEnumerable<Game> RecentGames{ get; set; }
         public IEnumerable<Review>RecentReviews { get; set; }
+        public IEnumerable<Game> ComingGames { get; set; }
 
     }
 }

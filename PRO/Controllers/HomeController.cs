@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Data.Entity;
 using PRO.Helpers;
+using System.Collections.Generic;
 
 namespace PRO.Controllers
 {
@@ -28,6 +29,10 @@ namespace PRO.Controllers
                 .Include(i => i.Image)
                 .Where(w => DbFunctions.TruncateTime(w.ReleaseDate) < System.DateTime.Now).OrderByDescending(o => o.ReleaseDate).ToList().Take(5);
 
+            var comingReleases = _context.Games
+                .Include(i => i.Image)
+                .Where(w => DbFunctions.TruncateTime(w.ReleaseDate) > System.DateTime.Now).OrderBy(o => o.ReleaseDate).ToList().Take(5);
+
             var recentReviews = _context.GetRecentReviews();
 
             var recentArticles = _context.Articles
@@ -38,11 +43,24 @@ namespace PRO.Controllers
              .Include(i => i.Game.Platform)
              .Where(w => DbFunctions.TruncateTime(w.PublishedDate) < System.DateTime.Now).OrderByDescending(o => o.PublishedDate).ToList().Take(5);
 
+           // var highestRatedGames =
+            //  var popularCompanies = _context.Companies.Include(g => g.)
+            var recentlyReviewed = new List<Game>();
+            foreach (var review in recentReviews)
+            {
+                recentlyReviewed.Add(review.Game);
+            }
+
+
+
             var homeViewModel = new HomeViewModel
             {
                 RecentGames = recentReleases,
                 RecentReviews = recentReviews,
-                RecentArticles = recentArticles
+                RecentArticles = recentArticles,
+                ComingGames = comingReleases
+                
+
             };
 
             return View(homeViewModel);
@@ -55,7 +73,7 @@ namespace PRO.Controllers
 
             if (type == "games")
             {
-                return RedirectToAction("Search","Games",new { query = query} );
+                return RedirectToAction("Search", "Games", new { query = query });
             }
             else if (type == "articles")
             {

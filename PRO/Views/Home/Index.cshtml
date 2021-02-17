@@ -43,7 +43,7 @@
                         <div class="card mb-3 recentlyReleasedGames">
                             <a href="/games/@game.Id" style="text-decoration:none; color:black; display:block;width: 100%; ">
                                 <div class="">
-                                    <div>
+                                    <div style=" text-align: center;">
                                         @if (game.Image != null)
                                         {
                                             <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(game.Image.ImagePath)">
@@ -94,7 +94,7 @@
     <div>
         @Html.Partial("_BestRatedGames", Model.RecentGames)
         <br />
-        @Html.Partial("_ClosestReleaseGames", Model.RecentGames)
+        @Html.Partial("_ClosestReleaseGames", Model.ComingGames)
         <br />
         @Html.Partial("_NewReviews", Model.RecentReviews)
         <br />
