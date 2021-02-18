@@ -1,49 +1,86 @@
-﻿@model PRO.Models.Review
+﻿@model PRO.ViewModels.ReviewGametimeViewModel
 @using PRO.Helpers
 <div class="borderDark" style="padding: 4px 0;">
-    <div class="spaceit">
-        <div class="mb8" style="float: right; text-align: right;">
-            <div title="">@Model.ReviewDate</div>
-            <div class="lightLink spaceit">
-                Rozegrane: xxx
-            </div>
-            <div>
-                Ocena: xx
-            </div>
-        </div><div style="float: left; padding-bottom:12px;">
+    <div class="spaceit" style="display: flex; justify-content: space-between;">
+
+        <div style="float: left; padding-bottom:12px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-left: 3px;">
                 <tbody>
                     <tr>
                         <td valign="top" width="60">
                             <div class="">
 
-                                @if (Model.User.Image != null)
+                                @if (Model.Review.User.Image != null)
                                 {<a href="#">
-                                        <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(Model.User.Image.ImagePath)">
+                                        <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(Model.Review.User.Image.ImagePath)">
                                     </a>
                                 }
 
                             </div>
                         </td>
                         <td valign="top" style="padding-left: 10px;">
-                            <a href="#">@Model.User.ApplicationUser.UserName</a>
+                            <a href="#">@Model.Review.User.ApplicationUser.UserName</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div class="mb8" style="float: right; text-align: right;">
+            <div title="">@Model.Review.ReviewDate</div>
+            <div class="lightLink spaceit">
+                @{int? myInt = Model.Playtime == null ? 0 : Model.Playtime; }
+                    Rozegrane: @myInt h
+            </div>
+            @{ if (ViewContext.RouteData.Values["action"].ToString() != "SingleReview")
+                {
+                    int avg = (Model.Review.GameplayScore + Model.Review.GraphicsScore + Model.Review.MusicScore + Model.Review.StoryScore) / 4;
+                    if (Model.Review.ModeratorId != null)
+                    { <div class="lightLink spaceit">
+                            Średnia ocena: @avg
+                        </div>
+                        <div>
+                            Edytowano: @Model.Review.EditDate
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            Średnia ocena: @avg
+                        </div>
+                    }
+
+
+                } }
+
+        </div>
+
     </div>
+    @{ if (ViewContext.RouteData.Values["action"].ToString() == "SingleReview")
+        {
+            <div class="spaceit" style="clear: both; border-top: 1px solid #ebebeb; display:flex; justify-content:flex-end; flex-direction:column">
+                <p class="reviewRatings">Grywalność:    @Model.Review.GameplayScore</p>
+                <p class="reviewRatings">Grafika:   @Model.Review.GraphicsScore</p>
+                <p class="reviewRatings">Fabuła:    @Model.Review.StoryScore</p>
+                <p class="reviewRatings">Muzyka:    @Model.Review.MusicScore</p>
+            </div>}
+    }
+
     <div class="spaceit textReadability word-break pt8 mt8" style="clear: both; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb;">
+
+
 
         @{ if (ViewContext.RouteData.Values["action"].ToString() != "SingleReview")
             {
-                @Html.Raw(@Model.Content.Truncate(200))<text>... </text>
-                <a href="/games/@Model.GameId/reviews/@Model.Id">więcej </a>
+                @Html.Raw(@Model.Review.Content.Truncate(200))<text>... </text>
+                <a href="/games/@Model.Review.GameId/reviews/@Model.Review.Id">więcej </a>
             }
             else
             {
-                @Html.Raw(@Model.Content)
+                @Html.Raw(@Model.Review.Content)
             }
         }
+
     </div>
+
 </div>

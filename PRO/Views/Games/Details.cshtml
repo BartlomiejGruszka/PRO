@@ -84,45 +84,53 @@
                                             </span>
                                             <div class="underlined_h2">Recenzje</div>
                                         </div>
-                                        @if (Model.Reviews.Count() == 0)
+                                        @if (Model.ReviewGametimes.Count() == 0)
                                         {<p>Obecnie nie ma recenzji dla tej gry</p>}
                                         @for (int i = 1; i <= 3; i++)
                                         {
-                                            if (Model.Reviews.Count() >= i)
+                                            if (Model.ReviewGametimes.Count() >= i)
                                             {
-                                                @Html.Partial("_SingleReview", Model.Reviews.ToList()[i - 1])
+                                                @Html.Partial("_SingleReview", Model.ReviewGametimes.ToList()[i - 1])
                                             }
 
                                         }
-
-                                        <br>
-                                        <div class="underlined_h2">Powiązane artykuły</div>
-                                        @{
-                                            foreach (var article in Model.RelevantArticles)
+                                        @{ if (Model.RelevantArticles.Count() > 0)
                                             {
-                                                <div class="clearfix">
-                                                    <div class="picSurround fl-l mr8 ml3 mt4" style="padding-top:10px;">
-                                                        @if (article.Image != null)
-                                                        {
-                                                            <img style="max-width: 100px; max-height: 100px;" class=" lazyloaded" src="@Url.Content(article.Image.ImagePath)">
-                                                        }
-                                                    </div>
-                                                    <p class="spaceit">
-                                                        <a href="/articles/@article.Id">
-                                                            <strong>@article.Title</strong>
-                                                        </a>
-                                                    </p>
-                                                    <div class="clearfix" style="overflow:hidden;">
-                                                        <p>
-                                                            @article.Preview<a href="/articles/@article.Id">więcej</a>
-                                                        </p>
-                                                    </div>
-                                                    <p class="lightLink spaceit">@article.PublishedDate przez <a href="/user/@article.Author.UserId">@article.Author.FirstName @article.Author.LastName</a></p>
-                                                </div>
-                                                <div class="borderClass"></div>
+
                                                 <br>
+                                                <div class="underlined_h2">Powiązane artykuły</div>
+
+                                                foreach (var article in Model.RelevantArticles)
+                                                {
+                                                    <div class="clearfix">
+                                                        <div class="picSurround fl-l mr8 ml3 mt4" style="padding-top:10px;">
+                                                            @if (article.Image != null)
+                                                            {
+                                                                <img style="max-width: 100px; max-height: 100px;" class=" lazyloaded" src="@Url.Content(article.Image.ImagePath)">
+                                                            }
+                                                        </div>
+                                                        <p class="spaceit">
+                                                            <a href="/articles/@article.Id">
+                                                                <strong>@article.Title</strong>
+                                                            </a>
+                                                        </p>
+                                                        <div class="clearfix" style="overflow:hidden;">
+                                                            <p>
+                                                                @article.Preview<a href="/articles/@article.Id">więcej</a>
+                                                            </p>
+                                                        </div>
+                                                        <p class="lightLink spaceit">@article.PublishedDate przez <a href="/user/@article.Author.UserId">@article.Author.FirstName @article.Author.LastName</a></p>
+                                                    </div>
+                                                    <div class="borderClass"></div>
+                                                    <br>
+                                                }
+
+
                                             }
+
+
                                         }
+
 
                                         <div class="underlined_h2">Rekomendowane</div>
                                     </td>

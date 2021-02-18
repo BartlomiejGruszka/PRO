@@ -59,6 +59,7 @@ namespace PRO.Helpers
         {
             var reviews = context.Reviews
                 .Where(w => w.GameId == gameid)
+                .Include(o => o.User.Image)
                 .Include(o => o.User.ApplicationUser)
                 .Include(o => o.Game)
                 .ToList();
@@ -180,6 +181,8 @@ namespace PRO.Helpers
         public static Review GetReviewById(this ApplicationDbContext context, int id)
         {
             var review = context.Reviews
+                .Include(r => r.User)
+                .Include(r => r.User.Image)
                 .Include(r => r.User.ApplicationUser)
                 .Include(r => r.Moderator.User.ApplicationUser)
                 .Include(r => r.Game)
@@ -231,6 +234,7 @@ namespace PRO.Helpers
                .Where(w => DbFunctions.TruncateTime(w.ReviewDate) < System.DateTime.Now)
                .OrderByDescending(o => o.ReviewDate)
                .Include(o => o.Game)
+               .Include(o => o.User)
                .Include(o => o.User.ApplicationUser)
                .Take(5).ToList();
 

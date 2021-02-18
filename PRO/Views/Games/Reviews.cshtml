@@ -3,13 +3,13 @@
     ViewBag.Title = "Reviews";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@Html.Partial("_GameTitleBar", Model.Game)
+@Html.Partial("_GameTitleBar", Model.GameGameList.Game)
 <div id="content">
 
     <table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tbody>
             <tr>
-                @Html.Partial("_GameInfoBar", Model.Game)
+                @Html.Partial("_GameInfoBar", Model.GameGameList)
                 <td valign="top" style="padding-left: 5px;">
                     <div class="js-scrollfix-bottom-rel">
                         <div style=" margin:0 auto"></div><a name="lower"></a>
@@ -21,18 +21,18 @@
 
                                         <div class="underlined_h2">
                                             <text class="">Wszystkie recenzje</text>
-                                            <a style="float:right; text-decoration:none; font-weight:normal;" href="/games/@Model.Game.Id">Powrót</a>
+                                            <a style="float:right; text-decoration:none; font-weight:normal;" href="/games/@Model.GameGameList.Game.Id">Powrót</a>
                                         </div>
                                         @{
                                             var start = Model.Pagination.pageIteratorStart;
                                             var end = Model.Pagination.pageIteratorEnd;
-                                            var reviews = Model.Game.Reviews.ToList();
+                                            var reviewGametime = Model.ReviewGametimes.ToList();
                                             for (var i = start; i <= end; i++)
                                             {
-                                                if (reviews.ElementAtOrDefault(i) != null)
+                                                if (reviewGametime.ElementAtOrDefault(i) != null)
                                                 {
-                                                    var review = reviews[i];
-                                                    @Html.Partial("_SingleReview", review)
+                                                   
+                                                    @Html.Partial("_SingleReview", reviewGametime[i])
                                                 }
                                                 <div class="underlined_h2"></div>
                                             }
@@ -63,31 +63,31 @@
                                 if (@current >= 3)
                                 {
                                     <li class="page-item">
-                                       <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@first&items=@items">«</a>
+                                        <a class="page-link" href="/games/@Model.GameGameList.Game.Id/reviews?page=@first&items=@items">«</a>
                                     </li>
                                 }
                                 if (@current >= 2 && @previous != @current)
                                 {
                                     <li class="page-item">
-                                        <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@previous&items=@items">@previous</a>
+                                        <a class="page-link" href="/games/@Model.GameGameList.Game.Id/reviews?page=@previous&items=@items">@previous</a>
                                     </li>
                                 }
 
                                 <li class="page-item active">
-                                    <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@current&items=@items">@current</a>
+                                    <a class="page-link" href="/games/@Model.GameGameList.Game.Id/reviews?page=@current&items=@items">@current</a>
                                 </li>
 
                                 if (@last > @current)
                                 {
                                     <li class="page-item">
-                                        <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@next&items=@items">@next</a>
+                                        <a class="page-link" href="/games/@Model.GameGameList.Game.Id/reviews?page=@next&items=@items">@next</a>
                                     </li>
                                 }
 
                                 if (@last > @current + 1)
                                 {
                                     <li class="page-item">
-                                        <a class="page-link" href="/games/@Model.Game.Id/reviews?page=@last&items=@items">&raquo;</a>
+                                        <a class="page-link" href="/games/@Model.GameGameList.Game.Id/reviews?page=@last&items=@items">&raquo;</a>
                                     </li>
                                 }
                             }

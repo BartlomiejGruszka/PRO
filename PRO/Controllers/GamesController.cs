@@ -97,7 +97,7 @@ namespace PRO.Controllers
             var game = _context.GetGameById(id);
             if (game == null) return null;
             if (game.IsActive == false) return null;
-            var reviews = _context.GetGameReviewsList(game.Id).Take(3);
+            var reviews = _context.GetGameReviewsList(game.Id);
             var pagination = new Pagination(null, null, reviews.Count());
             var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a => a.PublishedDate).Take(3);
 
@@ -112,10 +112,11 @@ namespace PRO.Controllers
                 userLists = userLists
             };
 
+            var reviewGametimes = setupReviewGametime(reviews);
             var viewModel = new GameDetailsViewModel
             {
                 GameGameList = GameGameList,
-                Reviews = _context.GetGameReviewsList(game.Id),
+                ReviewGametimes = reviewGametimes,
                 RelevantArticles = articles,
                 Pagination = pagination
             };
@@ -294,13 +295,34 @@ namespace PRO.Controllers
                 Game = game
             };
 
+            var reviewGametimes = setupReviewGametime(reviews);
+
             var viewModel = new GameDetailsViewModel
             {
                 GameGameList = GameGameList,
-                Reviews = _context.GetGameReviewsList(game.Id),
+                ReviewGametimes = reviewGametimes,
                 Pagination = pagination
             };
             return View(viewModel);
+        }
+
+        private IEnumerable<ReviewGametimeViewModel> setupReviewGametime(IEnumerable<Review> reviews)
+        {
+            var reviewGametimes = new List<ReviewGametimeViewModel>();
+            foreach (var rev in reviews)
+            {
+                var gamelist = _context.GameLists.Include(i => i.UserList).FirstOrDefault(f => f.GameId == rev.GameId && f.UserList.UserId == rev.UserId);
+                int? playtime = null;
+                if (gamelist != null) { playtime = gamelist.HoursPlayed; };
+
+                var reviewGametime = new ReviewGametimeViewModel
+                {
+                    Review = rev,
+                    Playtime = playtime
+                };
+                reviewGametimes.Add(reviewGametime);
+            }
+            return reviewGametimes;
         }
 
         [HttpGet]
@@ -323,10 +345,12 @@ namespace PRO.Controllers
                 Game = game
             };
 
+            var reviewGametimes = setupReviewGametime(list);
+
             var viewModel = new GameDetailsViewModel
             {
                 GameGameList = GameGameList,
-                Reviews = list,
+                ReviewGametimes = reviewGametimes,
                 Pagination = pagination
             };
             return View(viewModel);

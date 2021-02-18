@@ -11961,6 +11961,13 @@ input, select, textarea {
     text-align: left;
     display:block;
 }
+.reviewRatings {
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
 .header-right {
     display: block;
     float: right;

@@ -11,7 +11,7 @@
                 </a>}
 
         </div>
-        @if (User.Identity.IsAuthenticated)
+        @if (User.Identity.IsAuthenticated && Model.GameList!= null && Model.userLists!=null)
         {<div class="underlined_h2">Dodaj do listy</div>
         using (Html.BeginForm("Details", "Games"))
         {

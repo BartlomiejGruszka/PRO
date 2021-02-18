@@ -9,8 +9,9 @@ namespace PRO.ViewModels
     public class GameDetailsViewModel
     {
         public GameAndGameListFormViewModel GameGameList { get; set; }
-        public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<ReviewGametimeViewModel> ReviewGametimes { get; set; }
         public IEnumerable<Article> RelevantArticles { get; set; }
+
 
         public Pagination Pagination { get; set; }
     }
