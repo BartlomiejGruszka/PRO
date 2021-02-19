@@ -9,8 +9,8 @@ namespace PRO.ViewModels
     public class FooterViewModel
 
     {
-        public IEnumerable<Company> PopularCompanies { get; set; }
-        public IEnumerable<Game> RecentlyReviewedGames { get; set; }
-        public IEnumerable<Game> HighestRatedGames { get; set; }
+        public List<Tuple<Company, int>> PopularCompanies { get; set; }
+        public IEnumerable<Review> RecentReviews { get; set; }
+        public List<Tuple<Game, double?>> HighestRatedGames { get; set; }
     }
 }

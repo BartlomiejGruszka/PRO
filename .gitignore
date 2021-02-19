@@ -8,3 +8,4 @@ PRO/bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll
 PRO/bin/roslyn/Microsoft.CodeAnalysis.dll
 *.png
 *.jfif
+*.jpg

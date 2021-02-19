@@ -1,10 +1,17 @@
 ﻿@model PRO.Models.Game
-    <div>
-        <h1 class="main_h1 edit-info">
-            <span class="h1-title">
-                <span>
-                    <a class="title-bar" href="/games/@Model.Id">@Model.Title</a> 
-                </span>
+<div>
+    <h1 class="main_h1 edit-info">
+        <span class="h1-title">
+            <span>
+                <a class="title-bar" href="/games/@Model.Id">@Model.Title</a>
+                @{if (User.IsInRole("Admin") || User.IsInRole("Author"))
+                    {
+                        <a style="float:right; font-weight:400; font-size:medium; " href="/games/edit/@Model.Id">Edytuj</a>
+
+                    }
+                }
+
             </span>
-        </h1>
-    </div>
+        </span>
+    </h1>
+</div>

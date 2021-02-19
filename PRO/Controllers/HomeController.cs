@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using PRO.Helpers;
 using System.Collections.Generic;
+using System;
 
 namespace PRO.Controllers
 {
@@ -43,7 +44,7 @@ namespace PRO.Controllers
              .Include(i => i.Game.Platform)
              .Where(w => DbFunctions.TruncateTime(w.PublishedDate) < System.DateTime.Now).OrderByDescending(o => o.PublishedDate).ToList().Take(5);
 
-           // var highestRatedGames =
+            // var highestRatedGames =
             //  var popularCompanies = _context.Companies.Include(g => g.)
             var recentlyReviewed = new List<Game>();
             foreach (var review in recentReviews)
@@ -59,18 +60,32 @@ namespace PRO.Controllers
                 RecentReviews = recentReviews,
                 RecentArticles = recentArticles,
                 ComingGames = comingReleases
-                
+
 
             };
 
             return View(homeViewModel);
         }
+
         [Route("search/{type?}")]
         public ActionResult Search(string type)
         {
             var query = Request.QueryString["searchString"];
             if (string.IsNullOrEmpty(query)) { return RedirectToAction("Index"); }
 
+            switch (type)
+            {
+                case "games":
+                    return RedirectToAction("Search", "Games", new { query = query });
+                case "articles":
+                    return RedirectToAction("Search", "Articles", new { query = query });
+                case "users":
+                    //redirect to filtered list view of users
+                    return RedirectToAction("Index");
+                default:
+                    return RedirectToAction("Index");
+            }
+            /*
             if (type == "games")
             {
                 return RedirectToAction("Search", "Games", new { query = query });
@@ -84,8 +99,45 @@ namespace PRO.Controllers
                 //redirect to filtered list view of users
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index");*/
         }
+        public ActionResult GetFooter()
+        {
+
+            var highestRatedGames = _context.GameLists
+                .Include(i => i.Game)
+                .GroupBy(g => g.Game)
+                .Select(g => new { game = g.Key, average = g.Average(p => p.PersonalScore) })
+                .AsEnumerable()
+                .Select(c => new Tuple<Game, double?>(c.game, c.average))
+                .OrderByDescending(o => o.Item2)
+                .Take(5)
+                .ToList();
+
+            var popularCompanies = _context.GameLists
+                .Include(i => i.Game)
+                .Include(i => i.Game.DeveloperCompany)
+                .GroupBy(g => g.Game.DeveloperCompany)
+                .Select(g => new { company = g.Key, count = g.Count() })
+                .AsEnumerable()
+                .Select(c => new Tuple<Company, int>(c.company, c.count))
+                .OrderByDescending(o => o.Item2)
+                .Take(5)
+                .ToList();
+
+
+            var recentReviews = _context.GetRecentReviews();
+            FooterViewModel footerViewModel = new FooterViewModel
+            {
+                HighestRatedGames = highestRatedGames,
+                PopularCompanies = popularCompanies,
+                RecentReviews = recentReviews
+            };
+
+
+            return PartialView("_Footer", footerViewModel);
+        }
+
 
         public ActionResult About()
         {

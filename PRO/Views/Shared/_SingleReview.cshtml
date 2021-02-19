@@ -32,7 +32,7 @@
                 @{int? myInt = Model.Playtime == null ? 0 : Model.Playtime; }
                     Rozegrane: @myInt h
             </div>
-            @{ if (ViewContext.RouteData.Values["action"].ToString() != "SingleReview")
+            @{ 
                 {
                     int avg = (Model.Review.GameplayScore + Model.Review.GraphicsScore + Model.Review.MusicScore + Model.Review.StoryScore) / 4;
                     if (Model.Review.ModeratorId != null)
