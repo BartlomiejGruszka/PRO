@@ -27,7 +27,7 @@
             </h3>
             <ol>
                 @{
-                    var games = Model.HighestRatedGames;
+                    var games = Model.HighestRatedGames.ToArray();                
                     for (int i = 1; i <= games.Count(); i++)
                     {
                         <li>

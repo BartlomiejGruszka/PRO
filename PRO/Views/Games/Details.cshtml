@@ -25,11 +25,11 @@
                                                 <div class="game-detail-header-stats di-tc va-t ">
                                                     <div class="stats-block po-r clearfix">
                                                         <div class="fl-l score" data-title="ocena">
-                                                            <div class="score-label score-7">7.82</div>
+                                                            <div class="score-label score-7">@(Model.GameGameList.Rating==null?0:@Model.GameGameList.Rating)</div>
                                                         </div>
                                                         <div class="di-ib ml12 pl20 pt8">
-                                                            <span class="numbers ranked">Ranking<strong>#787</strong></span>
-                                                            <span class="numbers popularity">Popularność<strong>#839</strong></span>
+                                                            <span class="numbers ranked">Ranking<strong>#@Model.GameGameList.Ranking</strong></span>
+                                                            <span class="numbers popularity">Popularność<strong>#@Model.GameGameList.Popularity</strong></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                         <div>
                                             <span class="floatRightHeader">
                                                 @{
-                                                    if (Model.GameGameList.Game.Reviews != null)
+                                                    if (Model.GameGameList.Game.Reviews?.Any() == true)
                                                     {
                                                         <a href="/games/@Model.GameGameList.Game.Id/reviews?page=1&items=5">Więcej recenzji</a>}
                                                 }

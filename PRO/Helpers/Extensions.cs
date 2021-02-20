@@ -272,9 +272,41 @@ namespace PRO.Helpers
         public static bool CaseInsensitiveContains(this string text, string value,
         StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
         {
-            return text.IndexOf(value, stringComparison) >= 0;
+            bool test = text.IndexOf(value, stringComparison) >= 0;
+            return test;
         }
 
+        public static List<Tuple<Game, double?>> GetUnorderedGamesRanking(this ApplicationDbContext context)
+        {
+            var ranking = context.GameLists
+                .Include(i => i.Game)
+                .GroupBy(g => g.Game)
+                .Select(g => new { game = g.Key, average = g.Average(p => p.PersonalScore) })
+                .AsEnumerable()
+                .Select(c => new Tuple<Game, double?>(c.game, c.average))
+                .ToList();
 
+            var games = context.Games.Include(i => i.GameLists).Where(g=>!g.GameLists.Any()).ToList();
+                foreach(Game game in games)
+            {
+                    ranking.Add(new Tuple<Game, double?>(game, null));      
+            }
+            
+
+
+            return ranking;
+        }
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+             (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
+            foreach (TSource element in source)
+            {
+                if (seenKeys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
     }
 }

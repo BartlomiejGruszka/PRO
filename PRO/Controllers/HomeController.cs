@@ -85,35 +85,13 @@ namespace PRO.Controllers
                 default:
                     return RedirectToAction("Index");
             }
-            /*
-            if (type == "games")
-            {
-                return RedirectToAction("Search", "Games", new { query = query });
-            }
-            else if (type == "articles")
-            {
-                return RedirectToAction("Search", "Articles", new { query = query });
-            }
-            else if (type == "users")
-            {
-                //redirect to filtered list view of users
-            }
-
-            return RedirectToAction("Index");*/
         }
+
         public ActionResult GetFooter()
         {
 
-            var highestRatedGames = _context.GameLists
-                .Include(i => i.Game)
-                .GroupBy(g => g.Game)
-                .Select(g => new { game = g.Key, average = g.Average(p => p.PersonalScore) })
-                .AsEnumerable()
-                .Select(c => new Tuple<Game, double?>(c.game, c.average))
-                .OrderByDescending(o => o.Item2)
-                .Take(5)
-                .ToList();
-
+            var highestRatedGames = _context.GetUnorderedGamesRanking().OrderByDescending(t=>t.Item2).Take(5);
+            var recentReviews = _context.GetRecentReviews();
             var popularCompanies = _context.GameLists
                 .Include(i => i.Game)
                 .Include(i => i.Game.DeveloperCompany)
@@ -125,8 +103,7 @@ namespace PRO.Controllers
                 .Take(5)
                 .ToList();
 
-
-            var recentReviews = _context.GetRecentReviews();
+            
             FooterViewModel footerViewModel = new FooterViewModel
             {
                 HighestRatedGames = highestRatedGames,

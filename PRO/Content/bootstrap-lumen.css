@@ -11530,7 +11530,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .top-ranking-table .title .detail {
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .mr8 {
@@ -11939,7 +11939,7 @@ input, select, textarea {
 }
 .gameListImageGrid {
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 90px 1fr;
     grid-template-rows: 120px;
     gap: 0px 0px;
     grid-template-areas: ". .";

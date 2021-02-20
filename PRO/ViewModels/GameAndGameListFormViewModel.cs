@@ -11,5 +11,9 @@ namespace PRO.ViewModels
         public Game Game { get; set; }
         public GameList GameList { get; set; }
         public List<UserList> userLists { get; set; }
+
+        public int Popularity { get; set; }
+        public int? Ranking { get; set; }
+        public double? Rating { get; set; }
     }
 }

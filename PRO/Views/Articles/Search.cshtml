@@ -5,30 +5,39 @@
 }
 @using PRO.Helpers
 
-    <ul class="nav nav-tabs" id="myTab">
-        <li class="nav-item">
-            <a class="nav-link @(ViewBag.platform == "all" ? "active" : "")" href="/articles?platform=all">Wszystkie</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @(ViewBag.platform == "PC" ? "active" : "")" href="/articles?platform=PC">PC</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @(ViewBag.platform.Contains("Playstation") ? "active" : "")" href="/articles?platform=Playstation">Playstation</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @(ViewBag.platform.Contains("Xbox") ? "active" : "")" href="/articles?platform=Xbox">Xbox</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @(ViewBag.platform == "Switch" ? "active" : "")" href="/articles?platform=Switch">Switch</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link @((ViewBag.platform != "all" && ViewBag.platform != "PC" && !ViewBag.platform.Contains("Playstation") && !ViewBag.platform.Contains("Xbox") && ViewBag.platform != "Switch")&& ViewBag.platform != "none") || ViewBag.platform == "other" ? "active" : "")" href="/articles?platform=other">Inne</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link active" href="/articles/search/@ViewBag.Query">Wyszukiwanie</a>
-        </li>
+<ul class="nav nav-tabs" id="myTab">
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.platform == "all" ? "active" : "")" href="/articles?platform=all">Wszystkie</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.platform == "PC" ? "active" : "")" href="/articles?platform=PC">PC</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.platform.Contains("Playstation") ? "active" : "")" href="/articles?platform=Playstation">Playstation</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.platform.Contains("Xbox") ? "active" : "")" href="/articles?platform=Xbox">Xbox</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(ViewBag.platform == "Switch" ? "active" : "")" href="/articles?platform=Switch">Switch</a>
+    </li>
+    <li class="nav-item">
+        @{ bool test = (ViewBag.platform != "all" &&
+                       ViewBag.platform != "PC" &&
+                       !ViewBag.platform.Contains("Playstation") &&
+                       !ViewBag.platform.Contains("Xbox") &&
+                       ViewBag.platform != "Switch" &&
+                       ViewBag.platform != "none") || ViewBag.platform == "other";
+            var elementclass = test ? "active" : "";
+        }
+        <a class="nav-link @elementclass" href="/articles?platform=other">Inne</a>
 
-    </ul>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/articles/search/@ViewBag.Query">Wyszukiwanie</a>
+    </li>
+
+</ul>
 
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active show" id="all">
@@ -113,6 +122,6 @@
         }
     </ul>
 </div>
-    
+
 
 

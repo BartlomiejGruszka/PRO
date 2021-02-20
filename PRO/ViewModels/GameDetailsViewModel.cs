@@ -12,7 +12,5 @@ namespace PRO.ViewModels
         public IEnumerable<ReviewGametimeViewModel> ReviewGametimes { get; set; }
         public IEnumerable<Article> RelevantArticles { get; set; }
 
-
-        public Pagination Pagination { get; set; }
     }
 }

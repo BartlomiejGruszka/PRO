@@ -28,7 +28,7 @@ namespace PRO.Controllers
             _context.Dispose();
         }
 
-        // GET: Games
+
         [AllowAnonymous]
         [Route("games/")]
         public ActionResult Index()
@@ -37,18 +37,17 @@ namespace PRO.Controllers
             var itemString = Request.QueryString["items"];
 
 
-            var games = _context.GetGamesList().Where(g => g.IsActive == true).ToList();
-            var pagination = new Pagination(pageString, itemString, games.Count());
-
+            var games = _context.GetGamesList().Where(g => g.IsActive == true).OrderBy(g=>g.Title).ToList();
+            var gamescores = _context.GetUnorderedGamesRanking().OrderBy(g => g.Item1.Title);
             var viewModel = new GameFilterViewModel
             {
                 Games = games,
-                Pagination = pagination,
-                GameScores = _context.GetListOfAllGamesScores(games)
+                GameScores = gamescores
             };
-
+            ViewBag.Pagination = new Pagination(pageString, itemString, games.Count());
             return View(viewModel);
         }
+
         [HttpGet]
         [Route("games/manage")]
         public ActionResult Manage()
@@ -61,6 +60,7 @@ namespace PRO.Controllers
             ViewBag.Pagination = new Pagination(pageString, itemString, games.Count());
             return View(games);
         }
+
         [AllowAnonymous]
         [HttpGet]
         [Route("games/{id}")]
@@ -70,6 +70,7 @@ namespace PRO.Controllers
 
             return View(viewModel);
         }
+
         [Authorize]
         [HttpPost]
         [Route("games/{id}")]
@@ -92,24 +93,41 @@ namespace PRO.Controllers
             if (viewModel == null) return HttpNotFound();
             return View(viewModel);
         }
+
         private GameDetailsViewModel setupDetailsPage(int id, GameList gamelist)
         {
+            //get game
             var game = _context.GetGameById(id);
             if (game == null) return null;
             if (game.IsActive == false) return null;
+
+            //get reviews and articles for the game, set pagination
             var reviews = _context.GetGameReviewsList(game.Id);
-            var pagination = new Pagination(null, null, reviews.Count());
+            ViewBag.Pagination = new Pagination(null, null, reviews.Count());
             var articles = _context.GetArticlesList().Where(a => a.GameId == id).OrderByDescending(a => a.PublishedDate).Take(3);
 
+            //get userlists for logged user for quick add to list form
             var userid = getCurrentUserId();
             var userLists = _context.UserLists.Where(u => u.UserId == userid).ToList();
+
+            //setup stats if game is present on any user game list
+
+            var gamesRankings = _context.GetUnorderedGamesRanking().OrderByDescending(o => o.Item2).ThenByDescending(d => d.Item1.ReleaseDate).ToList();
+
+            int? position = gamesRankings.IndexOf(gamesRankings.Single(g => g.Item1.Id == id)) + 1;
+            double? rating = gamesRankings.FirstOrDefault(g => g.Item1.Id == id).Item2;
+
+            int popularity = _context.GameLists.Include(g => g.UserList).DistinctBy(g => g.UserList.UserId).Count(g => g.GameId == id);
 
 
             var GameGameList = new GameAndGameListFormViewModel
             {
                 Game = game,
                 GameList = gamelist,
-                userLists = userLists
+                userLists = userLists,
+                Popularity = popularity,
+                Ranking = position,
+                Rating = rating
             };
 
             var reviewGametimes = setupReviewGametime(reviews);
@@ -117,8 +135,7 @@ namespace PRO.Controllers
             {
                 GameGameList = GameGameList,
                 ReviewGametimes = reviewGametimes,
-                RelevantArticles = articles,
-                Pagination = pagination
+                RelevantArticles = articles
             };
             return viewModel;
         }
@@ -274,7 +291,19 @@ namespace PRO.Controllers
         [Route("games/ranking")]
         public ActionResult Ranking()
         {
-            return View();
+            var pageString = Request.QueryString["page"];
+            var itemString = Request.QueryString["items"];
+
+
+            var games = _context.GetGamesList().Where(g => g.IsActive == true).OrderBy(g => g.Title).ToList();
+            var gamesRankings = _context.GetUnorderedGamesRanking().OrderByDescending(o => o.Item2).ThenByDescending(d => d.Item1.ReleaseDate).ToList();
+            var viewModel = new GameFilterViewModel
+            {
+                Games = games,
+                GameScores = gamesRankings
+            };
+            ViewBag.Pagination = new Pagination(pageString, itemString, games.Count());
+            return View(viewModel);
         }
         [HttpGet]
         [AllowAnonymous]
@@ -288,7 +317,7 @@ namespace PRO.Controllers
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
 
-            var pagination = new Pagination(pageString, itemString, reviews.Count());
+            ViewBag.Pagination = new Pagination(pageString, itemString, reviews.Count());
 
             var GameGameList = new GameAndGameListFormViewModel
             {
@@ -300,8 +329,7 @@ namespace PRO.Controllers
             var viewModel = new GameDetailsViewModel
             {
                 GameGameList = GameGameList,
-                ReviewGametimes = reviewGametimes,
-                Pagination = pagination
+                ReviewGametimes = reviewGametimes
             };
             return View(viewModel);
         }
@@ -336,7 +364,7 @@ namespace PRO.Controllers
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
 
-            var pagination = new Pagination(pageString, itemString, 1);
+            ViewBag.Pagination = new Pagination(pageString, itemString, 1);
 
             List<Review> list = new List<Review>();
             list.Add(reviews);
@@ -351,7 +379,6 @@ namespace PRO.Controllers
             {
                 GameGameList = GameGameList,
                 ReviewGametimes = reviewGametimes,
-                Pagination = pagination
             };
             return View(viewModel);
         }
@@ -375,15 +402,12 @@ namespace PRO.Controllers
                 g.Status.Name.CaseInsensitiveContains(query)
                 ).ToList();
 
-            var pagination = new Pagination(pageString, itemString, filteredgames.Count());
-
             var viewModel = new GameFilterViewModel
             {
                 Games = filteredgames,
-                Pagination = pagination,
-                GameScores = _context.GetListOfAllGamesScores(filteredgames)
-            };
-
+                GameScores = _context.GetUnorderedGamesRanking().OrderBy(g => g.Item1.Title)
+        };
+            ViewBag.Pagination = new Pagination(pageString, itemString, filteredgames.Count());
             return View("Index", viewModel);
         }
         public int? getCurrentUserId()

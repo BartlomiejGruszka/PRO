@@ -24,16 +24,15 @@
                                             <a style="float:right; text-decoration:none; font-weight:normal;" href="/games/@Model.GameGameList.Game.Id">Powrót</a>
                                         </div>
                                         @{
-                                            var start = Model.Pagination.pageIteratorStart;
-                                            var end = Model.Pagination.pageIteratorEnd;
-                                            var reviewGametime = Model.ReviewGametimes.ToList();
+                                            var start = ViewBag.Pagination.pageIteratorStart;
+                                            var end = ViewBag.Pagination.pageIteratorEnd;
+                                            var reviewGametime = Model.ReviewGametimes.ToArray();
                                             for (var i = start; i <= end; i++)
                                             {
-                                                if (reviewGametime.ElementAtOrDefault(i) != null)
-                                                {
-                                                   
-                                                    @Html.Partial("_SingleReview", reviewGametime[i])
-                                                }
+
+
+                                                @Html.Partial("_SingleReview", reviewGametime[i])
+
                                                 <div class="underlined_h2"></div>
                                             }
                                         }
@@ -48,12 +47,12 @@
                     <div>
                         <ul class="pagination">
                             @{
-                                var first = @Model.Pagination.firstPage;
-                                var current = @Model.Pagination.currentPage;
-                                var previous = @Model.Pagination.previousPage;
-                                var items = @Model.Pagination.itemsPerPage;
-                                var next = @Model.Pagination.nextPage;
-                                var last = @Model.Pagination.lastPage;
+                                var first = ViewBag.Pagination.firstPage;
+                                var current = ViewBag.Pagination.currentPage;
+                                var previous = ViewBag.Pagination.previousPage;
+                                var items = ViewBag.Pagination.itemsPerPage;
+                                var next = ViewBag.Pagination.nextPage;
+                                var last = ViewBag.Pagination.lastPage;
                             }
 
 

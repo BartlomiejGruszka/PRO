@@ -11,6 +11,6 @@ namespace PRO.ViewModels
     {
         public List<Tuple<Company, int>> PopularCompanies { get; set; }
         public IEnumerable<Review> RecentReviews { get; set; }
-        public List<Tuple<Game, double?>> HighestRatedGames { get; set; }
+        public IEnumerable<Tuple<Game, double?>> HighestRatedGames { get; set; }
     }
 }
