@@ -66,10 +66,11 @@
         <div class="list-group">
             <h2>Najpopularniejsze</h2>
             @{
-                var popularGames = Model.RecentGames.ToList().Take(4); //replace it later with proper collection based on games that most players have in their lists
+                var popularGames = Model.MostPopularGames;
 
-                foreach (var game in popularGames)
+                foreach (var item in popularGames)
                 {
+                    var game = item.Item1;
                     <a href="/games/@game.Id" class="list-group-item list-group-item-action flex-column align-items-start " id="home-article-cards">
                         <div>
                             @if (game.Image != null)
@@ -92,7 +93,7 @@
     </div>
 
     <div>
-        @Html.Partial("_BestRatedGames", Model.RecentGames)
+        @Html.Partial("_BestRatedGames", Model.BestRatedGames)
         <br />
         @Html.Partial("_ClosestReleaseGames", Model.ComingGames)
         <br />

@@ -286,16 +286,43 @@ namespace PRO.Helpers
                 .Select(c => new Tuple<Game, double?>(c.game, c.average))
                 .ToList();
 
-            var games = context.Games.Include(i => i.GameLists).Where(g=>!g.GameLists.Any()).ToList();
-                foreach(Game game in games)
+            var games = context.Games.Include(i => i.GameLists).Where(g => !g.GameLists.Any()).ToList();
+            foreach (Game game in games)
             {
-                    ranking.Add(new Tuple<Game, double?>(game, null));      
+                ranking.Add(new Tuple<Game, double?>(game, null));
             }
-            
+
 
 
             return ranking;
         }
+
+        public static List<Tuple<Game, int?>> GetGamesByPopularity(this ApplicationDbContext context)
+        {
+            var popularity = context.GameLists
+                .Include(i => i.Game)
+                .Include(i => i.UserList)
+                .GroupBy(g => g.Game)
+                .Select(g => new
+                {
+                    game = g.Key,
+                    count = g.Select(i => i.UserList.UserId).Distinct().Count()
+                })
+                .AsEnumerable()
+                .Select(c => new Tuple<Game, int?>(c.game, c.count))
+                .ToList();
+
+            var games = context.Games.Include(i => i.GameLists).Where(g => !g.GameLists.Any()).ToList();
+            foreach (Game game in games)
+            {
+                popularity.Add(new Tuple<Game, int?>(game, null));
+            }
+
+
+            return popularity;
+        }
+
+
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>
              (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {

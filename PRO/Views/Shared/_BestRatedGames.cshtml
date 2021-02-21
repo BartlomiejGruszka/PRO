@@ -1,13 +1,14 @@
-﻿@model IEnumerable<PRO.Models.Game>
+﻿@model List<Tuple<PRO.Models.Game, double?>>
     @using PRO.Helpers
     <div class="">
         <div class="side-list-group">
             <h3 class="sidebar-title">Najwyżej oceniane</h3>
             @{
-                var bestGames = Model.ToList().Take(3); //replace it later with proper collection based on games with highest score
 
-                foreach (var game in bestGames)
+                foreach (var item in Model)
                 {
+                    var game = item.Item1;
+
                     <a href="/games/@game.Id" class="list-group-item list-group-item-action flex-column align-items-start">
                         <div style="display:flex; flex-direction:row;">
                             @if (game.Image != null)

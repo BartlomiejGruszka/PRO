@@ -117,8 +117,7 @@ namespace PRO.Controllers
             int? position = gamesRankings.IndexOf(gamesRankings.Single(g => g.Item1.Id == id)) + 1;
             double? rating = gamesRankings.FirstOrDefault(g => g.Item1.Id == id).Item2;
 
-            int popularity = _context.GameLists.Include(g => g.UserList).DistinctBy(g => g.UserList.UserId).Count(g => g.GameId == id);
-
+            var popularity = _context.GetGamesByPopularity().FindIndex(s=>s.Item1.Id==id) +1;           
 
             var GameGameList = new GameAndGameListFormViewModel
             {

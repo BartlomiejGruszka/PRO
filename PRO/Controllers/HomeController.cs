@@ -44,14 +44,8 @@ namespace PRO.Controllers
              .Include(i => i.Game.Platform)
              .Where(w => DbFunctions.TruncateTime(w.PublishedDate) < System.DateTime.Now).OrderByDescending(o => o.PublishedDate).ToList().Take(5);
 
-            // var highestRatedGames =
-            //  var popularCompanies = _context.Companies.Include(g => g.)
-            var recentlyReviewed = new List<Game>();
-            foreach (var review in recentReviews)
-            {
-                recentlyReviewed.Add(review.Game);
-            }
-
+            var highestRatedGames = _context.GetUnorderedGamesRanking().OrderByDescending(o => o.Item2).Take(3).ToList();
+            var mostPopularGames = _context.GetGamesByPopularity().OrderByDescending(o => o.Item2).Take(3).ToList();
 
 
             var homeViewModel = new HomeViewModel
@@ -59,7 +53,10 @@ namespace PRO.Controllers
                 RecentGames = recentReleases,
                 RecentReviews = recentReviews,
                 RecentArticles = recentArticles,
-                ComingGames = comingReleases
+                ComingGames = comingReleases,
+                MostPopularGames = mostPopularGames,
+                BestRatedGames = highestRatedGames
+
 
 
             };
