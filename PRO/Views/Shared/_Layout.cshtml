@@ -15,82 +15,83 @@
     </script>
 </head>
 <body>
-    <div class="">
-        <div class="top-homebar">
-            <div class="navbar">
-                @Html.ActionLink("Archiwum Gier", "Index", "Home", new { area = "" }, new { @class = "mainbutton" })
-            </div>
-            <div class="">
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Articles" ? "active":"")">
-                    <a class="nav-link" href="/articles?platform=all">Artykuły</a>
-                </li>
-                <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Games" && ViewContext.RouteData.Values["action"].ToString() != "Ranking" ? "active":"")">
-                    <a class="nav-link" href="/games">Gry</a>
-                </li>
-                <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Games" && ViewContext.RouteData.Values["action"].ToString() == "Ranking" ? "active":"")">
-                    <a class="nav-link" href="/games/ranking">Rankingi</a>
-                </li>
-                @{
-                    if (User.IsInRole("Admin"))
-                    {
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Admin" ? "active":"")">
-                            <a class="nav-link" href="/panel/admin">Panel admina</a>
-                        </li>
-                    }
-                    if (User.IsInRole("Moderator"))
-                    {
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Moderator" ? "active":"")">
-                            <a class="nav-link" href="/panel/moderator">Panel moderatora</a>
-                        </li>
-                    }
-                    if (User.IsInRole("Author"))
-                    {
-                        <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Author" ? "active":"")">
-                            <a class="nav-link" href="/panel/author">Panel autora</a>
-                        </li>
-                    }
-
-                }
-
-            </ul>
-
-            <div class="form-inline my-2 my-lg-0">
-
-                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { style = "display:flex;" }))
-                {
-                    <select class="form-control" id="type" name="type" style="margin-right:5px;">
-                        <option hidden disabled selected> Wybierz</option>
-                        <option value="games">Gry</option>
-                        <option value="articles">Artykuły</option>
-                        <option value="users">Użytkownicy</option>
-                    </select>
-
-                    <input class="form-control mr-sm-2" type="text" placeholder="Szukaj" name="SearchString">
-                    <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Szukaj">
-                }
-
-
-
-
-            </div>
-        </div>
-    </nav>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Strona główna</li>
-    </ol>
     <div class="container body-content">
+        <div class="">
+            <div class="top-homebar">
+                <div class="navbar">
+                    @Html.ActionLink("Archiwum Gier", "Index", "Home", new { area = "" }, new { @class = "mainbutton" })
+                </div>
+                <div class="">
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Articles" ? "active":"")">
+                        <a class="nav-link" href="/articles?platform=all">Artykuły</a>
+                    </li>
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Games" && ViewContext.RouteData.Values["action"].ToString() != "Ranking" ? "active":"")">
+                        <a class="nav-link" href="/games">Gry</a>
+                    </li>
+                    <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Games" && ViewContext.RouteData.Values["action"].ToString() == "Ranking" ? "active":"")">
+                        <a class="nav-link" href="/games/ranking">Rankingi</a>
+                    </li>
+                    @{
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Admin" ? "active":"")">
+                                <a class="nav-link" href="/panel/admin">Panel admina</a>
+                            </li>
+                        }
+                        if (User.IsInRole("Moderator"))
+                        {
+                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Moderator" ? "active":"")">
+                                <a class="nav-link" href="/panel/moderator">Panel moderatora</a>
+                            </li>
+                        }
+                        if (User.IsInRole("Author"))
+                        {
+                            <li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "ControlPanel" && ViewContext.RouteData.Values["action"].ToString() == "Author" ? "active":"")">
+                                <a class="nav-link" href="/panel/author">Panel autora</a>
+                            </li>
+                        }
+
+                    }
+
+                </ul>
+
+                <div class="form-inline my-2 my-lg-0">
+
+                    @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { style = "display:flex;" }))
+                    {
+                        <select class="form-control" id="type" name="type" style="margin-right:5px;">
+                            <option hidden disabled selected> Wybierz</option>
+                            <option value="games">Gry</option>
+                            <option value="articles">Artykuły</option>
+                            <option value="users">Użytkownicy</option>
+                        </select>
+
+                        <input class="form-control mr-sm-2" type="text" placeholder="Szukaj" name="SearchString">
+                        <input class="btn btn-secondary my-2 my-sm-0" type="submit" value="Szukaj">
+                    }
+
+
+
+
+                </div>
+            </div>
+        </nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active">Strona główna</li>
+        </ol>
         @RenderBody()
         <hr />
 

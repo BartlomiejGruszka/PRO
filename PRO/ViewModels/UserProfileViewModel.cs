@@ -12,7 +12,7 @@ namespace PRO.ViewModels
         public List<UserList> UserLists { get; set; }
         public List<Game> RecentlyUpdatedGames { get; set; }
         public List<GameList> GameLists { get; set; }
-        public List<Review> Reviews { get; set; }
+        public List<ReviewGametimeViewModel> Reviews { get; set; }
 
         public IndexViewModel Index { get; set; }
 

@@ -335,7 +335,7 @@ namespace PRO.Controllers
             return View(viewModel);
         }
 
-        private IEnumerable<ReviewGametimeViewModel> setupReviewGametime(IEnumerable<Review> reviews)
+        public IEnumerable<ReviewGametimeViewModel> setupReviewGametime(IEnumerable<Review> reviews)
         {
             var reviewGametimes = new List<ReviewGametimeViewModel>();
             foreach (var rev in reviews)

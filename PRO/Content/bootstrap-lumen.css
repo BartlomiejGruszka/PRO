@@ -881,7 +881,46 @@ pre {
     margin-left: 91.666667%;
 }
 
+@media (max-width: 575px) {
+    .userprofilebuttons {
+        max-width: 225px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .userprofile {
+        display: flex;
+        justify-content: center;
+    }
+
+    .user-statistics .user-statistics-stats {
+        
+        width: 100%;
+    }
+}
+@media(max-width:767px){
+    .userprofile-statistics {
+        /* display: table-cell; */
+        padding-right: 8px;
+        /* width: 50%; */
+    }
+}
+@media(min-width:767.01px) {
+    .userprofile-cell {
+         display: table-cell; 
+        padding-right: 8px;
+         width: 50%; 
+    }
+    .userprofile-statistics {
+        display: flex;
+    }
+}
 @media (min-width: 576px) {
+
+    .userprofilecontent {
+        display: flex;
+    }
+
+
     .col-sm {
         -ms-flex-preferred-size: 0;
         flex-basis: 0;
@@ -4629,7 +4668,6 @@ input[type="button"].btn-block {
     -ms-flex-positive: 1;
     flex-grow: 1;
     -ms-flex-align: center;
-    align-items: center;
 }
 
 .navbar-toggler {
@@ -4790,6 +4828,8 @@ input[type="button"].btn-block {
         .navbar-expand-lg .navbar-collapse {
             display: -ms-flexbox !important;
             display: flex !important;
+            flex-wrap: wrap;
+            justify-content: flex-start;
             -ms-flex-preferred-size: auto;
             flex-basis: auto;
         }
@@ -4835,16 +4875,17 @@ input[type="button"].btn-block {
             flex-wrap: nowrap;
         }
 
-        .navbar-expand-xl .navbar-collapse {
-            display: -ms-flexbox !important;
-            display: flex !important;
-            -ms-flex-preferred-size: auto;
-            flex-basis: auto;
-        }
+    .navbar-expand-lg .navbar-collapse {
+        display: -ms-flexbox !important;
+        display: flex !important;
+        flex-direction: row;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
 
-        .navbar-expand-xl .navbar-toggler {
-            display: none;
-        }
+    .navbar-expand-xl .navbar-toggler {
+        display: none;
+    }
 }
 
 .navbar-expand {
@@ -5787,6 +5828,7 @@ a.badge-dark:focus, a.badge-dark.focus {
     color: #495057;
     text-align: inherit;
 }
+
 #home-article-cards {
     display: grid;
     grid-template-columns: 1fr 5fr;
@@ -5795,17 +5837,17 @@ a.badge-dark:focus, a.badge-dark.focus {
     grid-template-areas: ". .";
 }
 
-    .list-group-item-action:hover, .list-group-item-action:focus {
-        z-index: 1;
-        color: #495057;
-        text-decoration: none;
-        background-color: #f8f9fa;
-    }
+.list-group-item-action:hover, .list-group-item-action:focus {
+    z-index: 1;
+    color: #495057;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}
 
-    .list-group-item-action:active {
-        color: #212529;
-        background-color: #e9ecef;
-    }
+.list-group-item-action:active {
+    color: #212529;
+    background-color: #e9ecef;
+}
 
 .list-group-item {
     position: relative;
@@ -11495,6 +11537,7 @@ a.text-dark:hover, a.text-dark:focus {
     padding: 0;
     font-weight: 700;
 }
+
 .top-game-rank-text.manage {
     font-size: 24px;
     color: #888;
@@ -11823,10 +11866,7 @@ span {
     text-align: left;
 }
 
-.user-statistics .user-statistics-stats {
-    display: table;
-    width: 100%;
-}
+
 
     .user-statistics .user-statistics-stats .stats {
         display: table-cell;
@@ -11903,14 +11943,14 @@ span {
     float: right;
 }
 
-actionLinkManage .a{
+actionLinkManage .a {
     color: white;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 a.actionLinkManage:active {
     color: white;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 a.actionLinkManage:link {
@@ -11926,17 +11966,19 @@ a.actionLinkManage:visited {
 
 input, select, textarea {
     max-width: 400px;
-    resize:both;
+    resize: both;
 }
 
 #formtextarea {
-    width:400px;
-    height:100px;
+    width: 400px;
+    height: 100px;
 }
+
 .recentlyReleasedGames {
-    overflow:hidden;
-    text-overflow:ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 .gameListImageGrid {
     display: grid;
     grid-template-columns: 90px 1fr;
@@ -11944,6 +11986,7 @@ input, select, textarea {
     gap: 0px 0px;
     grid-template-areas: ". .";
 }
+
 .userPageTop {
     background-color: #e1e7f5;
     border-bottom-color: #1d439b;
@@ -11959,8 +12002,9 @@ input, select, textarea {
     margin: 0;
     padding: 5px 9px;
     text-align: left;
-    display:block;
+    display: block;
 }
+
 .reviewRatings {
     margin-top: 0;
     margin-bottom: 0;
@@ -11977,6 +12021,7 @@ input, select, textarea {
     line-height: 1.0em;
     margin: 9px;
 }
+
 .page-common .mt2 {
     margin-top: 2px !important;
 }
@@ -11989,6 +12034,7 @@ input, select, textarea {
     color: #1d439b;
     text-decoration: none;
 }
+
 .page-common .h1 span {
     line-height: inherit;
 }

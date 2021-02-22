@@ -1,68 +1,69 @@
 ﻿@model PRO.ViewModels.FooterViewModel
-
-<div class="footer-ranking" style="margin-top: 0px;">
-    <div class="ranking-container">
-        <div class="ranking-unit">
-            <h3 class="title">
-                Popularni wydawcy
-            </h3>
-            <ol>
-                @{
-                    var companies = Model.PopularCompanies;
-                    for (int i = 1; i <= companies.Count(); i++)
-                    {
-                        <li>
-                            <span class="rank">@i</span>
-                            <a href="/games/search/@companies[i-1].Item1.Name">@companies[i - 1].Item1.Name</a>
-                        </li>
-                    }
-
-                }
-
-            </ol>
-        </div>
-        <div class="ranking-unit">
-            <h3 class="title">
-                Najwyżej oceniane
-            </h3>
-            <ol>
-                @{
-                    var games = Model.HighestRatedGames.ToArray();                
-                    for (int i = 1; i <= games.Count(); i++)
-                    {
-                        <li>
-                            <span class="rank">@i</span>
-                            <a href="/games/@games[i-1].Item1.Id">@games[i - 1].Item1.Title</a>
-                        </li>
-                    }
-
-                }
-
-            </ol>
-        </div>
-        <div class="ranking-unit">
-            <h3 class="title">
-                Najnowsze recenzje
-            </h3>
-            <ol>
-                @{
-                    var reviews = Model.RecentReviews.ToArray();
-                    for (int i = 1; i <= reviews.Count(); i++)
-                    {
-                        <li>
-                            <span class="rank">@i</span>
-                            <a href="/games/@reviews[i-1].GameId/reviews/@reviews[i-1].Id">@reviews[i-1].Game.Title przez @reviews[i-1].User.ApplicationUser.UserName</a>
-                        </li>
+<div>
+    <div class="footer-ranking" style="margin-top: 0px;">
+        <div class="ranking-container">
+            <div class="ranking-unit">
+                <h3 class="title">
+                    Popularni wydawcy
+                </h3>
+                <ol>
+                    @{
+                        var companies = Model.PopularCompanies;
+                        for (int i = 1; i <= companies.Count(); i++)
+                        {
+                            <li>
+                                <span class="rank">@i</span>
+                                <a href="/games/search/@companies[i-1].Item1.Name">@companies[i - 1].Item1.Name</a>
+                            </li>
+                        }
 
                     }
 
-                }
+                </ol>
+            </div>
+            <div class="ranking-unit">
+                <h3 class="title">
+                    Najwyżej oceniane
+                </h3>
+                <ol>
+                    @{
+                        var games = Model.HighestRatedGames.ToArray();
+                        for (int i = 1; i <= games.Count(); i++)
+                        {
+                            <li>
+                                <span class="rank">@i</span>
+                                <a href="/games/@games[i-1].Item1.Id">@games[i - 1].Item1.Title</a>
+                            </li>
+                        }
+
+                    }
+
+                </ol>
+            </div>
+            <div class="ranking-unit">
+                <h3 class="title">
+                    Najnowsze recenzje
+                </h3>
+                <ol>
+                    @{
+                        var reviews = Model.RecentReviews.ToArray();
+                        for (int i = 1; i <= reviews.Count(); i++)
+                        {
+                            <li>
+                                <span class="rank">@i</span>
+                                <a href="/games/@reviews[i-1].GameId/reviews/@reviews[i-1].Id">@reviews[i - 1].Game.Title przez @reviews[i - 1].User.ApplicationUser.UserName</a>
+                            </li>
+
+                        }
+
+                    }
 
 
-            </ol>
+                </ol>
+            </div>
         </div>
     </div>
-</div>
-<div class="footer">
-    <p>&copy; @DateTime.Now.Year - Archiwum Gier</p>
+    <div class="footer">
+        <p>&copy; @DateTime.Now.Year - Archiwum Gier</p>
+    </div>
 </div>

@@ -110,13 +110,14 @@ namespace PRO.Controllers
             // ManageController ctr = new ManageController();
             // var index = await ctr.setupUserPageAsync();
             //
-
+            var gameController = new GamesController();
+            var reviewGametimes = gameController.setupReviewGametime(reviews).ToList();
             UserProfileViewModel model = new UserProfileViewModel
             {
                 User = user,
                 UserLists = userLists,
                 GameLists = gameLists,
-                Reviews = reviews,
+                Reviews = reviewGametimes,
                 //Index = index
                 LoggedUserId = loggeduserid,
                 ListTypes = listTypes
