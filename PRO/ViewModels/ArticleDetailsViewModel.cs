@@ -13,5 +13,7 @@ namespace PRO.ViewModels
 
         public IEnumerable<Game> RecentGames { get; set; }
 
+        public List<Tuple<Game, double?>> BestRatedGames { get; set; }
+
     }
 }

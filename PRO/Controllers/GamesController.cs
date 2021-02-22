@@ -67,7 +67,7 @@ namespace PRO.Controllers
         public ActionResult Details(int id)
         {
             var viewModel = setupDetailsPage(id, null);
-
+            Session["CurrentUrl"] = Request.Url.ToString();
             return View(viewModel);
         }
 
@@ -250,10 +250,12 @@ namespace PRO.Controllers
                 }
 
                 _context.SaveChanges();
-
-                return RedirectToAction("Manage");
+                if (Session["CurrentUrl"] == null) { return View(viewModel); }
+                return Redirect((string)Session["CurrentUrl"]);
+               // return RedirectToAction("Manage");
             }
             return View(viewModel);
+            
         }
 
         // GET: Companies/Delete/5

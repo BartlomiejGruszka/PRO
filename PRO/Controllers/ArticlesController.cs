@@ -96,11 +96,14 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
+            var highestRatedGames = _context.GetUnorderedGamesRanking().OrderByDescending(o => o.Item2).Take(3).ToList();
+
             ArticleDetailsViewModel articleDetails = new ArticleDetailsViewModel
             {
                 Article = article,
                 RecentGames = games,
-                RecentReviews = _context.GetRecentReviews()
+                RecentReviews = _context.GetRecentReviews(),
+                BestRatedGames = highestRatedGames
             };
             return View(articleDetails);
         }
