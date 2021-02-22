@@ -6,12 +6,13 @@
 
 @using System.Text.RegularExpressions;
 
-@helper StripHTML(string input)
+@helper StripHTML(string input, int length)
 {
     if (!string.IsNullOrEmpty(input))
     {
         input = Regex.Replace(input, "<.*?>", String.Empty);
-        input = input.Truncate(300);
+        input = Regex.Replace(input, "&nbsp;", " ");
+        input = input.Truncate(length);
         <span>@input</span>
     }
 }
@@ -95,7 +96,7 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@game.Title</h5>
                             </div>
-                            <p class="mb-1">@Html.Raw(@StripHTML(@game.Description))
+                            <p class="mb-1">@Html.Raw(@StripHTML(@game.Description, 300))...
                             </p>
 
                         </div>
