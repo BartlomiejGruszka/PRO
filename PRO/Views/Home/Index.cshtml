@@ -4,6 +4,19 @@
     ViewBag.Title = "Home Page";
 }
 
+@using System.Text.RegularExpressions;
+
+@helper StripHTML(string input)
+{
+    if (!string.IsNullOrEmpty(input))
+    {
+        input = Regex.Replace(input, "<.*?>", String.Empty);
+        input = input.Truncate(300);
+        <span>@input</span>
+    }
+}
+
+
 <div class="maingrid-container">
     <div class="">
         <div class="list-group">
@@ -82,7 +95,8 @@
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">@game.Title</h5>
                             </div>
-                            <p class="mb-1">@Html.Raw(@game.Description.Truncate(300))</p>
+                            <p class="mb-1">@Html.Raw(@StripHTML(@game.Description))
+                            </p>
 
                         </div>
                     </a>

@@ -609,7 +609,6 @@ D:\git\PRO\bin\Microsoft.Owin.Security.Twitter.xml
 D:\git\PRO\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\git\PRO\bin\Microsoft.Owin.Security.OAuth.xml
 D:\git\PRO\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\git\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
 D:\git\PRO\obj\Debug\PRO.Migrations.initialModel.resources
 D:\git\PRO\obj\Debug\PRO.Migrations.basicModels.resources
 D:\git\PRO\obj\Debug\PRO.Migrations.game_foreign_keys.resources
