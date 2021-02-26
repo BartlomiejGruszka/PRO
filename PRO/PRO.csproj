@@ -663,6 +663,7 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce.woff" />
     <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css.map" />
     <Content Include="Scripts\tinymce\skins\lightgray\skin.mobile.min.css.map" />
+    <Content Include="Views\Games\_AddGameToListForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
