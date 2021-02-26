@@ -107,8 +107,13 @@ namespace PRO.Controllers
             int? loggeduserid = getCurrentUserId();
             if (loggeduserid == null) { loggeduserid = -1; }
             //
-            // ManageController ctr = new ManageController();
-            // var index = await ctr.setupUserPageAsync();
+            var controller = DependencyResolver.Current.GetService<ManageController>();
+            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+
+            var task = Task.Run(async()=> await controller.setupUserPageAsync());
+            var index = task.Result;
+
+
             //
             var gameController = new GamesController();
             var reviewGametimes = gameController.setupReviewGametime(reviews).ToList();
@@ -118,7 +123,7 @@ namespace PRO.Controllers
                 UserLists = userLists,
                 GameLists = gameLists,
                 Reviews = reviewGametimes,
-                //Index = index
+                Index = index,
                 LoggedUserId = loggeduserid,
                 ListTypes = listTypes
             };
@@ -343,7 +348,7 @@ namespace PRO.Controllers
             return View(model);
         }
 
-        // GET: /Manage/ChangePassword
+        // 
         [HttpGet]
         [Authorize]
         [Route("users/{id}/password")]
@@ -372,7 +377,7 @@ namespace PRO.Controllers
         }
 
 
-        // change password function requiring old password
+        // change password function requiring old password for user
         [HttpPost]
         [Authorize]
         [Route("users/{id}/password")]
@@ -421,6 +426,7 @@ namespace PRO.Controllers
 
             return View();
         }
+
         [HttpGet]
         [Authorize]
         [Route("users/{id}/profile")]
