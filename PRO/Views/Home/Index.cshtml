@@ -23,7 +23,7 @@
         <div class="list-group">
             <h2>Bieżące informacje</h2>
             @{
-                var articles = Model.RecentArticles.ToList().Take(5);
+                var articles = Model.RecentArticles.ToList().Take(3);
                 foreach (var article in articles)
                 {
 

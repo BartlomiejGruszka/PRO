@@ -3,9 +3,9 @@
     <div class="side-list-group">
         <h3 class="sidebar-title">Nadchodzące premiery</h3>
         @{
-                    var bestGames = Model.ToList(); //replace it later with proper collection based on games with highest score
+                    var comingGames = Model.ToList().Take(3);
 
-                    foreach (var game in bestGames)
+                    foreach (var game in comingGames)
                     {
                 <a href="/games/@game.Id" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div style="display:flex; flex-direction:row; overflow:hidden; text-overflow:clip;">

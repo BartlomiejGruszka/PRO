@@ -29,7 +29,7 @@ namespace PRO.Models
         
         [DataType(DataType.Date), DisplayName("Data premiery")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
 
         [Required, DisplayName("Wciąż dostępna")]
         public bool IsActive { get; set; }

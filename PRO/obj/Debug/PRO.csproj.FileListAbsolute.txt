@@ -653,3 +653,6 @@ D:\git\PRO\obj\Debug\PRO.Migrations.ArticlePrieview.resources
 D:\git\PRO\obj\Debug\PRO.Migrations.editDateForGameList.resources
 D:\git\PRO\obj\Debug\PRO.csproj.CoreCompileInputs.cache
 D:\git\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
+D:\git\PRO\obj\Debug\PRO.Migrations.SampleData.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.gameModelUpdate.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.SampleData2.resources

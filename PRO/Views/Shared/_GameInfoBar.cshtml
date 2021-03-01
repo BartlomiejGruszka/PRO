@@ -11,7 +11,7 @@
                 </a>}
 
         </div>
-        @if (User.Identity.IsAuthenticated && Model.userLists != null)
+        @if (User.Identity.IsAuthenticated && (Model.userLists?.Any() ?? false))
         {<div class="underlined_h2">Dodaj do listy</div>
             @Html.Action("AddGameToList");
         }
@@ -25,13 +25,13 @@
 
                 if (Model.Game.ReleaseDate == null)
                 { <a href="#">Nieznana</a>}
-                else if (Model.Game.ReleaseDate.Year < 1900)
+                else if (Model.Game.ReleaseDate.Value.Year < 1900)
                 { <a href="#">Nieznana</a>}
                 else
                 {
-                    var date = @Model.Game.ReleaseDate.Day.ToString()
-                     + "." + @Model.Game.ReleaseDate.Month.ToString() + "."
-                     + @Model.Game.ReleaseDate.Year.ToString();
+                    var date = @Model.Game.ReleaseDate.Value.Day.ToString()
+                     + "." + @Model.Game.ReleaseDate.Value.Month.ToString() + "."
+                     + @Model.Game.ReleaseDate.Value.Year.ToString();
 
                     <a href="#">@date</a>}
             }

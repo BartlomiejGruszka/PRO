@@ -417,6 +417,18 @@
     <Compile Include="Migrations\202101291536176_editDateForGameList.Designer.cs">
       <DependentUpon>202101291536176_editDateForGameList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103010923228_SampleData.cs" />
+    <Compile Include="Migrations\202103010923228_SampleData.Designer.cs">
+      <DependentUpon>202103010923228_SampleData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103011509584_gameModelUpdate.cs" />
+    <Compile Include="Migrations\202103011509584_gameModelUpdate.Designer.cs">
+      <DependentUpon>202103011509584_gameModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103011523287_SampleData2.cs" />
+    <Compile Include="Migrations\202103011523287_SampleData2.Designer.cs">
+      <DependentUpon>202103011523287_SampleData2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -793,6 +805,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101291536176_editDateForGameList.resx">
       <DependentUpon>202101291536176_editDateForGameList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103010923228_SampleData.resx">
+      <DependentUpon>202103010923228_SampleData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103011509584_gameModelUpdate.resx">
+      <DependentUpon>202103011509584_gameModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103011523287_SampleData2.resx">
+      <DependentUpon>202103011523287_SampleData2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
