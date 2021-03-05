@@ -34,7 +34,7 @@ namespace PRO.Controllers
         {
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
-            var images = _context.Images.ToList();
+            var images = _context.Images.Include(i => i.ImageType).ToList();
             ViewBag.Pagination = new Pagination(pageString, itemString, images.Count());
             return View(images);
         }
@@ -47,7 +47,7 @@ namespace PRO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Image image = _context.Images.Find(id);
+            Image image = _context.Images.Include(i=>i.ImageType).FirstOrDefault(s=>s.Id==id);
             if (image == null)
             {
                 return HttpNotFound();
@@ -60,6 +60,7 @@ namespace PRO.Controllers
         [Authorize(Roles = "Admin,Author")]
         public ActionResult Add()
         {
+            ViewBag.ImageTypes = _context.ImageTypes.ToList();
             return View();
         }
 
@@ -96,11 +97,12 @@ namespace PRO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Image image = _context.Images.Find(id);
+            Image image = _context.Images.Include(i => i.ImageType).FirstOrDefault(s => s.Id == id);
             if (image == null)
             {
                 return HttpNotFound();
             }
+            ViewBag.ImageTypes = _context.ImageTypes.ToList();
             return View(image);
         }
         [Route("images/rename/{id}")]
@@ -116,6 +118,7 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ImageTypes = _context.ImageTypes.ToList();
             return View(image);
         }
 
@@ -141,7 +144,7 @@ namespace PRO.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Manage");
             }
-            
+            ViewBag.ImageTypes = _context.ImageTypes.ToList();
             return View(image);
         }
         [HttpPost]
@@ -161,11 +164,13 @@ namespace PRO.Controllers
                 _context.Images.Attach(image);
                 _context.Configuration.ValidateOnSaveEnabled = false;
                 _context.Entry(image).Property(x => x.Name).IsModified = true;
+                _context.Entry(image).Property(x => x.ImageTypeId).IsModified = true;
                 //  ValidateOnSaveEnabled = false;
                 _context.SaveChanges();
                 _context.Configuration.ValidateOnSaveEnabled = true;
                 return RedirectToAction("Manage");
             }
+            ViewBag.ImageTypes = _context.ImageTypes.ToList();
             return View(image);
         }
 
@@ -178,7 +183,7 @@ namespace PRO.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Image image = _context.Images.Find(id);
+            Image image = _context.Images.Include(i => i.ImageType).FirstOrDefault(s => s.Id == id);
             if (image == null)
             {
                 return HttpNotFound();

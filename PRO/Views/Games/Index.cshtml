@@ -22,29 +22,30 @@
                 var start = ViewBag.Pagination.pageIteratorStart;
                 var end = ViewBag.Pagination.pageIteratorEnd;
                 var scores = Model.GameScores.ToArray();
+                var games = Model.Games.ToArray();
                 for (var i = start; i <= end; i++)
                 {
 
-                    var game = scores[i].Item1;
+                    var game = games[i];
                     var score = scores.Where(g => g.Item1.Id == game.Id).SingleOrDefault();
                     <tr class="ranking-list">
                         <td class="title al va-t word-break">
                             <div class="gameListImageGrid">
-                                            <div>
-                                                @if (game.Image != null)
-                                                {
-                                                    <a class="fl-l ml12 mr8" href="/games/@game.Id" style="position: relative;">
-                                                        <img width="70" height="90" class=" lazyloaded" border="0" src="@Url.Content(game.Image.ImagePath)">
-                                                    </a>
-                                                }
-                                            </div>
+                                <div>
+                                    @if (game.Image != null)
+                                    {
+                                        <a class="fl-l ml12 mr8" href="/games/@game.Id" style="position: relative;">
+                                            <img width="70" height="90" class=" lazyloaded" border="0" src="@Url.Content(game.Image.ImagePath)">
+                                        </a>
+                                    }
+                                </div>
 
                                 <div class="detail">
                                     <div class="di-flex clearfix">
                                         <a class="" href="/games/@game.Id">@game.Title</a>
                                     </div>
                                     <div class="information di-ib mt4" style="overflow:hidden; text-overflow:clip; max-width:500px; min-width:200px;">
-                                        @Html.Raw(@game.Description.Truncate(140))
+                                        @Html.Raw(@game.Description.Truncate(140))...<a href="/games/@game.Id">więcej</a>
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +58,7 @@
                                     @{
                                         if (score.Item2.HasValue && !Double.IsNaN(score.Item2.Value))
                                         {
-                                            @score.Item2
+                                            @Math.Round((double)score.Item2)
                                         }
                                         else
                                         {

@@ -72,19 +72,6 @@ namespace PRO.Controllers
             return View(viewModel);
         }
 
-        /* [Authorize]
-         [HttpPost]
-         [Route("games/{id}")]
-         public ActionResult Details(int id)
-         {
-
-             var viewModel = setupDetailsPage(id, null);
-             if (viewModel == null) return HttpNotFound();
-             if (Session["CurrentUrl"] == null) { return View(viewModel); }
-             return Redirect((string)Session["CurrentUrl"]);
-             //return View(viewModel);
-         }*/
-
         [ChildActionOnly]
         [HttpGet]
         public ActionResult AddGameToList(int id)
@@ -92,16 +79,11 @@ namespace PRO.Controllers
 
             var userid = getCurrentUserId();
             var userLists = _context.UserLists.Where(u => u.UserId == userid).ToList();
-            // var gameList = 
+
             var gameList = TempData["gameList"] as GameList;
 
             if (gameList == null) { gameList = _context.GameLists.Include(u => u.UserList).SingleOrDefault(g => g.GameId == id && g.UserList.UserId == userid); }
             if (gameList == null) { gameList = new GameList(); }
-
-            var context = new ValidationContext(gameList, serviceProvider: null, items: null);
-            var validationResults = new List<ValidationResult>();
-
-            bool isValid = Validator.TryValidateObject(gameList, context, validationResults, true);
 
             var errors = TempData["errors"] as List<KeyValuePair<string, ModelState>>;
             if (errors != null)
@@ -148,7 +130,6 @@ namespace PRO.Controllers
 
                 if (oldGameList != null)
                 {
-                    // _context.GameLists.Attach(gameList);
                     _context.Set<GameList>().AddOrUpdate(gameList);
                 }
                 else
@@ -428,14 +409,16 @@ namespace PRO.Controllers
         {
             var game = _context.GetGameById(id);
             if (game == null) return HttpNotFound();
-            var reviews = _context.GetReviewById(review);
+            var selectedReview = _context.GetReviewById(review);
             var pageString = Request.QueryString["page"];
             var itemString = Request.QueryString["items"];
             Session["CurrentUrl"] = Request.Url.ToString();
             ViewBag.Pagination = new Pagination(pageString, itemString, 1);
-
-
+            List < Review > Reviews = new List<Review>();
+            Reviews.Add(selectedReview);
+            var reviewGametimes = setupReviewGametime(Reviews);
             var model = setupDetailsPage(id, null);
+            model.ReviewGametimes = reviewGametimes;
             return View(model);
         }
 

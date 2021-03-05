@@ -24,15 +24,13 @@
                                             <a href="#" style="float:right; text-decoration:none; font-weight:normal;" onclick="javascript:window.history.back(-1);return false;">Powrót</a>
                                         </div>
                                         @{
-                                            var start = ViewBag.Pagination.pageIteratorStart;
-                                            var end = ViewBag.Pagination.pageIteratorEnd;
+
                                             var reviewGametime = Model.ReviewGametimes.ToArray();
-                                            for (var i = start; i <= end; i++)
-                                            {
-                                                    @Html.Partial("_SingleReview", reviewGametime[i])
-                                                
-                                                <div class="underlined_h2"></div>
-                                            }
+
+                                            @Html.Partial("_SingleReview", reviewGametime[0])
+
+                                            <div class="underlined_h2"></div>
+
                                         }
 
                                     </td>
@@ -42,7 +40,7 @@
 
                         </table>
                     </div>
-                    <div> 
+                    <div>
                     </div>
                 </td>
             </tr>

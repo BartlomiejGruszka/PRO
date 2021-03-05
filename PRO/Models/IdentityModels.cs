@@ -42,6 +42,8 @@ namespace PRO.Models
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> AppUsers { get; set; }
         public DbSet<GameList> GameLists { get; set; }
+
+        public DbSet<ImageType> ImageTypes{ get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

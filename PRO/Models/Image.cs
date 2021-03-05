@@ -20,5 +20,11 @@ namespace PRO.Models
 
         [NotMapped, FileMustBeAnImage, DisplayName("Plik obrazu")]
         public HttpPostedFileBase ImageFile{ get; set; }
+
+        [Required]
+        public int ImageTypeId { get; set; }
+
+        [ForeignKey("ImageTypeId")]
+        public ImageType ImageType { get; set; }
     }
 }

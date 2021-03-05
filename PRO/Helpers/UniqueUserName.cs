@@ -19,7 +19,7 @@ namespace PRO.Helpers
             var obj = (EditUserViewModel)validationContext.ObjectInstance;
 
             var isUnique = _context.AppUsers.Include(a=>a.ApplicationUser)
-                .SingleOrDefault(s => s.Id != obj.Id && s.ApplicationUser.UserName == obj.UserName);
+                .SingleOrDefault(s => s.Id != obj.Id && s.ApplicationUser.UserName.ToLower().Trim() == obj.UserName.ToLower().Trim());
             if (isUnique != null)
             {
                 return new ValidationResult("Nazwa użytkownika jest zajęta.");

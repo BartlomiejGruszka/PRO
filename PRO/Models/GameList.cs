@@ -24,10 +24,10 @@ namespace PRO.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime? EditedDate { get; set; }
 
-        [Required, DisplayName("Rozegrane godziny")]
+        [Required, DisplayName("Rozegrane godziny"), Range(0,99999)]
         public int? HoursPlayed { get; set; }
 
-        [Required, DisplayName("Własna ocena"), Range(1, 10)]
+        [DisplayName("Własna ocena"), PersonalScoreRange]
         public int? PersonalScore { get; set; }
 
         [Required, DisplayName("Lista użytkownika"),UniqueGameAndUserList]  //add custom is unique constraint

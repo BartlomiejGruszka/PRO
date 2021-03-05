@@ -58,14 +58,18 @@
                                         <a class="" href="/games/@game.Id">@game.Title</a>
                                     </div>
                                     <div class="information di-ib mt4" style="overflow:hidden; text-overflow:clip; max-width:500px; min-width:200px;">
-                                        @Html.Raw(@game.Description.Truncate(140))
+                                        @Html.Raw(@game.Description.Truncate(140))...<a href="/games/@game.Id">więcej</a>
                                     </div>
                                 </div>
                             </div>
 
                         </td>
                         <td class="status ac">
-                            @game.ReleaseDate.Day.@game.ReleaseDate.Month.@game.ReleaseDate.Year
+                            @if (game.ReleaseDate.HasValue)
+                            {@game.ReleaseDate.Value.Day<text>.</text>@game.ReleaseDate.Value.Month<text>.</text>@game.ReleaseDate.Value.Year}
+                        else
+                        { <text>brak daty</text>}
+
                         </td>
                         @{if (userLoggedIn)
                             {
@@ -82,7 +86,7 @@
                                     @{
                                         if (score.Item2.HasValue && !Double.IsNaN(score.Item2.Value))
                                         {
-                                            @score.Item2
+                                            @Math.Round((double)score.Item2,1)
                                         }
                                         else
                                         {

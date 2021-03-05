@@ -237,6 +237,7 @@
     <Compile Include="Controllers\GenresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImagesController.cs" />
+    <Compile Include="Controllers\ImageTypesController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ModeratorsController.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\FileMustBeAnImage.cs" />
     <Compile Include="Helpers\IdentityExtensions.cs" />
+    <Compile Include="Helpers\PersonalScoreRange.cs" />
     <Compile Include="Helpers\StringExt.cs" />
     <Compile Include="Helpers\UniqueGameAndUserList.cs" />
     <Compile Include="Helpers\UniqueListTypeName.cs" />
@@ -262,6 +264,7 @@
     <Compile Include="Helpers\UniqueAwardName.cs" />
     <Compile Include="Helpers\UniqueArticleTypeName.cs" />
     <Compile Include="Helpers\UniquePlatformName.cs" />
+    <Compile Include="Helpers\UniqueImageTypeName.cs" />
     <Compile Include="Helpers\UniqueSeriesName.cs" />
     <Compile Include="Helpers\UniqueUserEmail.cs" />
     <Compile Include="Helpers\UniqueUserName.cs" />
@@ -429,6 +432,18 @@
     <Compile Include="Migrations\202103011523287_SampleData2.Designer.cs">
       <DependentUpon>202103011523287_SampleData2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103021401211_GameListAnnotationChanges.cs" />
+    <Compile Include="Migrations\202103021401211_GameListAnnotationChanges.Designer.cs">
+      <DependentUpon>202103021401211_GameListAnnotationChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103021401584_SampleData3.cs" />
+    <Compile Include="Migrations\202103021401584_SampleData3.Designer.cs">
+      <DependentUpon>202103021401584_SampleData3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103050905067_ImageTypeModel.cs" />
+    <Compile Include="Migrations\202103050905067_ImageTypeModel.Designer.cs">
+      <DependentUpon>202103050905067_ImageTypeModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -442,6 +457,7 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Image.cs" />
+    <Compile Include="Models\ImageType.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\UserList.cs" />
     <Compile Include="Models\ListType.cs" />
@@ -676,6 +692,11 @@
     <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css.map" />
     <Content Include="Scripts\tinymce\skins\lightgray\skin.mobile.min.css.map" />
     <Content Include="Views\Games\_AddGameToListForm.cshtml" />
+    <Content Include="Views\ImageTypes\Add.cshtml" />
+    <Content Include="Views\ImageTypes\Delete.cshtml" />
+    <Content Include="Views\ImageTypes\Edit.cshtml" />
+    <Content Include="Views\ImageTypes\Details.cshtml" />
+    <Content Include="Views\ImageTypes\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -814,6 +835,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202103011523287_SampleData2.resx">
       <DependentUpon>202103011523287_SampleData2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103021401211_GameListAnnotationChanges.resx">
+      <DependentUpon>202103021401211_GameListAnnotationChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103021401584_SampleData3.resx">
+      <DependentUpon>202103021401584_SampleData3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103050905067_ImageTypeModel.resx">
+      <DependentUpon>202103050905067_ImageTypeModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

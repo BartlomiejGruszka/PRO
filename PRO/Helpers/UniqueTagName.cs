@@ -22,7 +22,7 @@ namespace PRO.Helpers
             var obj = (Tag)validationContext.ObjectInstance;
 
             var isUnique = _context.Tags
-                .SingleOrDefault(s => s.Name == obj.Name && s.Id != obj.Id);
+                .SingleOrDefault(s => s.Name.ToLower().Trim() == obj.Name.ToLower().Trim() && s.Id != obj.Id);
 
 
             if (isUnique != null)

@@ -656,3 +656,6 @@ D:\git\PRO\obj\Debug\PRO.csprojAssemblyReference.cache
 D:\git\PRO\obj\Debug\PRO.Migrations.SampleData.resources
 D:\git\PRO\obj\Debug\PRO.Migrations.gameModelUpdate.resources
 D:\git\PRO\obj\Debug\PRO.Migrations.SampleData2.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.GameListAnnotationChanges.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.SampleData3.resources
+D:\git\PRO\obj\Debug\PRO.Migrations.ImageTypeModel.resources

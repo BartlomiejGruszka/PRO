@@ -7,32 +7,27 @@ namespace PRO.Migrations
     {
         public override void Up()
         {
-            Sql(@"
-            SET IDENTITY_INSERT [dbo].[Moderators] ON
+            Sql(@"            
             INSERT INTO [dbo].[Moderators] ([CreatedDate],[LastLoginDate],[UserId],[IsActive]) values (N'1999-01-01 17:00:00', NULL,8,1)
-            INSERT INTO [dbo].[Moderators] ([CreatedDate],[LastLoginDate],[UserId],[IsActive]) values (N'1999-01-01 17:00:00', NULL,9,1)
-            SET IDENTITY_INSERT [dbo].[Moderators] OFF
+            INSERT INTO [dbo].[Moderators] ([CreatedDate],[LastLoginDate],[UserId],[IsActive]) values (N'1999-01-01 17:00:00', NULL,9,1)     
             ");
 
             Sql(@"
-            SET IDENTITY_INSERT [dbo].[Authors] ON
             INSERT INTO [dbo].[Authors] ([FirstName],[LastName],[CreatedDate],[UserId],[IsActive]) values ('Jan','Kowalski', N'1999-01-01 17:00:00',7,1)
             INSERT INTO [dbo].[Authors] ([FirstName],[LastName],[CreatedDate],[UserId],[IsActive]) values ('Adam','Nowak', N'1999-01-01 17:00:00',9,1)
-            SET IDENTITY_INSERT [dbo].[Authors] OFF
             ");
 
             Sql(@"
             SET IDENTITY_INSERT [dbo].[Awards] ON
             INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (1,'Gra roku 2007', N'2007-01-01 17:00:00',1)
             INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (2,'Gra roku 2010', N'2010-01-01 17:00:00',2)
-            INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (2,'Gra roku 2012', N'2012-01-01 17:00:00',3)
-            INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (2,'Najlepsza fabu³a 2009', N'2009-01-01 17:00:00',5)
-            INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (2,'Najlepsza fabu³a 2012', N'2012-01-01 17:00:00',3)
+            INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (3,'Gra roku 2012', N'2012-01-01 17:00:00',3)
+            INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (4,'Najlepsza fabu³a 2009', N'2009-01-01 17:00:00',5)
+            INSERT INTO [dbo].[Awards] ([Id],[Name],[AwardDate],[GameId]) values (5,'Najlepsza fabu³a 2012', N'2012-01-01 17:00:00',3)
             SET IDENTITY_INSERT [dbo].[Awards] OFF
             ");
 
             Sql(@"
-            SET IDENTITY_INSERT [dbo].[LanguageGames] ON
             INSERT INTO [dbo].[LanguageGames] ([Language_Id],[Game_Id]) values (1,1)
             INSERT INTO [dbo].[LanguageGames] ([Language_Id],[Game_Id]) values (2,1)
             INSERT INTO [dbo].[LanguageGames] ([Language_Id],[Game_Id]) values (3,1)
@@ -70,11 +65,9 @@ namespace PRO.Migrations
             INSERT INTO [dbo].[LanguageGames] ([Language_Id],[Game_Id]) values (5,14)
             INSERT INTO [dbo].[LanguageGames] ([Language_Id],[Game_Id]) values (6,14)
             INSERT INTO [dbo].[LanguageGames] ([Language_Id],[Game_Id]) values (7,14)
-            SET IDENTITY_INSERT [dbo].[LanguageGames] OFF
             ");
 
             Sql(@"
-            SET IDENTITY_INSERT [dbo].[TagGames] ON
             INSERT INTO [dbo].[TagGames] ([Tag_Id],[Game_Id]) values (2,1)
             INSERT INTO [dbo].[TagGames] ([Tag_Id],[Game_Id]) values (3,1)
             INSERT INTO [dbo].[TagGames] ([Tag_Id],[Game_Id]) values (8,1)
@@ -117,43 +110,7 @@ namespace PRO.Migrations
             SET IDENTITY_INSERT [dbo].[TagGames] OFF
             ");
 
-            Sql(@"
-            INSERT INTO [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'5eb5bc6c-173f-4180-aca8-15493310fce2', N'artur@a.pl', 0, N'ABr96KZkKJmwO1/g2tYbMOhxs1sz5Biw1pyhMGUetb4qAymNk8zVAPXBRx6Ep3fjIA==', N'3635fa67-7d1b-4b35-aa54-1f7a63610f14', NULL, 0, 0, NULL, 0, 0, N'Artur')
-            INSERT INTO [dbo].[AspNetUsers] ([Id], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName]) VALUES (N'd800af38-12ff-439a-979e-581590a99dba', N'stefan@a.pl', 0, N'APSCzQCBQayLf0Xcd16eFDPfYxVwxQSB012CYuDljqQDGouhSL62ijPenY4vEDemsw==', N'a5b66d4a-d98a-4d1c-bc71-dfae1f4990a2', NULL, 0, 0, NULL, 0, 0, N'stefan')
-            ");
 
-            Sql(@"
-            SET IDENTITY_INSERT [dbo].[Users] ON
-            INSERT INTO[dbo].[Users] ([Id], [RegisterDate], [Description], [IsActive], [IsPublic], [ImageId], [UserId]) VALUES(10, N'2012-02-20 00:00:00', NULL, 1, 1, NULL, N'd800af38-12ff-439a-979e-581590a99dba')
-            INSERT INTO[dbo].[Users] ([Id], [RegisterDate], [Description], [IsActive], [IsPublic], [ImageId], [UserId]) VALUES(11, N'2021-01-01 00:00:00', NULL, 1, 0, NULL, N'5eb5bc6c-173f-4180-aca8-15493310fce2')
-            SET IDENTITY_INSERT[dbo].[Users] OFF
-            ");
-
-            Sql(@"
-            SET IDENTITY_INSERT [dbo].[UserLists] ON
-            INSERT INTO[dbo].[UserLists] ([Id], [RegisterDate], [Description], [IsActive], [IsPublic], [ImageId], [UserId]) VALUES(10, N'2012-02-20 00:00:00', NULL, 1, 1, NULL, N'd800af38-12ff-439a-979e-581590a99dba')
-            SET IDENTITY_INSERT[dbo].[UserLists] OFF
-            ");
-
-            Sql(@"
-            SET IDENTITY_INSERT [dbo].[GameLists] ON
-            INSERT INTO[dbo].[GameLists] ([Id], [RegisterDate], [Description], [IsActive], [IsPublic], [ImageId], [UserId]) VALUES(10, N'2012-02-20 00:00:00', NULL, 1, 1, NULL, N'd800af38-12ff-439a-979e-581590a99dba')
-            SET IDENTITY_INSERT[dbo].[GameLists] OFF
-            ");
-
-            Sql(@"
-            SET IDENTITY_INSERT [dbo].[Reviews] ON
-            INSERT INTO[dbo].[Reviews] ([Id], [RegisterDate], [Description], [IsActive], [IsPublic], [ImageId], [UserId]) VALUES(10, N'2012-02-20 00:00:00', NULL, 1, 1, NULL, N'd800af38-12ff-439a-979e-581590a99dba')
-            SET IDENTITY_INSERT[dbo].[Reviews] OFF
-            ");
-
-            Sql(@"
-            SET IDENTITY_INSERT [dbo].[Articles] ON
-            INSERT INTO[dbo].[Articles] ([Id], [RegisterDate], [Description], [IsActive], [IsPublic], [ImageId], [UserId]) VALUES(10, N'2012-02-20 00:00:00', NULL, 1, 1, NULL, N'd800af38-12ff-439a-979e-581590a99dba')
-            SET IDENTITY_INSERT[dbo].[Articles] OFF
-            ");
-
-           
 
         }
         
