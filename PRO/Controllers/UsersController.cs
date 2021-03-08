@@ -60,7 +60,7 @@ namespace PRO.Controllers
             {
                 return HttpNotFound();
             }
-            return RedirectToAction("Details",new { id = loggeduserid});
+            return RedirectToAction("Details", new { id = loggeduserid });
         }
 
         // GET: Users
@@ -118,18 +118,45 @@ namespace PRO.Controllers
 
 
             int? loggeduserid = getCurrentUserId();
+            IndexViewModel index = null;
             if (loggeduserid == null) { loggeduserid = -1; }
+            else
+            {
+                var controller = DependencyResolver.Current.GetService<ManageController>();
+                controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+
+                var task = Task.Run(async () => await controller.setupUserPageAsync());
+                index = task.Result;
+
+            }
             //
-            var controller = DependencyResolver.Current.GetService<ManageController>();
-            controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
-
-            var task = Task.Run(async () => await controller.setupUserPageAsync());
-            var index = task.Result;
-
-
             //
             var gameController = new GamesController();
             var reviewGametimes = gameController.setupReviewGametime(reviews).ToList();
+
+            var recentlyAddedGames = gameLists.OrderByDescending(d => d.AddedDate).Take(5).ToArray();
+            var recentlyEditedGames = gameLists.OrderByDescending(d => d.EditedDate).Take(5).ToArray();
+            List<GameList> list = new List<GameList>();
+            for (int i = 0; i < recentlyEditedGames.Length + recentlyAddedGames.Length; i++)
+            {
+
+            }
+            var tuplelist = new List<Tuple<GameList, DateTime>>();
+            foreach (var gamelist in gameLists)
+            {
+
+                if (gamelist.EditedDate.HasValue)
+                {
+                    tuplelist.Add(new Tuple<GameList, DateTime>(gamelist, gamelist.EditedDate.Value));
+                }
+                else
+                {
+                    tuplelist.Add(new Tuple<GameList, DateTime>(gamelist, gamelist.AddedDate));
+                }
+            }
+            var recentGames = tuplelist.OrderByDescending(o => o.Item2).Take(3).ToList();
+
+
             UserProfileViewModel model = new UserProfileViewModel
             {
                 User = user,
@@ -138,7 +165,8 @@ namespace PRO.Controllers
                 Reviews = reviewGametimes,
                 Index = index,
                 LoggedUserId = loggeduserid,
-                ListTypes = listTypes
+                ListTypes = listTypes,
+                RecentlyUpdatedGames = recentGames
             };
 
             return View(model);
@@ -401,7 +429,7 @@ namespace PRO.Controllers
             if (loggeduserid == null) return HttpNotFound();
             if (loggeduserid != id) return HttpNotFound();
 
-            var userdata = _context.AppUsers.Include(a => a.ApplicationUser).Include(i=>i.Image).SingleOrDefault(a => a.Id == model.id);
+            var userdata = _context.AppUsers.Include(a => a.ApplicationUser).Include(i => i.Image).SingleOrDefault(a => a.Id == model.id);
             if (userdata == null)
             { return RedirectToAction("Details"); }
 

@@ -10,7 +10,7 @@ namespace PRO.ViewModels
     {
         public User User { get; set; }
         public List<UserList> UserLists { get; set; }
-        public List<Game> RecentlyUpdatedGames { get; set; }
+        public List<Tuple<GameList, DateTime>> RecentlyUpdatedGames { get; set; }
         public List<GameList> GameLists { get; set; }
         public List<ReviewGametimeViewModel> Reviews { get; set; }
 

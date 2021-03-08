@@ -64,28 +64,37 @@
                                         }
 
                                         </div>
-
                                         <div class="updates game userprofile-cell">
                                             <div class="underlined_h2" style="font-weight: 400;">Ostatnio aktualizowane</div>
+                                            @if (Model.RecentlyUpdatedGames?.Any() ?? false)
+                                            {
 
-                                            <div class="statistics-updates di-b w100 mb8">
-                                                <a href="#" class="fl-l di-ib mr8 image">
-                                                    <img class=" lazyloaded" width="60" src="https://cdn.myanimelist.net/r/80x120/images/anime/1614/90408.webp?s=88c4a61d9cb957ef14a21c14f6d3bcc9">
-                                                </a>
-                                                <div class="data" style="font-size:0.85rem;">
-                                                    <a href="#">Darling in the FranXX</a>
-                                                    <div class="clearfix graph-content pt8" style="display:flex; flex-direction:column;">
-                                                        <span class="fl-r fn-grey2">Jul 8, 2018 11:24 PM</span>
-                                                        <span class="text anime completed">Ukończona</span>
-                                                        <span class="text anime completed score-label score-8">Ocena: 8</span>
+                                                foreach (var game in Model.RecentlyUpdatedGames)
+                                                {<div class="statistics-updates di-b w100 mb8">
+                                                        @if (game.Item1.Game.Image != null)
+                                                        {<a href="/games/@game.Item1.GameId" class="image fl-l di-ib mr8" >
+                                                                <img style="max-width:60px;width: expression(this.width > 60 ? 60: true);" class="lazyloaded" src="@Url.Content(game.Item1.Game.Image.ImagePath)">
+                                                            </a>}
+                                                        <div class="data" style="font-size:0.85rem;">
+                                                            <a href="#">@game.Item1.Game.Title</a>
+                                                            <div class="clearfix graph-content pt8" style="display:flex; flex-direction:column;">
+                                                                <span class="fl-r fn-grey2">@game.Item2</span>
+                                                                <span class="text anime completed">@game.Item1.UserList.ListType.Name</span>
+                                                                <span class="text anime completed score-label score-8">Ocena: @game.Item1.PersonalScore</span>
+                                                            </div>
+
+                                                            <div class="clearfix graph-content pt8">
+
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                }
+                                            }
+                                            else
+                                            { <text>Brak gier</text>}
 
-                                                    <div class="clearfix graph-content pt8">
-
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">

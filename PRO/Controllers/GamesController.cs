@@ -311,7 +311,11 @@ namespace PRO.Controllers
                 return Redirect((string)Session["CurrentUrl"]);
                 // return RedirectToAction("Manage");
             }
-            return View(viewModel);
+            var gameViewModel = _context.GetFullGameForm(viewModel.Game.Id);
+            gameViewModel.Game = viewModel.Game;
+            gameViewModel.selectedLanguagesId = viewModel.selectedLanguagesId;
+            gameViewModel.selectedTagsId = viewModel.selectedTagsId;
+            return View(gameViewModel);
 
         }
 

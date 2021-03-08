@@ -81,16 +81,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Game.Image.ImageType.Id, "Rodzaj obrazka", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label( "Rodzaj obrazka", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Game.Image.ImageType.Id, new SelectList(Model.ImageTypes, "Id", "Name"), "Wybierz rodzaj obrazka", new { @class = "form-control", @id = "ddlstate", @onchange = "javascript:GetImagesByType(this.value);" })
+                @Html.DropDownListFor(m => m.SelectedImageTypeId, new SelectList(Model.ImageTypes, "Id", "Name"), "Wybierz rodzaj obrazka", new { @class = "form-control", @id = "ddlstate", @onchange = "javascript:GetImagesByType(this.value);" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Game.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="ImageId" name="ImageId" class="form-control" onchange="SetImageId()"></select>
+                <select id="ImageId" name="Game.ImageId" class="form-control" onchange="SetImageId()"></select>
                 @Html.ValidationMessageFor(model => model.Game.ImageId, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -21,6 +21,7 @@ namespace PRO.ViewModels
         public IEnumerable<Tag> Tags{ get; set; }
         public IEnumerable<int> selectedLanguagesId { get; set; }
         public IEnumerable<int> selectedTagsId { get; set; }
+        public int? SelectedImageTypeId { get; set; }
         public Game Game { get; set; }
     }
 }
