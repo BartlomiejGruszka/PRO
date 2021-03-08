@@ -42,8 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserListId, "Lista użytkownika", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <select id="UserListId" name="UserListId" class="form-control" onchange="SetListId()">
-                </select>
+                <select id="UserListId" name="UserListId" class="form-control" onchange="SetListId()"></select>
                 @Html.ValidationMessageFor(model => model.UserListId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -103,3 +102,7 @@
         console.log(id);
     }
 </script>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

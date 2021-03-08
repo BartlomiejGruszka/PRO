@@ -12,6 +12,7 @@ namespace PRO.ViewModels
         public IEnumerable<ArticleType> ArticleTypes { get; set; }
         public IEnumerable<Game> Games { get; set; }
         public IEnumerable<Author> Authors { get; set; }
+        public IEnumerable<ImageType> ImageTypes { get; set; }
 
         public Article Article { get; set; }
     }

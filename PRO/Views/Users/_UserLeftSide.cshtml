@@ -1,0 +1,29 @@
+﻿@model PRO.ViewModels.UserProfileViewModel
+
+<div class="borderClass userprofile" style="border-width: 0 1px 0 0;" valign="top">
+    <div class="userprofilebuttons">
+
+        <div style="text-align: center;">
+            @if (Model.User.Image != null)
+            {<a>
+                    <img style="max-width:200px;width: expression(this.width > 200 ? 200: true);" class="lazyloaded" src="@Url.Content(Model.User.Image.ImagePath)">
+                </a>}
+
+        </div>
+        <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
+        </div>
+        <div class="underlined_h2">Dołączył: </div><p>@Model.User.RegisterDate</p>
+
+        <div class="underlined_h2"></div>
+        <a style="margin: 20px; display:block;" href="#" class="btn btn-secondary">Listy użytkownika</a>
+        @if (User.Identity.IsAuthenticated && Model.LoggedUserId == Model.User.Id)
+        {
+            <a style="margin: 20px; display:block;" href="/users/@Model.User.Id/profile" class="btn btn-primary">Edytuj profil</a>
+            <a style="margin: 20px; display:block;" href="/users/@Model.User.Id/password" class="btn btn-primary">Zmień hasło</a>
+        }
+
+        <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
+        </div>
+
+    </div>
+</div>

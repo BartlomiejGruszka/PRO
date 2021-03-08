@@ -697,6 +697,7 @@
     <Content Include="Views\ImageTypes\Edit.cshtml" />
     <Content Include="Views\ImageTypes\Details.cshtml" />
     <Content Include="Views\ImageTypes\Manage.cshtml" />
+    <Content Include="Views\Users\_UserLeftSide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,10 +7,10 @@
 
 <h2>Dodaj rodzaj listy</h2>
 
-@using (Html.BeginForm("Add","ListTypes")) 
+@using (Html.BeginForm("Add", "ListTypes"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -29,4 +29,8 @@
             </div>
         </div>
     </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

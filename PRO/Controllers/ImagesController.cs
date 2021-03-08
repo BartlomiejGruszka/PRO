@@ -225,5 +225,15 @@ namespace PRO.Controllers
             }
             return RedirectToAction("Manage");
         }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin,Author")]
+        [Route("images/getimagesbytype/{id?}")]
+        public ActionResult GetImagesByType(int id)
+        {
+            List<Image> ImagesByType = _context.Images.Where(s => s.ImageTypeId == id).ToList();
+            SelectList viewLists = new SelectList(ImagesByType, "Id", "Name", 0);
+            return Json(viewLists);
+        }
     }
 }

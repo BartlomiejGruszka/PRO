@@ -95,7 +95,8 @@ namespace PRO.Helpers
                 Tags = context.Tags.ToList(),
                 Game = game,
                 selectedLanguagesId = selectedLanguagesId,
-                selectedTagsId = selectedTagsId
+                selectedTagsId = selectedTagsId,
+                ImageTypes = context.ImageTypes.ToList()
 
             };
             return gameViewModel;
@@ -118,7 +119,8 @@ namespace PRO.Helpers
                 ArticleTypes = context.ArticleTypes.ToList(),
                 Games = context.Games.ToList(),
                 Authors = context.Authors.ToList(),
-                Article = article
+                Article = article,
+                ImageTypes = context.ImageTypes.ToList()
 
             };
             return (viewModel);

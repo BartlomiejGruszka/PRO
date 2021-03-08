@@ -7,10 +7,10 @@
 
 <h2>Dodaj język</h2>
 
-@using (Html.BeginForm("Add","Languages")) 
+@using (Html.BeginForm("Add", "Languages"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -26,8 +26,12 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Dodaj" class="btn btn-primary" />
                 <a href="#" class="btn btn-secondary" onclick="javascript:window.history.back(-1);return false;">Powrót</a>
-                
+
             </div>
         </div>
     </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

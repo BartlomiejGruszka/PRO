@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -32,4 +32,8 @@
             </div>
         </div>
     </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

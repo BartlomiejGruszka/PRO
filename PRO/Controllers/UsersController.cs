@@ -49,6 +49,19 @@ namespace PRO.Controllers
 
         }
 
+        //get userprofile
+        [Authorize]
+        [Route("users/userprofile")]
+        public ActionResult UserProfile()
+        {
+            int? loggeduserid = getCurrentUserId();
+
+            if (loggeduserid == null)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Details",new { id = loggeduserid});
+        }
 
         // GET: Users
         [Route("users/manage")]
@@ -110,7 +123,7 @@ namespace PRO.Controllers
             var controller = DependencyResolver.Current.GetService<ManageController>();
             controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
 
-            var task = Task.Run(async()=> await controller.setupUserPageAsync());
+            var task = Task.Run(async () => await controller.setupUserPageAsync());
             var index = task.Result;
 
 
@@ -357,7 +370,7 @@ namespace PRO.Controllers
             int? loggeduserid = getCurrentUserId();
             if (loggeduserid == null) return HttpNotFound();
             if (loggeduserid != id) return HttpNotFound();
-            User user = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(i => i.Id == id);
+            User user = _context.AppUsers.Include(a => a.ApplicationUser).Include(i => i.Image).SingleOrDefault(i => i.Id == id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -388,7 +401,7 @@ namespace PRO.Controllers
             if (loggeduserid == null) return HttpNotFound();
             if (loggeduserid != id) return HttpNotFound();
 
-            var userdata = _context.AppUsers.Include(a => a.ApplicationUser).SingleOrDefault(a => a.Id == model.id);
+            var userdata = _context.AppUsers.Include(a => a.ApplicationUser).Include(i=>i.Image).SingleOrDefault(a => a.Id == model.id);
             if (userdata == null)
             { return RedirectToAction("Details"); }
 

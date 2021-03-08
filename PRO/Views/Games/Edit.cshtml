@@ -7,117 +7,125 @@
 
 <h2>Edytuj grę</h2>
 
-@using (Html.BeginForm("Edit","Games"))
+@using (Html.BeginForm("Edit", "Games"))
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Game.Id)
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Game.Id)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Game.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Game.Title, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Game.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Game.Title, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Game.Description, new { @id = "mytextarea", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.Description, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Game.Description, new { @id = "mytextarea", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.Description, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Game.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Game.ReleaseDate, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.ReleaseDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Game.ReleaseDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Game.ReleaseDate, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Game.IsActive)
-                @Html.ValidationMessageFor(model => model.Game.IsActive, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Game.IsActive)
+                    @Html.ValidationMessageFor(model => model.Game.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.PlatformId, "Platforma", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.PlatformId, new SelectList(Model.Platforms, "Id", "Name"), "Wybierz platformę", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.PlatformId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.StatusId, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.StatusId, new SelectList(Model.Statuses, "Id", "Name"), "Wybierz status", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.StatusId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.GenreId, "Gatunek", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Wybierz gatunek", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.GenreId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.SeriesId, "Seria", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.SeriesId, new SelectList(Model.Series, "Id", "Name"), "Wybierz serię", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.SeriesId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.Image.ImageType.Id, "Rodzaj obrazka", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.Image.ImageType.Id, new SelectList(Model.ImageTypes, "Id", "Name"), "Wybierz rodzaj obrazka", new { @class = "form-control", @id = "ddlstate", @onchange = "javascript:GetImagesByType(this.value);" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="ImageId" name="ImageId" class="form-control" onchange="SetImageId()"></select>
+                @Html.ValidationMessageFor(model => model.Game.ImageId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.PublisherId, "Wydawca", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.PublisherId, new SelectList(Model.Publlishers, "Id", "Name"), "Wybierz wydawcę", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.PublisherId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.DeveloperId, "Twórca", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Game.DeveloperId, new SelectList(Model.Developers, "Id", "Name"), "Wybierz twórcę", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Game.DeveloperId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.Languages, "Języki", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(m => m.selectedLanguagesId, new MultiSelectList(Model.Languages, "Id", "Name"), htmlAttributes: new { @class = "form-control", @multiple = true, size = 8 })
+                @Html.ValidationMessageFor(model => model.Game.Languages, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Game.Tags, "Tagi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.ListBoxFor(m => m.selectedTagsId, new MultiSelectList(Model.Tags, "Id", "Name"), htmlAttributes: new { @class = "form-control", @multiple = true, size = 8 })
+                @Html.ValidationMessageFor(model => model.Game.Tags, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.PlatformId, "Platforma", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.PlatformId, new SelectList(Model.Platforms, "Id", "Name"), "Wybierz platformę", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.PlatformId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.StatusId, "Status", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.StatusId, new SelectList(Model.Statuses, "Id", "Name"), "Wybierz status", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.StatusId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.GenreId, "Gatunek", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.GenreId, new SelectList(Model.Genres, "Id", "Name"), "Wybierz gatunek", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.GenreId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.SeriesId, "Seria", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.SeriesId, new SelectList(Model.Series, "Id", "Name"), "Wybierz serię", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.SeriesId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.ImageId, new SelectList(Model.Images, "Id", "Name"), "Wybierz obraz", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.ImageId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.PublisherId, "Wydawca", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.PublisherId, new SelectList(Model.Publlishers, "Id", "Name"), "Wybierz wydawcę", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.PublisherId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.DeveloperId, "Twórca", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Game.DeveloperId, new SelectList(Model.Developers, "Id", "Name"), "Wybierz twórcę", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Game.DeveloperId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.Languages, "Języki", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.ListBoxFor(m => m.selectedLanguagesId, new MultiSelectList(Model.Languages, "Id", "Name"), htmlAttributes: new { @class = "form-control", @multiple = true, size = 8 })
-            @Html.ValidationMessageFor(model => model.Game.Languages, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Game.Tags, "Tagi", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.ListBoxFor(m => m.selectedTagsId, new MultiSelectList(Model.Tags, "Id", "Name"), htmlAttributes: new { @class = "form-control", @multiple = true, size = 8 })
-            @Html.ValidationMessageFor(model => model.Game.Tags, "", new { @class = "text-danger" })
-        </div>
-    </div>
-</div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
@@ -126,4 +134,47 @@
 
         </div>
     </div>
+}
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function GetImagesByType(_stateId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ImageId").html(procemessage).show();
+        var url = "/images/getimagesbytype/" + _stateId;
+
+        $.ajax({
+            url: url,
+            data: { id: _stateId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                if (data.length > 0) {
+                    var markup = "<option value='0'>Wybierz obrazek</option>";
+                } else {
+                    var markup = "<option value='0'>Brak obrazków wybranego typu</option>";
+                }
+
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ImageId").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+
+</script>
+
+<script>
+    function SetImageId() {
+        var id = $('#ImageId').find(":selected").Value;
+        console.log(id);
+    }
+</script>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

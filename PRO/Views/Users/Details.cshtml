@@ -17,33 +17,7 @@
     @if (Model.User.IsPublic)
     {
 
-        <div class="borderClass userprofile" style="border-width: 0 1px 0 0;" valign="top">
-            <div class="userprofilebuttons">
-
-                <div style="text-align: center;">
-                    @if (Model.User.Image != null)
-                    {<a>
-                            <img style="max-width:200px;width: expression(this.width > 200 ? 200: true);" class="lazyloaded" src="@Url.Content(Model.User.Image.ImagePath)">
-                        </a>}
-
-                </div>
-                <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
-                </div>
-                <div class="underlined_h2">Dołączył: </div><p>@Model.User.RegisterDate</p>
-
-                <div class="underlined_h2"></div>
-                <a style="margin: 20px; display:block;" href="#" class="btn btn-secondary">Listy użytkownika</a>
-                @if (User.Identity.IsAuthenticated && Model.LoggedUserId == Model.User.Id)
-                {
-                    <a style="margin: 20px; display:block;" href="/users/@Model.User.Id/profile" class="btn btn-primary">Edytuj profil</a>
-                    <a style="margin: 20px; display:block;" href="/users/@Model.User.Id/password" class="btn btn-primary">Zmień hasło</a>
-                }
-
-                <div class="clearfix mauto mt16" style="width:160px;padding-right:10px">
-                </div>
-
-            </div>
-        </div>
+        @Html.Partial("_UserLeftSide", Model)
 
         <div valign="top" style="padding-left: 5px;">
             <div class="js-scrollfix-bottom-rel">
@@ -67,7 +41,23 @@
                                         <div class="stats userprofile-cell">
                                             <div class="underlined_h2" style="font-weight: 400;">Listy</div>
                                             <div class="spaceit user-list-stats font-weight-bold"><span class="dark_text">Wszystkich gier: </span><a href="#">@Model.GameLists.Count()</a></div>
-                                            <div class="spaceit user-list-stats font-weight-bold"><span class="dark_text">Średnia ocen: </span><a href="#">@Model.GameLists.Average(s => s.PersonalScore)</a></div>
+                                            <div class="spaceit user-list-stats font-weight-bold">
+                                                <span class="dark_text">Średnia ocen: </span>
+                                                @{
+                                                    double? avr = Model.GameLists.Average(s => s.PersonalScore);
+                                                    if (avr.HasValue)
+                                                    {
+                                                        <text>@Math.Round(avr.Value, 1)</text>
+                                                    }
+                                                    else
+                                                    {
+                                                        <text> Brak ocen</text>
+                                                    };
+                                                }
+
+
+
+                                            </div>
                                             <div class="clearfix mauto mt16" style="width:160px;padding-right:10px"></div>
                                             @foreach (var type in Model.ListTypes)
                                             {<div class="spaceit user-list-stats"><span class="dark_text">@type.Name </span><a href="#">@Model.GameLists.Where(t => t.UserList.ListTypeId == type.Id).Count()</a></div>

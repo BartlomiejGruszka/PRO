@@ -16,6 +16,7 @@ namespace PRO.ViewModels
         public IEnumerable<Company> Publlishers { get; set; }
         public IEnumerable<Company> Developers { get; set; }
         public IEnumerable<Image> Images{ get; set; }
+        public IEnumerable<ImageType> ImageTypes { get; set; }
         public IEnumerable<Language> Languages{ get; set; }
         public IEnumerable<Tag> Tags{ get; set; }
         public IEnumerable<int> selectedLanguagesId { get; set; }

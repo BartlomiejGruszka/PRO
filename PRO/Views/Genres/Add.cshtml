@@ -7,10 +7,10 @@
 
 <h2>Dodaj gatunek</h2>
 
-@using (Html.BeginForm("Add","Genres")) 
+@using (Html.BeginForm("Add", "Genres"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })
@@ -29,4 +29,8 @@
             </div>
         </div>
     </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
 }

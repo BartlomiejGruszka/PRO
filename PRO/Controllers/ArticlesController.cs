@@ -147,6 +147,10 @@ namespace PRO.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
+                if (_context.Authors.SingleOrDefault(s => s.UserId == (int)userid) == null)
+                {
+                    return HttpNotFound();
+                }
                 article.UserId = (int)userid;
                 article.PublishedDate = DateTime.Now;
                 _context.Articles.Add(article);
@@ -229,6 +233,8 @@ namespace PRO.Controllers
             var id = user.Id;
             return id;
         }
+
+
 
         [AllowAnonymous]
         [Route("articles/search/{query?}")]

@@ -11,78 +11,129 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+    <div class="form-horizontal">
 
-    <hr />
-    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Article.Id)
-    @Html.HiddenFor(model => model.Article.UserId)
-    @Html.HiddenFor(model => model.Article.PublishedDate)
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Article.Title, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Article.Title, "", new { @class = "text-danger" })
+        <hr />
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Article.Id)
+        @Html.HiddenFor(model => model.Article.UserId)
+        @Html.HiddenFor(model => model.Article.PublishedDate)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Article.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Article.Title, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.Preview, htmlAttributes: new { @class = "control-label col-md-2 formtextarea" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Article.Preview, new { @id = "formtextarea", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Article.Preview, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.Preview, htmlAttributes: new { @class = "control-label col-md-2 formtextarea" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Article.Preview, new { @id = "formtextarea", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Article.Preview, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.Content, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Article.Content, new { @id = "mytextarea", @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Article.Content, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.Content, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Article.Content, new { @id = "mytextarea", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Article.Content, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.SourceLink, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Article.SourceLink, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Article.SourceLink, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.SourceLink, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Article.SourceLink, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Article.SourceLink, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.Article.IsActive)
-                @Html.ValidationMessageFor(model => model.Article.IsActive, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Article.IsActive)
+                    @Html.ValidationMessageFor(model => model.Article.IsActive, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.Image.ImageType.Id, "Rodzaj obrazka", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Article.Image.ImageType.Id, new SelectList(Model.ImageTypes, "Id", "Name"), "Wybierz rodzaj obrazka", new { @class = "form-control", @id = "ddlstate", @onchange = "javascript:GetImagesByType(this.value);" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="ImageId" name="ImageId" class="form-control" onchange="SetImageId()"></select>
+                @Html.ValidationMessageFor(model => model.Article.ImageId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.GameId, "Gra", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Article.GameId, new SelectList(Model.Games, "Id", "Title"), "Wybierz grę", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Article.GameId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Article.ArticleTypeId, "Typ artykułu", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.Article.ArticleTypeId, new SelectList(Model.ArticleTypes, "Id", "Name"), "Wybierz typ artykułu", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Article.ArticleTypeId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zapisz" class="btn btn-primary" />
+                <a href="#" class="btn btn-secondary" onclick="javascript:window.history.back(-1);return false;">Powrót</a>
             </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.ImageId, "Obraz", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Article.ImageId, new SelectList(Model.Images, "Id", "Name"), "Wybierz obraz", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Article.ImageId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.GameId, "Gra", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Article.GameId, new SelectList(Model.Games, "Id", "Title"), "Wybierz grę", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Article.GameId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Article.ArticleTypeId, "Typ artykułu", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.DropDownListFor(m => m.Article.ArticleTypeId, new SelectList(Model.ArticleTypes, "Id", "Name"), "Wybierz typ artykułu", htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Article.ArticleTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Zapisz" class="btn btn-primary" />
-            <a href="#" class="btn btn-secondary" onclick="javascript:window.history.back(-1);return false;">Powrót</a>
-        </div>
-    </div>
-</div>
 }
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script language="javascript" type="text/javascript">
+    function GetImagesByType(_stateId) {
+        var procemessage = "<option value='0'> Please wait...</option>";
+        $("#ImageId").html(procemessage).show();
+        var url = "/images/getimagesbytype/" + _stateId;
+
+        $.ajax({
+            url: url,
+            data: { id: _stateId },
+            cache: false,
+            type: "POST",
+            success: function (data) {
+                if (data.length > 0) {
+                    var markup = "<option value='0'>Wybierz obrazek</option>";
+                } else {
+                    var markup = "<option value='0'>Brak obrazków wybranego typu</option>";
+                }
+
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#ImageId").html(markup).show();
+            },
+            error: function (reponse) {
+                alert("error : " + reponse);
+            }
+        });
+
+    }
+
+</script>
+
+<script>
+    function SetImageId() {
+        var id = $('#ImageId').find(":selected").Value;
+        console.log(id);
+    }
+</script>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
