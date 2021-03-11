@@ -7,13 +7,13 @@ namespace PRO.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class SampleData : IMigrationMetadata
+    public sealed partial class Game_Gamelist_ImageType_ModelCorrections : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SampleData));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Game_Gamelist_ImageType_ModelCorrections));
         
         string IMigrationMetadata.Id
         {
-            get { return "202103010923228_SampleData"; }
+            get { return "202103111508002_Game_Gamelist_ImageType_ModelCorrections"; }
         }
         
         string IMigrationMetadata.Source

@@ -107,6 +107,7 @@ namespace PRO.Controllers
             List<GameList> gameLists = _context.GameLists
                 .Include(i => i.UserList)
                 .Include(i => i.Game)
+                .Include(i=>i.Game.Image)
                 .Where(u => u.UserList.UserId == id)
                 .ToList();
             List<Review> reviews = _context.

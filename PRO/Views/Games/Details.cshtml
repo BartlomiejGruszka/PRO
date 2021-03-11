@@ -40,9 +40,15 @@
                                 <tr>
                                     <td class="pb24">
                                         <div class="underlined_h2">Opis</div>
-                                        <p>
-                                            @Html.Raw(Model.GameGameList.Game.Description)
-                                        </p>
+                                        @if (String.IsNullOrEmpty(Model.GameGameList.Game.Description))
+                                        {
+                                            {<p>Obecnie nie ma recenzji dla tej gry</p>}
+                                        }
+                                        else
+                                        {
+                                            <p>@Html.Raw(Model.GameGameList.Game.Description)</p>
+                                        }
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -119,7 +125,7 @@
                                                                 @article.Preview<a href="/articles/@article.Id">więcej</a>
                                                             </p>
                                                         </div>
-                                                        <p class="lightLink spaceit">@article.PublishedDate przez <a href="/user/@article.Author.UserId">@article.Author.FirstName @article.Author.LastName</a></p>
+                                                        <p class="lightLink spaceit">@article.PublishedDate przez <a href="/users/@article.Author.UserId">@article.Author.FirstName @article.Author.LastName</a></p>
                                                     </div>
                                                     <div class="borderClass"></div>
                                                     <br>
@@ -131,8 +137,11 @@
 
                                         }
 
-
-                                        <div class="underlined_h2">Rekomendowane</div>
+                                        @if (Model.RecommendedGames?.Any() ?? false)
+                                        {
+                                    <div class="underlined_h2">Rekomendowane</div>
+                                        }
+                                        
                                     </td>
                                 </tr>
                             </tbody>

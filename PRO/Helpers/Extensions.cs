@@ -282,11 +282,13 @@ namespace PRO.Helpers
 
         public static List<Tuple<Game, double?>> GetUnorderedGamesRanking(this ApplicationDbContext context)
         {
+            var images = context.Images.ToList();
+
             var ranking = context.GameLists
                 .Include(i => i.Game)
                 .GroupBy(g => g.Game)
-                .Select(g => new { game = g.Key, average = g.Average(p => p.PersonalScore) })
                 .AsEnumerable()
+                .Select(g => new { game = g.Key, average = g.Average(p => p.PersonalScore) })             
                 .Select(c => new Tuple<Game, double?>(c.game, c.average))
                 .ToList();
 

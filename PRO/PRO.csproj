@@ -420,29 +420,13 @@
     <Compile Include="Migrations\202101291536176_editDateForGameList.Designer.cs">
       <DependentUpon>202101291536176_editDateForGameList.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103010923228_SampleData.cs" />
-    <Compile Include="Migrations\202103010923228_SampleData.Designer.cs">
-      <DependentUpon>202103010923228_SampleData.cs</DependentUpon>
+    <Compile Include="Migrations\202103111508002_Game_Gamelist_ImageType_ModelCorrections.cs" />
+    <Compile Include="Migrations\202103111508002_Game_Gamelist_ImageType_ModelCorrections.Designer.cs">
+      <DependentUpon>202103111508002_Game_Gamelist_ImageType_ModelCorrections.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202103011509584_gameModelUpdate.cs" />
-    <Compile Include="Migrations\202103011509584_gameModelUpdate.Designer.cs">
-      <DependentUpon>202103011509584_gameModelUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103011523287_SampleData2.cs" />
-    <Compile Include="Migrations\202103011523287_SampleData2.Designer.cs">
-      <DependentUpon>202103011523287_SampleData2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103021401211_GameListAnnotationChanges.cs" />
-    <Compile Include="Migrations\202103021401211_GameListAnnotationChanges.Designer.cs">
-      <DependentUpon>202103021401211_GameListAnnotationChanges.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103021401584_SampleData3.cs" />
-    <Compile Include="Migrations\202103021401584_SampleData3.Designer.cs">
-      <DependentUpon>202103021401584_SampleData3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103050905067_ImageTypeModel.cs" />
-    <Compile Include="Migrations\202103050905067_ImageTypeModel.Designer.cs">
-      <DependentUpon>202103050905067_ImageTypeModel.cs</DependentUpon>
+    <Compile Include="Migrations\202103111510528_SampleData.cs" />
+    <Compile Include="Migrations\202103111510528_SampleData.Designer.cs">
+      <DependentUpon>202103111510528_SampleData.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -828,23 +812,11 @@
     <EmbeddedResource Include="Migrations\202101291536176_editDateForGameList.resx">
       <DependentUpon>202101291536176_editDateForGameList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103010923228_SampleData.resx">
-      <DependentUpon>202103010923228_SampleData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103111508002_Game_Gamelist_ImageType_ModelCorrections.resx">
+      <DependentUpon>202103111508002_Game_Gamelist_ImageType_ModelCorrections.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103011509584_gameModelUpdate.resx">
-      <DependentUpon>202103011509584_gameModelUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103011523287_SampleData2.resx">
-      <DependentUpon>202103011523287_SampleData2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103021401211_GameListAnnotationChanges.resx">
-      <DependentUpon>202103021401211_GameListAnnotationChanges.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103021401584_SampleData3.resx">
-      <DependentUpon>202103021401584_SampleData3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103050905067_ImageTypeModel.resx">
-      <DependentUpon>202103050905067_ImageTypeModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103111510528_SampleData.resx">
+      <DependentUpon>202103111510528_SampleData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
