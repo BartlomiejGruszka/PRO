@@ -44,6 +44,7 @@ namespace PRO.Controllers
                         & !i.Game.Platform.Name.Contains("Playstation")
                         & !i.Game.Platform.Name.Contains("Xbox")
                         & !i.Game.Platform.Name.Contains("Switch"))
+                .OrderByDescending(d=>d.PublishedDate)
                 .ToList();
 
             }

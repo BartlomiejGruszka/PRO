@@ -135,6 +135,7 @@ namespace PRO.Helpers
              .Include(i => i.ArticleType)
              .Include(i => i.Game)
              .Include(i => i.Game.Platform)
+             .OrderByDescending(d => d.PublishedDate)
              .ToList();
             return articles;
         }
@@ -147,6 +148,7 @@ namespace PRO.Helpers
              .Include(i => i.Game)
              .Include(i => i.Game.Platform)
              .Where(i => i.Game.Platform.Name.Contains(platform))
+             .OrderByDescending(d => d.PublishedDate)
              .ToList();
             return articles;
         }
