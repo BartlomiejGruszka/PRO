@@ -81,9 +81,15 @@ namespace PRO.Controllers
         [AllowAnonymous]
         public ActionResult Details(int? id)
         {
+            var model = UserProfileSetup(id);
+            if (model == null) { return HttpNotFound(); }
+            return View(model);
+        }
+        public UserProfileViewModel UserProfileSetup(int? id)
+        {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return null;
             }
 
             User user = _context.AppUsers
@@ -93,11 +99,11 @@ namespace PRO.Controllers
 
             if (user == null)
             {
-                return HttpNotFound();
+                return null;
             }
             if (user.IsActive == false)
             {
-                return HttpNotFound();
+                return null;
             }
 
             List<UserList> userLists = _context.UserLists
@@ -107,7 +113,7 @@ namespace PRO.Controllers
             List<GameList> gameLists = _context.GameLists
                 .Include(i => i.UserList)
                 .Include(i => i.Game)
-                .Include(i=>i.Game.Image)
+                .Include(i => i.Game.Image)
                 .Where(u => u.UserList.UserId == id)
                 .ToList();
             List<Review> reviews = _context.
@@ -169,8 +175,7 @@ namespace PRO.Controllers
                 ListTypes = listTypes,
                 RecentlyUpdatedGames = recentGames
             };
-
-            return View(model);
+            return model;
         }
 
         [Route("users/details/{id}")]
@@ -546,7 +551,19 @@ namespace PRO.Controllers
             return View(model);
         }
 
-
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("users/{id}/reviews")]
+        public ActionResult Reviews(int? id)
+        {
+            var model = UserProfileSetup(id);
+            if (model == null) { return HttpNotFound(); }
+            var pageString = Request.QueryString["page"];
+            var itemString = Request.QueryString["items"];
+            ViewBag.Pagination = new Pagination(pageString, itemString, model.Reviews.Count());
+          
+            return View(model);
+        }
 
         public int? getCurrentUserId()
         {

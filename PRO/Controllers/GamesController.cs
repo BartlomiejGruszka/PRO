@@ -173,6 +173,7 @@ namespace PRO.Controllers
 
             int? position = gamesRankings.IndexOf(gamesRankings.Single(g => g.Item1.Id == id)) + 1;
             double? rating = gamesRankings.FirstOrDefault(g => g.Item1.Id == id).Item2;
+            if (rating.HasValue) { rating = Math.Round(rating.Value, 1); } else { rating = 0; }
 
             var popularity = _context.GetGamesByPopularity().FindIndex(s => s.Item1.Id == id) + 1;
 

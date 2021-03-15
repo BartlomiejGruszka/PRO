@@ -6,22 +6,45 @@
         <div style="float: left; padding-bottom:12px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding-left: 3px;">
                 <tbody>
-                    <tr>
-                        <td valign="top" width="60">
-                            <div class="">
 
-                                @if (Model.Review.User.Image != null)
-                                {<a href="#">
-                                        <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(Model.Review.User.Image.ImagePath)">
-                                    </a>
-                                }
+                    @if (ViewContext.RouteData.Values["controller"].ToString() == "Users")
+                    {
+                        <tr>
+                            <td valign="top" width="60">
+                                <div class="">
 
-                            </div>
-                        </td>
-                        <td valign="top" style="padding-left: 10px;">
-                            <a href="/users/@Model.Review.UserId">@Model.Review.User.ApplicationUser.UserName</a>
-                        </td>
-                    </tr>
+                                    @if (Model.Review.Game.Image != null)
+                                    {<a href="#">
+                                            <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(Model.Review.Game.Image.ImagePath)">
+                                        </a>
+                                    }
+
+                                </div>
+                            </td>
+                            <td valign="top" style="padding-left: 10px;">
+                                <a href="/games/@Model.Review.GameId">@Model.Review.Game.Title</a>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td valign="top" width="60">
+                                <div class="">
+
+                                    @if (Model.Review.User.Image != null)
+                                    {<a href="#">
+                                            <img style="max-width: 100%; max-height: 100%;" class=" lazyloaded" src="@Url.Content(Model.Review.User.Image.ImagePath)">
+                                        </a>
+                                    }
+
+                                </div>
+                            </td>
+                            <td valign="top" style="padding-left: 10px;">
+                                <a href="/users/@Model.Review.UserId">@Model.Review.User.ApplicationUser.UserName</a>
+                            </td>
+                        </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -30,9 +53,9 @@
             <div title="">@Model.Review.ReviewDate</div>
             <div class="lightLink spaceit">
                 @{int? myInt = Model.Playtime == null ? 0 : Model.Playtime; }
-                    Rozegrane: @myInt h
+                Rozegrane: @myInt h
             </div>
-            @{ 
+            @{
                 {
                     int avg = (Model.Review.GameplayScore + Model.Review.GraphicsScore + Model.Review.MusicScore + Model.Review.StoryScore) / 4;
                     if (Model.Review.ModeratorId != null)

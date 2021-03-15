@@ -1,0 +1,125 @@
+﻿@model PRO.ViewModels.UserProfileViewModel
+@{
+    ViewBag.Title = "Profil użytkownika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    <h1 class="main_h1 edit-info">
+        <span class="h1-title">
+            <span>
+                @Model.User.ApplicationUser.UserName
+            </span>
+
+        </span>
+    </h1>
+</div>
+<div id="content" class="userprofilecontent">
+    @if (Model.User.IsPublic)
+    {
+
+        @Html.Partial("_UserLeftSide", Model)
+
+        <div valign="top" style="padding-left: 5px;">
+            <div class="js-scrollfix-bottom-rel">
+                <div style=" margin:0 auto"></div><a name="lower"></a>
+
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td valign="top" style="padding-left: 5px;">
+                                <div class="js-scrollfix-bottom-rel">
+                                    <div style=" margin:0 auto"></div><a name="lower"></a>
+
+                                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="pb24">
+
+                                                    <div class="underlined_h2">
+                                                        <text class="">Wszystkie recenzje</text>
+                                                        <a style="float:right; text-decoration:none; font-weight:normal;" href="/users/@Model.User.Id">Powrót</a>
+                                                    </div>
+                                                    @{
+                                                        var start = ViewBag.Pagination.pageIteratorStart;
+                                                        var end = ViewBag.Pagination.pageIteratorEnd;
+                                                        var reviewGametime = Model.Reviews.ToArray();
+                                                        for (var i = start; i <= end; i++)
+                                                        {
+
+
+                                                            @Html.Partial("_SingleReview", reviewGametime[i])
+
+                                                            <div class="underlined_h2"></div>
+                                                        }
+                                                    }
+
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div>
+                                    <ul class="pagination">
+                                        @{
+                                            var first = ViewBag.Pagination.firstPage;
+                                            var current = ViewBag.Pagination.currentPage;
+                                            var previous = ViewBag.Pagination.previousPage;
+                                            var items = ViewBag.Pagination.itemsPerPage;
+                                            var next = ViewBag.Pagination.nextPage;
+                                            var last = ViewBag.Pagination.lastPage;
+                                        }
+
+
+
+
+                                        @{
+                                            if (@current >= 3)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" href="/users/@Model.User.Id/reviews?page=@first&items=@items">«</a>
+                                                </li>
+                                            }
+                                            if (@current >= 2 && @previous != @current)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" href="/users/@Model.User.Id/reviews?page=@previous&items=@items">@previous</a>
+                                                </li>
+                                            }
+
+                                            <li class="page-item active">
+                                                <a class="page-link" href="/users/@Model.User.Id/reviews?page=@current&items=@items">@current</a>
+                                            </li>
+
+                                            if (@last > @current)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" href="/users/@Model.User.Id/reviews?page=@next&items=@items">@next</a>
+                                                </li>
+                                            }
+
+                                            if (@last > @current + 1)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" href="/users/@Model.User.Id/reviews?page=@last&items=@items">&raquo;</a>
+                                                </li>
+                                            }
+                                        }
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    }
+    else
+    {
+        <p style="display:flex; justify-content:center; margin-top:1rem;">Ten profil jest prywatny</p>
+    }
+</div>

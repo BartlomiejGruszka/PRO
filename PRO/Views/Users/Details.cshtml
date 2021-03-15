@@ -28,9 +28,18 @@
                         <tr>
                             <td class="pb24">
                                 <div class="underlined_h2">Opis</div>
-                                <p>
-                                    @Html.Raw(@Model.User.Description)
-                                </p>
+                                @if (Model.User.Description != null)
+                                {<p>
+                                        @Html.Raw(@Model.User.Description)
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        Ten użytkownik nie wprowadził jeszcze opisu.
+                                    </p>
+                                }
+
                             </td>
                         </tr>
                         <tr>
@@ -72,7 +81,7 @@
                                                 foreach (var game in Model.RecentlyUpdatedGames)
                                                 {<div class="statistics-updates di-b w100 mb8">
                                                         @if (game.Item1.Game.Image != null)
-                                                        {<a href="/games/@game.Item1.GameId" class="image fl-l di-ib mr8" >
+                                                        {<a href="/games/@game.Item1.GameId" class="image fl-l di-ib mr8">
                                                                 <img style="max-width:60px;width: expression(this.width > 60 ? 60: true);" class="lazyloaded" src="@Url.Content(game.Item1.Game.Image.ImagePath)">
                                                             </a>}
                                                         <div class="data" style="font-size:0.85rem;">

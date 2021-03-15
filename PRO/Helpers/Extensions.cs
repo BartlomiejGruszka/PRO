@@ -179,6 +179,7 @@ namespace PRO.Helpers
                 .Include(r => r.User.ApplicationUser)
                 .Include(r => r.Moderator.User.ApplicationUser)
                 .Include(r => r.Game)
+                .Include(r=>r.Game.Image)
                 .ToList();
             return reviews;
         }
